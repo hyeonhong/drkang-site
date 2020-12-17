@@ -9,6 +9,6 @@ export function fetchAuth(ctx, path) {
   const cookies = nookies.get(ctx)
 
   return fetch(baseUrl + path, {
-    headers: { token: cookies.token }
+    headers: { Authorization: JSON.stringify({ token: cookies.token }) }
   })
 }

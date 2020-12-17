@@ -2,7 +2,13 @@ import { verifyIdToken } from '../../utils/auth/firebaseAdmin'
 const favoriteFoods = ['pizza', 'burger', 'chips', 'tortilla']
 
 const getFood = async (req, res) => {
-  const { token } = req.headers
+  const { token } = JSON.parse(req.headers.authorization || '{}')
+  if (!token) {
+    return res.status(403).send({
+      errorCode: 403,
+      message: 'Auth token missing.'
+    })
+  }
 
   try {
     await verifyIdToken(token)
