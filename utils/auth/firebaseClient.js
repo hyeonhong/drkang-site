@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import firebaseClient from 'firebase/app'
 import 'firebase/auth'
 import queryString from 'query-string'
@@ -18,7 +18,18 @@ if (!firebaseClient.apps.length) {
   // firebaseClient.auth().languageCode = 'kr'
 }
 
-export const useAuth = () => {
+const AuthContext = createContext()
+
+export function AuthProvider({ children }) {
+  const auth = useProvideAuth()
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+}
+
+export function useAuth() {
+  return useContext(AuthContext)
+}
+
+export function useProvideAuth() {
   const token = Cookies.get('token')
   const [session, setSession] = useState(token)
 

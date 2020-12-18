@@ -1,11 +1,21 @@
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { Link, Button, Typography, Box } from '@material-ui/core'
 import nookies from 'nookies'
 
 import { verifyIdToken } from '../utils/auth/firebaseAdmin'
 import { useAuth } from '../utils/auth/firebaseClient'
 
-export default function AuthenticatedPage({ message }) {
-  const { signOut } = useAuth()
+export default function ProtectedPage({ message }) {
+  const { session, signOut } = useAuth()
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!session) {
+      router.push('/')
+    }
+  }, [session])
 
   return (
     <div>

@@ -1,5 +1,5 @@
 /* eslint-disable multiline-ternary */
-import { Container, Button, Typography } from '@material-ui/core'
+import { Container, Button, Typography, Box } from '@material-ui/core'
 
 import Link from '../components/Link'
 import Layout from '../components/Layout'
@@ -15,6 +15,10 @@ export default function Home() {
         {session ? (
           <>
             <Typography variant="h6">{`User's token info: ${session}`}</Typography>
+            <Link href="/protected" variant="h6">
+              Go to Protected Page
+            </Link>
+            <Box />
             <Button onClick={() => signOut()}>Sign out</Button>
           </>
         ) : (
