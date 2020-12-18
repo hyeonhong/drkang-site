@@ -76,14 +76,14 @@ export function useProvideAuth() {
 
     window.open(url, '_blank', 'height=768,width=576')
 
-    const interval = setInterval(() => {
+    const handle = setInterval(() => {
       const token = Cookies.get('customToken') // sent from /api/auth/callback/naver
       if (token) {
         signInWithCustomToken(token).catch((error) => {
           console.log('error signing up:', error)
         })
         Cookies.remove('customToken')
-        clearInterval(interval)
+        clearInterval(handle)
       }
     }, 100)
   }
@@ -122,6 +122,19 @@ export function useProvideAuth() {
     })
 
     return unsubscribe
+  }, [])
+
+  // force refresh the token every 30 minutes
+  useEffect(() => {
+    const handle = setInterval(async () => {
+      const user = firebase.auth().currentUser
+      if (user) {
+        const token = await user.getIdToken(true)
+        setSession(token)
+        Cookies.set('token', token, { expires: 1 / 24 })
+      }
+    }, 30 * 60 * 1000)
+    return () => clearInterval(handle)
   }, [])
 
   return {
