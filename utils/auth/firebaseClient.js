@@ -30,8 +30,7 @@ export function useAuth() {
 }
 
 export function useProvideAuth() {
-  const token = Cookies.get('token')
-  const [session, setSession] = useState(token)
+  const [session, setSession] = useState(null)
 
   function signUp(email, password) {
     return firebaseClient.auth().createUserWithEmailAndPassword(email, password)
@@ -99,7 +98,7 @@ export function useProvideAuth() {
   // }
 
   useEffect(() => {
-    const unsubscribe = firebaseClient.auth().onIdTokenChanged(async (user) => {
+    const unsubscribe = firebaseClient.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const token = await user.getIdToken()
         setSession(token)

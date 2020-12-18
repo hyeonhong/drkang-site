@@ -1,9 +1,9 @@
 /* eslint-disable multiline-ternary */
 import { Container, Button, Typography, Box } from '@material-ui/core'
 
+import { useAuth } from '../utils/auth/firebaseClient'
 import Link from '../components/Link'
 import Layout from '../components/Layout'
-import { useAuth } from '../utils/auth/firebaseClient'
 
 export default function Home() {
   const { session, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()

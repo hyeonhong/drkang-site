@@ -6,9 +6,12 @@ export function fetchAuth(ctx, path) {
   const protocol = req.headers['x-forwarded-proto'] || 'http'
   const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
 
-  const cookies = nookies.get(ctx)
+  const { token } = nookies.get(ctx)
+  if (!token) {
+    throw new Error('Token not found')
+  }
 
   return fetch(baseUrl + path, {
-    headers: { Authorization: JSON.stringify({ token: cookies.token }) }
+    headers: { Authorization: JSON.stringify({ token }) }
   })
 }

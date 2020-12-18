@@ -32,7 +32,6 @@ export default function ProtectedPage({ message }) {
 export async function getServerSideProps(ctx) {
   try {
     const cookies = nookies.get(ctx)
-    console.log(JSON.stringify(cookies, null, 2))
     const decodedToken = await verifyIdToken(cookies.token)
     const { uid, email } = decodedToken
 
