@@ -1,4 +1,5 @@
 import nookies from 'nookies'
+import { verifyIdToken } from '../auth/firebaseAdmin'
 
 export function fetchAuth(ctx, path) {
   // get baseUrl
@@ -14,4 +15,24 @@ export function fetchAuth(ctx, path) {
   return fetch(baseUrl + path, {
     headers: { Authorization: JSON.stringify({ token }) }
   })
+}
+
+export async function checkGuest(ctx) {
+  const guestPath = {
+    redirect: {
+      permanent: false,
+      destination: '/'
+    },
+    props: {}
+  }
+
+  const { token } = nookies.get(ctx)
+  if (token) {
+    try {
+      await verifyIdToken(token)
+      return
+    } catch (e) {}
+  }
+
+  return guestPath
 }

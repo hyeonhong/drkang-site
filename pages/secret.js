@@ -1,22 +1,26 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Link, Typography, Box } from '@material-ui/core'
-import nookies from 'nookies'
+import { Button, Link, Typography, Box } from '@material-ui/core'
 
-import { verifyIdToken } from '../utils/auth/firebaseAdmin'
+import { useAuth } from '../utils/auth/firebaseClient'
+import { checkGuest } from '../utils/server-side'
 
-export default function SecretPage({ authenticated }) {
+export default function SecretPage({ message }) {
+  const { session, signOut } = useAuth()
+
   const router = useRouter()
 
   useEffect(() => {
-    if (!authenticated) {
+    if (!session) {
       router.push('/')
     }
-  }, [authenticated])
+  }, [session])
 
   return (
     <div>
-      <Typography variant="h6">This is a secret page.</Typography>
+      <Typography variant="h6">This is a secret page with message: {message}</Typography>
+      <Box />
+      <Button onClick={() => signOut()}>Click here to sign out</Button>
       <Box />
       <Link href={'/'} variant="h6">
         Back to home
@@ -25,16 +29,13 @@ export default function SecretPage({ authenticated }) {
   )
 }
 
-export const getServerSideProps = async (ctx) => {
-  let authenticated = false
-  const { token } = nookies.get(ctx)
-  if (token) {
-    try {
-      await verifyIdToken(token)
-      authenticated = true
-    } catch (e) {}
+export async function getServerSideProps(ctx) {
+  const guestPath = await checkGuest(ctx)
+  if (guestPath) {
+    return guestPath
   }
+
   return {
-    props: { authenticated }
+    props: { message: 'carpe diem' }
   }
 }

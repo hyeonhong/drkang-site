@@ -14,7 +14,7 @@ export default function TestPage(props) {
   )
 }
 
-export const getServerSideProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   // get baseUrl
   const { req } = ctx
   const protocol = req.headers['x-forwarded-proto'] || 'http'
