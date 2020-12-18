@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import firebaseClient from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/auth'
+import { Typography } from '@material-ui/core'
 import queryString from 'query-string'
 import Cookies from 'js-cookie'
 
@@ -13,16 +14,21 @@ const config = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 }
 
-if (!firebaseClient.apps.length) {
-  firebaseClient.initializeApp(config)
-  // firebaseClient.auth().languageCode = 'kr'
+if (!firebase.apps.length) {
+  firebase.initializeApp(config)
+  firebase.auth().useDeviceLanguage()
 }
 
 const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
   const auth = useProvideAuth()
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+  const { loading } = auth
+  return (
+    <AuthContext.Provider value={auth}>
+      {loading ? <Typography variant="body1">{'Loading...'}</Typography> : children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth() {
@@ -31,30 +37,31 @@ export function useAuth() {
 
 export function useProvideAuth() {
   const [session, setSession] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   function signUp(email, password) {
-    return firebaseClient.auth().createUserWithEmailAndPassword(email, password)
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
   }
 
   function signIn(email, password) {
-    return firebaseClient.auth().signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(email, password)
   }
 
   function signInWithGoogle() {
-    const provider = new firebaseClient.auth.GoogleAuthProvider()
-    return firebaseClient.auth().signInWithPopup(provider)
+    const provider = new firebase.auth.GoogleAuthProvider()
+    return firebase.auth().signInWithPopup(provider)
   }
 
   function signInWithFacebook() {
-    const provider = new firebaseClient.auth.FacebookAuthProvider()
+    const provider = new firebase.auth.FacebookAuthProvider()
     // provider.setCustomParameters({
     //   display: 'popup'
     // })
-    return firebaseClient.auth().signInWithPopup(provider)
+    return firebase.auth().signInWithPopup(provider)
   }
 
   function signInWithCustomToken(token) {
-    return firebaseClient.auth().signInWithCustomToken(token)
+    return firebase.auth().signInWithCustomToken(token)
   }
 
   function signInWithNaver() {
@@ -82,11 +89,11 @@ export function useProvideAuth() {
   }
 
   function signOut() {
-    return firebaseClient.auth().signOut()
+    return firebase.auth().signOut()
   }
 
   // function resetPassword(email) {
-  //   return firebaseClient.auth().sendPasswordResetEmail(email)
+  //   return firebase.auth().sendPasswordResetEmail(email)
   // }
 
   // function updateEmail(email) {
@@ -98,7 +105,8 @@ export function useProvideAuth() {
   // }
 
   useEffect(() => {
-    const unsubscribe = firebaseClient.auth().onAuthStateChanged(async (user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+      setLoading(false)
       if (user) {
         const token = await user.getIdToken()
         setSession(token)
@@ -118,6 +126,7 @@ export function useProvideAuth() {
 
   return {
     session,
+    loading,
     signUp,
     signIn,
     signInWithGoogle,

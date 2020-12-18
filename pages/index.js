@@ -12,17 +12,24 @@ export default function Home() {
     <Layout>
       <Container maxWidth="sm">
         <Typography variant="h6">This is home page</Typography>
+        <Box />
         {session ? (
-          <>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Typography variant="h6">{`User's token info: ${session}`}</Typography>
             <Link href="/protected" variant="h6">
               Go to Protected Page
             </Link>
-            <Box />
+            <Link href="/secret" variant="h6">
+              Go to Secret Page
+            </Link>
+            <Link href="/testapi" variant="h6">
+              Go to TestAPI Page
+            </Link>
             <Button onClick={() => signOut()}>Sign out</Button>
-          </>
+          </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography variant="h6">Currently NOT signed in</Typography>
             <Link href="/signup" variant="h6">
               Sign up with Email
             </Link>
