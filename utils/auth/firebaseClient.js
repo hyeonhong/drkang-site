@@ -110,11 +110,10 @@ export function useProvideAuth() {
       if (user) {
         const token = await user.getIdToken()
         setSession(token)
-        Cookies.set('token', token, {
-          // firebase id tokens expire in one hour
-          // set cookie expiry to match
-          expires: 1 / 24
-        })
+        Cookies.set('token', token, { expires: 1 / 24 })
+
+        // // set persistence
+        // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       } else {
         setSession(null)
         Cookies.remove('token')
