@@ -8,9 +8,6 @@ export function fetchAuth(ctx, path) {
   const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
 
   const { token } = nookies.get(ctx)
-  if (!token) {
-    throw new Error('Token not found')
-  }
 
   return fetch(baseUrl + path, {
     headers: { Authorization: JSON.stringify({ token }) }
