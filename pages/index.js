@@ -6,16 +6,20 @@ import Link from '../components/Link'
 import Layout from '../components/Layout'
 
 export default function Home() {
-  const { session, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()
+  const { user, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()
 
   return (
     <Layout>
       <Container maxWidth="sm">
         <Typography variant="h6">This is home page</Typography>
         <Box />
-        {session ? (
+        {user ? (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Typography variant="h6">{`User's token info: ${session}`}</Typography>
+            <Typography variant="h6">{"User's Info"}</Typography>
+            <Typography variant="h6">{`email: ${user.email}`}</Typography>
+            <Typography variant="h6">{`emailVerified: ${user.emailVerified}`}</Typography>
+            <Typography variant="h6">{`uid: ${user.uid}`}</Typography>
+            <Typography variant="h6">{`refreshToken: ${user.refreshToken}`}</Typography>
             <Link href="/protected" variant="h6">
               Go to Protected Page
             </Link>

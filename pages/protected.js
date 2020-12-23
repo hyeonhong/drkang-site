@@ -7,15 +7,15 @@ import { verifyIdToken } from '../utils/auth/firebaseAdmin'
 import { useAuth } from '../utils/auth/firebaseClient'
 
 export default function ProtectedPage({ message }) {
-  const { session, signOut } = useAuth()
+  const { user, signOut } = useAuth()
 
   const router = useRouter()
 
   useEffect(() => {
-    if (!session) {
+    if (!user) {
       router.push('/')
     }
-  }, [session])
+  }, [user])
 
   return (
     <div>

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function SignIn() {
-  const { session, signIn } = useAuth()
+  const { user, signIn } = useAuth()
   const router = useRouter()
 
   const classes = useStyles()
@@ -57,10 +57,10 @@ export default function SignIn() {
   })
 
   useEffect(() => {
-    if (session) {
+    if (user) {
       router.push('/')
     }
-  }, [session])
+  }, [user])
 
   return (
     <div className={classes.root}>

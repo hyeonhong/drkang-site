@@ -6,15 +6,15 @@ import { useAuth } from '../utils/auth/firebaseClient'
 import { checkGuest } from '../utils/server-side'
 
 export default function SecretPage({ message }) {
-  const { session, signOut } = useAuth()
+  const { user, signOut } = useAuth()
 
   const router = useRouter()
 
   useEffect(() => {
-    if (!session) {
+    if (!user) {
       router.push('/')
     }
-  }, [session])
+  }, [user])
 
   return (
     <div>

@@ -20,8 +20,8 @@ export function useAuth() {
   return useContext(AuthContext)
 }
 
-export function useProvideAuth() {
-  const [session, setSession] = useState(null)
+function useProvideAuth() {
+  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
   function signUp(email, password) {
@@ -93,14 +93,18 @@ export function useProvideAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       setLoading(false)
       if (user) {
-        const token = await user.getIdToken()
-        setSession(token)
-        Cookies.set('token', token, { expires: 1 / 24 })
+        if (user.providerData[0].providerId === 'password' && !user.emailVerified) {
+          // don't set user until email is verified
+        } else {
+          setUser(user)
+          const token = await user.getIdToken()
+          Cookies.set('token', token, { expires: 1 / 24 })
+        }
 
         // // set persistence
         // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       } else {
-        setSession(null)
+        setUser(null)
         Cookies.remove('token')
       }
     })
@@ -114,7 +118,7 @@ export function useProvideAuth() {
       const user = firebase.auth().currentUser
       if (user) {
         const token = await user.getIdToken(true)
-        setSession(token)
+        // setUser(firebase.auth().currentUser)
         Cookies.set('token', token, { expires: 1 / 24 })
       }
     }, 30 * 60 * 1000)
@@ -122,7 +126,7 @@ export function useProvideAuth() {
   }, [])
 
   return {
-    session,
+    user,
     loading,
     signUp,
     signIn,
