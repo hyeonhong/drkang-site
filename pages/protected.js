@@ -25,6 +25,9 @@ export default function ProtectedPage({ message }) {
       <Link href={'/'} variant="h6">
         Back to home
       </Link>
+      <Link href={'/secret'} variant="h6">
+        Go to Secret Page
+      </Link>
     </div>
   )
 }

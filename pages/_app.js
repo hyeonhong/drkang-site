@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import { AuthProvider } from '../utils/auth/firebaseClient'
+import { LangProvider } from '../utils/hooks/useLang'
 import theme from '../styles/theme'
 import Layout from '../components/Layout'
 
@@ -19,9 +20,11 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AuthProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <LangProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </LangProvider>
         </AuthProvider>
       </ThemeProvider>
     </>

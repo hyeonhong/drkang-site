@@ -26,7 +26,12 @@ function useProvideAuth() {
   const [loading, setLoading] = useState(true)
 
   function signUp(email, password) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password)
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userData) => {
+        userData.user.sendEmailVerification()
+      })
   }
 
   function signIn(email, password) {
@@ -78,6 +83,24 @@ function useProvideAuth() {
     return firebase.auth().signOut()
   }
 
+  function sendEmailVerification() {
+    return firebase.auth().currentUser.sendEmailVerification()
+  }
+
+  async function isEmailVerified() {
+    const currentUser = firebase.auth().currentUser
+    if (currentUser) {
+      await currentUser.reload()
+      if (currentUser.emailVerified) {
+        setUser(currentUser)
+        const token = await currentUser.getIdToken(true)
+        Cookies.set('token', token, { expires: 1 / 24 })
+        return true
+      }
+    }
+    return false
+  }
+
   // function resetPassword(email) {
   //   return firebase.auth().sendPasswordResetEmail(email)
   // }
@@ -91,20 +114,19 @@ function useProvideAuth() {
   // }
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (currentUser) => {
       setLoading(false)
-      if (user) {
-        if (user.providerData[0].providerId === 'password' && !user.emailVerified) {
-          // don't set user until email is verified
+      if (currentUser) {
+        if (currentUser.providerData[0].providerId === 'password' && !currentUser.emailVerified) {
           router.push('/verifyemail')
         } else {
-          setUser(user)
-          const token = await user.getIdToken()
+          setUser(currentUser)
+          const token = await currentUser.getIdToken()
           Cookies.set('token', token, { expires: 1 / 24 })
-        }
 
-        // // set persistence
-        // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+          // // set persistence
+          // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        }
       } else {
         setUser(null)
         Cookies.remove('token')
@@ -117,10 +139,9 @@ function useProvideAuth() {
   // force refresh the token every 30 minutes
   useEffect(() => {
     const handle = setInterval(async () => {
-      const user = firebase.auth().currentUser
-      if (user) {
-        const token = await user.getIdToken(true)
-        // setUser(firebase.auth().currentUser)
+      const currentUser = firebase.auth().currentUser
+      if (currentUser) {
+        const token = await currentUser.getIdToken(true)
         Cookies.set('token', token, { expires: 1 / 24 })
       }
     }, 30 * 60 * 1000)
@@ -135,6 +156,8 @@ function useProvideAuth() {
     signInWithGoogle,
     signInWithFacebook,
     signInWithNaver,
-    signOut
+    signOut,
+    sendEmailVerification,
+    isEmailVerified
   }
 }

@@ -1,6 +1,0 @@
-displayName: null
-email: "test1@naver.com"
-emailVerified: false
-phoneNumber: null
-photoURL: null
-uid: "JhO4xYeekxX1BO0q1lKkXUlgCAO2"
