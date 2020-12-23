@@ -1,10 +1,10 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { Typography } from '@material-ui/core'
 import queryString from 'query-string'
 import Cookies from 'js-cookie'
 import firebase from './initFirebase'
-
-const AuthContext = createContext()
+import AuthContext from '../context/AuthContext'
 
 export function AuthProvider({ children }) {
   const auth = useProvideAuth()
@@ -21,6 +21,7 @@ export function useAuth() {
 }
 
 function useProvideAuth() {
+  const router = useRouter()
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -95,6 +96,7 @@ function useProvideAuth() {
       if (user) {
         if (user.providerData[0].providerId === 'password' && !user.emailVerified) {
           // don't set user until email is verified
+          router.push('/verifyemail')
         } else {
           setUser(user)
           const token = await user.getIdToken()
