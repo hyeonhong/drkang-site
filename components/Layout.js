@@ -4,8 +4,6 @@ import Header from './Header'
 import Footer from './Footer'
 // import ContactPopUp from './ContactPopUp'
 
-// const { fontFamily } = require('../utils/siteConfig')
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

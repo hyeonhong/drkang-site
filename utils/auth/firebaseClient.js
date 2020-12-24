@@ -1,18 +1,16 @@
 import { useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Typography } from '@material-ui/core'
 import queryString from 'query-string'
 import Cookies from 'js-cookie'
 import firebase from './initFirebase'
 import AuthContext from '../context/AuthContext'
+import Spinner from '../../components/Spinner'
 
 export function AuthProvider({ children }) {
   const auth = useProvideAuth()
   const { loading } = auth
   return (
-    <AuthContext.Provider value={auth}>
-      {loading ? <Typography variant="body1">{'Loading...'}</Typography> : children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={auth}>{loading ? <Spinner /> : children}</AuthContext.Provider>
   )
 }
 
