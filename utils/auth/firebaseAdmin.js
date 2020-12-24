@@ -28,3 +28,21 @@ export function createCustomToken(uid) {
       throw error
     })
 }
+
+export function getUser(uid) {
+  return firebaseAdmin
+    .auth()
+    .getUser(uid)
+    .catch((error) => {
+      throw error
+    })
+}
+
+export function updateUser(uid, userRecord) {
+  return firebaseAdmin
+    .auth()
+    .updateUser(uid, userRecord)
+    .catch((error) => {
+      throw error
+    })
+}

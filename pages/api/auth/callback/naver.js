@@ -1,7 +1,7 @@
 import queryString from 'query-string'
 import { setCookie } from 'nookies'
 
-import { createCustomToken } from '../../../../utils/auth/firebaseAdmin'
+import { createCustomToken, getUser, updateUser } from '../../../../utils/auth/firebaseAdmin'
 
 export default async function naver(req, res) {
   const { code, state } = req.query
@@ -25,17 +25,24 @@ export default async function naver(req, res) {
     }
   })
   const naverResponse = await profileResponse.json()
-  const { email } = naverResponse.response
-  console.log('naver email:', email)
 
-  const customToken = await createCustomToken(email)
+  // Use Naver's email as uid
+  const uid = naverResponse.response.email
 
+  const customToken = await createCustomToken(uid)
   setCookie({ res }, 'customToken', customToken, {
     maxAge: 60 * 60,
     path: '/'
   })
 
+  // Send the token first
   res.statusCode = 200
   const body = '<script>window.close()</script>'
   res.send(body)
+
+  // ASYNC TASK: Set the email if empty
+  const user = await getUser(uid)
+  if (!user.email) {
+    await updateUser(uid, { email: uid })
+  }
 }
