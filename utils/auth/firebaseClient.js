@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import Cookies from 'js-cookie'
@@ -9,6 +9,7 @@ import Spinner from '../../components/Spinner'
 export function AuthProvider({ children }) {
   const auth = useProvideAuth()
   const { loading } = auth
+
   return (
     <AuthContext.Provider value={auth}>{loading ? <Spinner /> : children}</AuthContext.Provider>
   )
@@ -23,37 +24,37 @@ function useProvideAuth() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  function signUp(email, password) {
+  const signUp = useCallback((email, password) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userData) => {
         userData.user.sendEmailVerification()
       })
-  }
+  }, [])
 
-  function signIn(email, password) {
+  const signIn = useCallback((email, password) => {
     return firebase.auth().signInWithEmailAndPassword(email, password)
-  }
+  }, [])
 
-  function signInWithGoogle() {
+  const signInWithGoogle = useCallback(() => {
     const provider = new firebase.auth.GoogleAuthProvider()
     return firebase.auth().signInWithPopup(provider)
-  }
+  }, [])
 
-  function signInWithFacebook() {
+  const signInWithFacebook = useCallback(() => {
     const provider = new firebase.auth.FacebookAuthProvider()
     // provider.setCustomParameters({
     //   display: 'popup'
     // })
     return firebase.auth().signInWithPopup(provider)
-  }
+  }, [])
 
-  function signInWithCustomToken(token) {
+  const signInWithCustomToken = (token) => {
     return firebase.auth().signInWithCustomToken(token)
   }
 
-  function signInWithNaver() {
+  const signInWithNaver = useCallback(() => {
     const params = {
       response_type: 'code',
       client_id: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
@@ -75,17 +76,17 @@ function useProvideAuth() {
         clearInterval(handle)
       }
     }, 100)
-  }
+  }, [])
 
-  function signOut() {
+  const signOut = useCallback(() => {
     return firebase.auth().signOut()
-  }
+  }, [])
 
-  function sendEmailVerification() {
+  const sendEmailVerification = useCallback(() => {
     return firebase.auth().currentUser.sendEmailVerification()
-  }
+  }, [])
 
-  async function isEmailVerified() {
+  const isEmailVerified = useCallback(async () => {
     const currentUser = firebase.auth().currentUser
     if (currentUser) {
       await currentUser.reload()
@@ -97,7 +98,7 @@ function useProvideAuth() {
       }
     }
     return false
-  }
+  }, [])
 
   // function resetPassword(email) {
   //   return firebase.auth().sendPasswordResetEmail(email)
@@ -115,7 +116,11 @@ function useProvideAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged(async (currentUser) => {
       setLoading(false)
       if (currentUser) {
-        if (currentUser.providerData[0].providerId === 'password' && !currentUser.emailVerified) {
+        if (
+          currentUser.providerData.length > 0 &&
+          currentUser.providerData[0].providerId === 'password' &&
+          !currentUser.emailVerified
+        ) {
           router.push('/verifyemail')
         } else {
           setUser(currentUser)
