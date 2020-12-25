@@ -22,7 +22,7 @@
     "firebase-admin": "^9.4.2",
     "formik": "^2.2.6",
     "js-cookie": "^2.2.1",
-    "next": "10.0.3",
+    "next": "10.0.4",
     "nookies": "^2.5.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.13.7",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@prisma/cli": "2.13.1",
-    "eslint": "^7.15.0",
+    "eslint": "^7.16.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.3",
