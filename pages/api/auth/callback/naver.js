@@ -44,5 +44,6 @@ export default async function naver(req, res) {
   const user = await getUser(uid)
   if (!user.email) {
     await updateUser(uid, { email: uid })
+    console.log('update email complete')
   }
 }
