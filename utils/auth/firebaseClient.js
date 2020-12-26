@@ -4,15 +4,11 @@ import queryString from 'query-string'
 import Cookies from 'js-cookie'
 import firebase from './initFirebase'
 import AuthContext from '../context/AuthContext'
-import Spinner from '../../components/Spinner'
 
 export function AuthProvider({ children }) {
   const auth = useProvideAuth()
-  const { loading } = auth
 
-  return (
-    <AuthContext.Provider value={auth}>{loading ? <Spinner /> : children}</AuthContext.Provider>
-  )
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {
