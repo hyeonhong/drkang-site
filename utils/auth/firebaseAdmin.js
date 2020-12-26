@@ -16,7 +16,7 @@ export function verifyIdToken(token) {
     .auth()
     .verifyIdToken(token)
     .catch((error) => {
-      throw error
+      console.log('Error in verifyIdToken:', error)
     })
 }
 
@@ -25,7 +25,7 @@ export function createCustomToken(uid) {
     .auth()
     .createCustomToken(uid)
     .catch((error) => {
-      throw error
+      console.log('Error in createCustomToken:', error)
     })
 }
 
@@ -34,7 +34,7 @@ export function getUser(uid) {
     .auth()
     .getUser(uid)
     .catch((error) => {
-      throw error
+      console.log('Error in getUser:', error)
     })
 }
 
@@ -43,6 +43,6 @@ export function updateUser(uid, userRecord) {
     .auth()
     .updateUser(uid, userRecord)
     .catch((error) => {
-      throw error
+      console.log('Error in updateUser:', error)
     })
 }

@@ -66,7 +66,7 @@ function useProvideAuth() {
       const token = Cookies.get('customToken') // sent from /api/auth/callback/naver
       if (token) {
         signInWithCustomToken(token).catch((error) => {
-          console.log('error signing up:', error)
+          console.log('Error in signInWithCustomToken:', error)
         })
         Cookies.remove('customToken')
         clearInterval(handle)
