@@ -21,11 +21,11 @@ import navbarTabs from '../contents/navbarTabs'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    // backgroundColor: (props) => `rgba(231,170,148,${props.opacity})`,
     backgroundColor: '#fff'
+    // backgroundColor: (props) => `rgba(231,170,148,${props.opacity})`,
     // boxShadow: 'none'
   },
-  title: {
+  logo: {
     justifyContent: 'start',
     textTransform: 'none',
     [theme.breakpoints.down('xs')]: {
@@ -57,6 +57,9 @@ const useStyles = makeStyles((theme) => ({
     },
     borderRadius: 8,
     color: 'black'
+  },
+  lowercase: {
+    textTransform: 'none'
   }
 }))
 
@@ -72,7 +75,7 @@ export default function Header() {
     <AppBar position="sticky" className={classes.appBar}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <Button onClick={() => router.push('/')} color="inherit" className={classes.title}>
+          <Button onClick={() => router.push('/')} color="inherit" className={classes.logo}>
             <Image src="/assets/logo.svg" alt="company logo" width={97.98} height={40} />
           </Button>
           <Box className={classes.filler} />
@@ -94,6 +97,31 @@ export default function Header() {
           <Hidden smDown>
             <LangButton />
           </Hidden>
+          <Typography variant="h6" style={{ color: 'black' }}>
+            {'-----'}
+          </Typography>
+          <Button
+            disableElevation
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            onClick={() => router.push('/signin')}
+            className={classes.lowercase}
+          >
+            Sign In
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            onClick={() => router.push('/signup')}
+            className={classes.lowercase}
+          >
+            Sign Up
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
