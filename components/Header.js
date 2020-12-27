@@ -94,7 +94,7 @@ export default function Header() {
             ))}
           </MenuList>
 
-          <Hidden smDown>
+          <Hidden mdDown>
             <LangButton />
           </Hidden>
           <Typography variant="h6" style={{ color: 'black' }}>

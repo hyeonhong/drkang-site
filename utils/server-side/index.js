@@ -1,35 +1,27 @@
-import nookies from 'nookies'
-import { verifyIdToken } from '../auth/firebaseAdmin'
-
 export function fetchAuth(ctx, path) {
   // get baseUrl
   const { req } = ctx
   const protocol = req.headers['x-forwarded-proto'] || 'http'
   const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
 
-  const { token } = nookies.get(ctx)
+  const { token } = ctx.req.cookies
 
   return fetch(baseUrl + path, {
     headers: { Authorization: JSON.stringify({ token }) }
   })
 }
 
-export async function checkGuest(ctx) {
-  const guestPath = {
-    redirect: {
-      permanent: false,
-      destination: '/'
-    },
-    props: {}
+export const withAuth = (getServerSidePropsFn) => async (ctx) => {
+  const { token } = ctx.req.cookies
+  if (!token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/signin'
+      },
+      props: {}
+    }
   }
 
-  const { token } = nookies.get(ctx)
-  if (token) {
-    try {
-      await verifyIdToken(token)
-      return
-    } catch (e) {}
-  }
-
-  return guestPath
+  return getServerSidePropsFn()
 }
