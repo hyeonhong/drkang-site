@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { TextField, Button, Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({

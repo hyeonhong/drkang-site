@@ -12,7 +12,10 @@ export default function SecretPage({ message }) {
 
   useEffect(() => {
     if (!user) {
+      console.log('no user!!!')
       router.push('/')
+    } else {
+      console.log('user yes!!')
     }
   }, [user])
 
@@ -31,6 +34,7 @@ export default function SecretPage({ message }) {
 
 export async function getServerSideProps(ctx) {
   const guestPath = await checkGuest(ctx)
+  console.log('Are you guest?', !!guestPath)
   if (guestPath) {
     return guestPath
   }
