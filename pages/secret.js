@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router'
 import { Button, Link, Typography, Box } from '@material-ui/core'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 import { withAuth } from 'utils/server-side'
 
 export default function SecretPage({ message }) {
+  const router = useRouter()
   const { signOut } = useAuth()
 
   return (
@@ -12,8 +14,12 @@ export default function SecretPage({ message }) {
       <Box />
       <Button onClick={() => signOut()}>Click here to sign out</Button>
       <Box />
-      <Link href={'/'} variant="h6">
+      <Link onClick={() => router.push('/')} variant="h6">
         Back to home
+      </Link>
+      <Box />
+      <Link onClick={() => router.push('/protected')} variant="h6">
+        Go to Protected
       </Link>
     </div>
   )

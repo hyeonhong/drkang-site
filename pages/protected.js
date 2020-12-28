@@ -4,7 +4,7 @@ import { Link, Button, Typography, Box } from '@material-ui/core'
 
 import { useAuth } from '../utils/auth/firebaseClient'
 
-export default function ProtectedPage({ message }) {
+export default function ProtectedPage() {
   const { user, signOut } = useAuth()
 
   const router = useRouter()
@@ -17,13 +17,14 @@ export default function ProtectedPage({ message }) {
 
   return (
     <div>
-      <Typography variant="h6">{message}</Typography>
+      <Typography variant="h6">{'This is protected page'}</Typography>
       <Button onClick={() => signOut()}>Click here to sign out</Button>
       <Box />
-      <Link href={'/'} variant="h6">
+      <Link onClick={() => router.push('/')} variant="h6">
         Back to home
       </Link>
-      <Link href={'/secret'} variant="h6">
+      <Box />
+      <Link onClick={() => router.push('/secret')} variant="h6">
         Go to Secret Page
       </Link>
     </div>

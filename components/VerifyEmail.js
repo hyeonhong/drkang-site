@@ -52,7 +52,7 @@ export default function VerifyEmail() {
           Resend Email
         </Button>
         <Button onClick={confirmVerification}>Verification Complete</Button>
-        <Link href="/signin" variant="h6">
+        <Link onClick={() => router.push('/signin')} variant="h6">
           Return to Sign In
         </Link>
       </div>

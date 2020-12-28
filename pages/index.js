@@ -1,11 +1,12 @@
 /* eslint-disable multiline-ternary */
-import { Container, Button, Typography, Box } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import { Link, Container, Button, Typography, Box } from '@material-ui/core'
 
 import { useAuth } from '../utils/auth/firebaseClient'
-import Link from '../components/Link'
 
 export default function Home() {
   const { user, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()
+  const router = useRouter()
 
   return (
     <Container maxWidth="sm">
@@ -18,13 +19,13 @@ export default function Home() {
           <Typography variant="h6">{`emailVerified: ${user.emailVerified}`}</Typography>
           <Typography variant="h6">{`uid: ${user.uid}`}</Typography>
           <Typography variant="h6">{`refreshToken: ${user.refreshToken}`}</Typography>
-          <Link href="/protected" variant="h6">
+          <Link onClick={() => router.push('/protected')} variant="h6">
             Go to Protected Page
           </Link>
-          <Link href="/secret" variant="h6">
+          <Link onClick={() => router.push('/secret')} variant="h6">
             Go to Secret Page
           </Link>
-          <Link href="/testapi" variant="h6">
+          <Link onClick={() => router.push('/testapi')} variant="h6">
             Go to TestAPI Page
           </Link>
           <Button onClick={() => signOut()}>Sign out</Button>
@@ -32,10 +33,10 @@ export default function Home() {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Typography variant="h6">Currently NOT signed in</Typography>
-          <Link href="/signup" variant="h6">
+          <Link onClick={() => router.push('/signup')} variant="h6">
             Sign up with Email
           </Link>
-          <Link href="/signin" variant="h6">
+          <Link onClick={() => router.push('/signin')} variant="h6">
             Sign in with Email
           </Link>
           <Button onClick={() => signInWithGoogle()}>
