@@ -1,3 +1,5 @@
+import { verifyIdToken } from 'utils/auth/firebaseAdmin'
+
 export function fetchAuth(ctx, path) {
   // get baseUrl
   const { req } = ctx
@@ -23,5 +25,16 @@ export const withAuth = (getServerSidePropsFn) => async (ctx) => {
     }
   }
 
-  return getServerSidePropsFn()
+  try {
+    const { uid } = await verifyIdToken(token)
+    return getServerSidePropsFn(uid)
+  } catch (e) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/signin'
+      },
+      props: {}
+    }
+  }
 }

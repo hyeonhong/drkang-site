@@ -25,7 +25,9 @@ export default function SecretPage({ message }) {
   )
 }
 
-export const getServerSideProps = withAuth(() => {
+export const getServerSideProps = withAuth((uid) => {
+  console.log('uid received:', uid)
+
   return {
     props: { message: 'carpe diem' }
   }
