@@ -13,7 +13,7 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: 'module'
   },
-  plugins: ['react', '@emotion', 'jest'],
+  plugins: ['react', 'jest'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
