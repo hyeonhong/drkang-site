@@ -12,8 +12,11 @@ import {
   MenuList,
   MenuItem,
   Typography,
-  Hidden
+  Hidden,
+  IconButton
 } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 import { useLang } from '../utils/hooks/useLang'
 import LangButton from '../components/LangButton'
@@ -122,6 +125,9 @@ export default function Header() {
           >
             Sign Up
           </Button>
+          <IconButton>
+            <FontAwesomeIcon icon={faUserCircle} />
+          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
