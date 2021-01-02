@@ -112,20 +112,21 @@ function useProvideAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged(async (currentUser) => {
       setLoading(false)
       if (currentUser) {
+        // For users with email and password, verify email
         if (
           currentUser.providerData.length > 0 &&
           currentUser.providerData[0].providerId === 'password' &&
           !currentUser.emailVerified
         ) {
           router.push('/verifyemail')
-        } else {
-          setUser(currentUser)
-          const token = await currentUser.getIdToken()
-          Cookies.set('token', token, { expires: 1 / 24 })
-
-          // // set persistence
-          // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
         }
+
+        setUser(currentUser)
+        const token = await currentUser.getIdToken()
+        Cookies.set('token', token, { expires: 1 / 24 })
+
+        // // set persistence
+        // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       } else {
         setUser(null)
         Cookies.remove('token')

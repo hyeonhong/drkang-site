@@ -1,6 +1,6 @@
 import { verifyIdToken } from 'utils/auth/firebaseAdmin'
 
-export function fetchAuth(ctx, path) {
+export function apiRequest(ctx, path, method = 'GET', data) {
   // get baseUrl
   const { req } = ctx
   const protocol = req.headers['x-forwarded-proto'] || 'http'
@@ -8,8 +8,10 @@ export function fetchAuth(ctx, path) {
 
   const { token } = ctx.req.cookies
 
-  return fetch(baseUrl + path, {
-    headers: { Authorization: JSON.stringify({ token }) }
+  return fetch(`${baseUrl}/api/${path}`, {
+    method,
+    headers: { Authorization: JSON.stringify({ token }) },
+    body: data ? JSON.stringify(data) : undefined
   })
 }
 

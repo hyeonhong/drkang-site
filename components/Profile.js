@@ -48,7 +48,7 @@ export default function Profile() {
 
   return (
     <Formik
-      initialValues={{ firstName: '', lastName: '', birthYear: '' }}
+      initialValues={{ firstName: '', lastName: '', gender: '', birthYear: '' }}
       // validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {}}
     >
