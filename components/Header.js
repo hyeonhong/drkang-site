@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -13,7 +14,10 @@ import {
   MenuItem,
   Typography,
   Hidden,
-  IconButton
+  IconButton,
+  Popper,
+  Fade,
+  Paper
 } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
@@ -61,8 +65,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     color: 'black'
   },
-  lowercase: {
+  button: {
     textTransform: 'none'
+  },
+  paper: {
+    border: '1px solid',
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.background.paper
   }
 }))
 
@@ -71,6 +80,8 @@ export default function Header() {
   const router = useRouter()
   const { lang } = useLang()
   const tabs = navbarTabs[lang]
+
+  const [anchorEl, setAnchorEl] = useState(null)
 
   const isTablet = useMediaQuery('(max-width:768px)')
 
@@ -109,7 +120,7 @@ export default function Header() {
             disableFocusRipple
             disableTouchRipple
             onClick={() => router.push('/signin')}
-            className={classes.lowercase}
+            className={classes.button}
           >
             Sign In
           </Button>
@@ -121,13 +132,46 @@ export default function Header() {
             disableFocusRipple
             disableTouchRipple
             onClick={() => router.push('/signup')}
-            className={classes.lowercase}
+            className={classes.button}
           >
             Sign Up
           </Button>
-          <IconButton>
+          <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
             <FontAwesomeIcon icon={faUserCircle} />
           </IconButton>
+          <Popper
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            placement={'bottom-end'}
+            transition
+            disablePortal
+            modifiers={[
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 30]
+                }
+              }
+            ]}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={50}>
+                <Paper className={classes.paper}>
+                  <Button
+                    variant="contained"
+                    disableElevation
+                    disableRipple
+                    disableFocusRipple
+                    disableTouchRipple
+                    onClick={() => router.push('/profile')}
+                    className={classes.button}
+                  >
+                    My Profile
+                  </Button>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
         </Toolbar>
       </Container>
     </AppBar>
