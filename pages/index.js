@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router'
 import { Link, Container, Button, Typography, Box } from '@material-ui/core'
 
-import { useAuth } from '../utils/auth/firebaseClient'
+import { useAuth } from 'utils/auth/firebaseClient'
 
 export default function Home() {
   const { user, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()

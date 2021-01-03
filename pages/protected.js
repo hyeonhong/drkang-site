@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Link, Button, Typography, Box } from '@material-ui/core'
 
-import { useAuth } from '../utils/auth/firebaseClient'
+import { useAuth } from 'utils/auth/firebaseClient'
 
 export default function ProtectedPage() {
   const { user, signOut } = useAuth()

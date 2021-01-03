@@ -1,3 +1,3 @@
-import VerifyEmail from '../components/VerifyEmail'
+import VerifyEmail from 'components/VerifyEmail'
 
 export default VerifyEmail

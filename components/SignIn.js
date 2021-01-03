@@ -5,7 +5,7 @@ import { TextField, Button, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import * as yup from 'yup'
 
-import { useAuth } from '../utils/auth/firebaseClient'
+import { useAuth } from 'utils/auth/firebaseClient'
 
 const useStyles = makeStyles((theme) => ({
   root: {

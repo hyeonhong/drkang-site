@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import 'styles/globals.css'
 
 import { useEffect } from 'react'
 import Head from 'next/head'
@@ -7,10 +7,10 @@ import { CacheProvider } from '@emotion/react'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import createCache from '@emotion/cache'
 
-import { AuthProvider } from '../utils/auth/firebaseClient'
-import { LangProvider } from '../utils/hooks/useLang'
-import theme from '../styles/theme'
-import Layout from '../components/Layout'
+import { AuthProvider } from 'utils/auth/firebaseClient'
+import { LangProvider } from 'utils/hooks/useLang'
+import theme from 'styles/theme'
+import Layout from 'components/Layout'
 
 export const cache = createCache({ key: 'css', prepend: true })
 

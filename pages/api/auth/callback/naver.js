@@ -1,7 +1,7 @@
 import queryString from 'query-string'
 import { setCookie } from 'nookies'
 
-import { createCustomToken, getUser, updateUser } from '../../../../utils/auth/firebaseAdmin'
+import { createCustomToken, getUser, updateUser } from 'utils/auth/firebaseAdmin'
 
 export default async function naver(req, res) {
   const { code, state } = req.query

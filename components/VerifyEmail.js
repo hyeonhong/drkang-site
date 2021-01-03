@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { useAuth } from '../utils/auth/firebaseClient'
+import { useAuth } from 'utils/auth/firebaseClient'
 import Link from './Link'
 
 const useStyles = makeStyles((theme) => ({

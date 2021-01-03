@@ -22,9 +22,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
-import { useLang } from '../utils/hooks/useLang'
-import LangButton from '../components/LangButton'
-import navbarTabs from '../contents/navbarTabs'
+import { useLang } from 'utils/hooks/useLang'
+import LangButton from 'components/LangButton'
+import navbarTabs from 'contents/navbarTabs'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

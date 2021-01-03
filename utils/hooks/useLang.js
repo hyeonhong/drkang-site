@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import LangContext from '../context/LangContext'
+import LangContext from 'utils/context/LangContext'
 
 export function LangProvider({ children }) {
   const defaultLang = 'en'

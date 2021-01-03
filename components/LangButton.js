@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, Menu, MenuItem, Typography } from '@material-ui/core'
 
-import { useLang } from '../utils/hooks/useLang'
+import { useLang } from 'utils/hooks/useLang'
 
 const useStyles = makeStyles((theme) => ({
   langButton: {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import Cookies from 'js-cookie'
 import firebase from './initFirebase'
-import AuthContext from '../context/AuthContext'
+import AuthContext from 'utils/context/AuthContext'
 
 export function AuthProvider({ children }) {
   const auth = useProvideAuth()
