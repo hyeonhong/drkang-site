@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import queryString from 'query-string'
 import Cookies from 'js-cookie'
@@ -20,37 +20,37 @@ function useProvideAuth() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const signUp = useCallback((email, password) => {
+  function signUp(email, password) {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userData) => {
         userData.user.sendEmailVerification()
       })
-  }, [])
+  }
 
-  const signIn = useCallback((email, password) => {
+  function signIn(email, password) {
     return firebase.auth().signInWithEmailAndPassword(email, password)
-  }, [])
+  }
 
-  const signInWithGoogle = useCallback(() => {
+  function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider()
     return firebase.auth().signInWithPopup(provider)
-  }, [])
+  }
 
-  const signInWithFacebook = useCallback(() => {
+  function signInWithFacebook() {
     const provider = new firebase.auth.FacebookAuthProvider()
     // provider.setCustomParameters({
     //   display: 'popup'
     // })
     return firebase.auth().signInWithPopup(provider)
-  }, [])
+  }
 
-  const signInWithCustomToken = (token) => {
+  function signInWithCustomToken(token) {
     return firebase.auth().signInWithCustomToken(token)
   }
 
-  const signInWithNaver = useCallback(() => {
+  function signInWithNaver() {
     const params = {
       response_type: 'code',
       client_id: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
@@ -72,17 +72,17 @@ function useProvideAuth() {
         clearInterval(handle)
       }
     }, 100)
-  }, [])
+  }
 
-  const signOut = useCallback(() => {
+  function signOut() {
     return firebase.auth().signOut()
-  }, [])
+  }
 
-  const sendEmailVerification = useCallback(() => {
+  function sendEmailVerification() {
     return firebase.auth().currentUser.sendEmailVerification()
-  }, [])
+  }
 
-  const isEmailVerified = useCallback(async () => {
+  async function isEmailVerified() {
     const currentUser = firebase.auth().currentUser
     if (currentUser) {
       await currentUser.reload()
@@ -94,7 +94,7 @@ function useProvideAuth() {
       }
     }
     return false
-  }, [])
+  }
 
   // function resetPassword(email) {
   //   return firebase.auth().sendPasswordResetEmail(email)

@@ -53,8 +53,8 @@ export default function SignUp() {
 
   const validationSchema = yup.object({
     email: yup.string().required('Required').email('Invalid email format'),
-    password: yup.string().required('Required'),
-    confirmPassword: yup.string().required('Required')
+    password: yup.string().required('This field is required'),
+    confirmPassword: yup.string().required('This field is required')
   })
 
   useEffect(() => {
