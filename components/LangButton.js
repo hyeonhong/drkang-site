@@ -60,7 +60,7 @@ export default function LangButton() {
       >
         <MenuItem
           onClick={() => {
-            lang !== 'kr' && switchLang('Korean')
+            lang !== 'kr' && switchLang('kr')
             setLangAnchor(null)
           }}
           style={{ width: 120 }}
@@ -69,7 +69,7 @@ export default function LangButton() {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            lang !== 'en' && switchLang('English')
+            lang !== 'en' && switchLang('en')
             setLangAnchor(null)
           }}
           style={{ width: 120 }}

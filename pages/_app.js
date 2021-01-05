@@ -10,11 +10,21 @@ import createCache from '@emotion/cache'
 import { MDXProvider } from '@mdx-js/react'
 
 import { AuthProvider } from 'utils/auth/firebaseClient'
-import { LangProvider } from 'utils/hooks/useLang'
-import theme from 'styles/theme'
+import { LangProvider, useLang } from 'utils/hooks/useLang'
+import { defaultTheme, koreanTheme } from 'styles/theme'
 import Layout from 'components/Layout'
 
 export const cache = createCache({ key: 'css', prepend: true })
+
+function CustomThemeProvider({ children }) {
+  const { lang } = useLang()
+  let theme = defaultTheme
+  if (lang === 'kr') {
+    theme = koreanTheme
+  }
+
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+}
 
 export default function MyApp(props) {
   const { Component, pageProps } = props
@@ -38,22 +48,22 @@ export default function MyApp(props) {
   }, [])
 
   return (
-    <CacheProvider value={cache}>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AuthProvider>
-          <LangProvider>
+    <LangProvider>
+      <CacheProvider value={cache}>
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <CustomThemeProvider>
+          <CssBaseline />
+          <AuthProvider>
             <MDXProvider components={mdxComponents}>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
             </MDXProvider>
-          </LangProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </CacheProvider>
+          </AuthProvider>
+        </CustomThemeProvider>
+      </CacheProvider>
+    </LangProvider>
   )
 }

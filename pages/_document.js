@@ -2,10 +2,20 @@ import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
 import createEmotionServer from '@emotion/server/create-instance'
-import theme from 'styles/theme'
+import { defaultTheme } from 'styles/theme'
 import { cache } from './_app.js'
 
 const { extractCritical } = createEmotionServer(cache)
+
+const { fontFamily } = require('../config')
+
+const fontString = JSON.stringify(fontFamily)
+  .replace(/[{}"]/g, '') // Remove {}"
+  .replace(/\],/g, '&family=')
+  .replace(/\[/g, 'wght@')
+  .replace(/\]/g, '') // Remove ]
+  .replace(/,/g, ';') // replace , with ;
+  .replace(/ /g, '+') // replace ' ' with +
 
 export default class MyDocument extends Document {
   render() {
@@ -13,8 +23,11 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="stylesheet" href="/fonts/roboto.css" />
+          <meta name="theme-color" content={defaultTheme.palette.primary.main} />
+          <link
+            rel="stylesheet"
+            href={`https://fonts.googleapis.com/css2?family=${fontString}&display=swap"`}
+          />
         </Head>
         <body>
           <Main />

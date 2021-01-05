@@ -2,15 +2,16 @@ import { useContext, useState } from 'react'
 import LangContext from 'utils/context/LangContext'
 
 export function LangProvider({ children }) {
-  const defaultLang = 'en'
+  let storedValue
+  if (typeof window !== 'undefined') {
+    storedValue = localStorage.getItem('lang')
+  }
+  const defaultLang = storedValue || 'en'
   const [lang, setLang] = useState(defaultLang)
 
   function switchLang(selected) {
-    const langOptions = {
-      English: 'en',
-      Korean: 'kr'
-    }
-    setLang(langOptions[selected] || defaultLang)
+    localStorage.setItem('lang', selected)
+    setLang(selected)
   }
 
   return <LangContext.Provider value={{ lang, switchLang }}>{children}</LangContext.Provider>
