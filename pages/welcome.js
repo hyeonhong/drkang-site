@@ -39,7 +39,7 @@ export default function Welcome() {
           disableRipple
           disableFocusRipple
           disableTouchRipple
-          onClick={() => router.push('/completeprofile')}
+          onClick={() => router.push('/complete-profile')}
           className={classes.lowercase}
         >
           Complete My Profile

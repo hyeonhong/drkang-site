@@ -6,8 +6,9 @@ export function LangProvider({ children }) {
   if (typeof window !== 'undefined') {
     storedValue = localStorage.getItem('lang')
   }
-  const defaultLang = storedValue || 'en'
-  const [lang, setLang] = useState(defaultLang)
+  const defaultValue = storedValue || 'en'
+
+  const [lang, setLang] = useState(defaultValue)
 
   function switchLang(selected) {
     localStorage.setItem('lang', selected)

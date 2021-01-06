@@ -118,7 +118,7 @@ function useProvideAuth() {
           currentUser.providerData[0].providerId === 'password' &&
           !currentUser.emailVerified
         ) {
-          router.push('/verifyemail')
+          router.push('/verify-email')
         }
 
         setUser(currentUser)
