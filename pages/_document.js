@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content={defaultTheme.palette.primary.main} />
           <link
             rel="stylesheet"
-            href={`https://fonts.googleapis.com/css2?family=${fontString}&display=swap"`}
+            href={`https://fonts.googleapis.com/css2?family=${fontString}&display=swap`}
           />
         </Head>
         <body>
