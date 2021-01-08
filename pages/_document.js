@@ -24,7 +24,9 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={defaultTheme.palette.primary.main} />
+          <link rel="preload" href="/fonts/notosanskr.css" as="style" />
           <link rel="stylesheet" href="/fonts/notosanskr.css" />
+          <link rel="preload" href="/fonts/roboto.css" as="style" />
           <link rel="stylesheet" href="/fonts/roboto.css" />
         </Head>
         <body>
