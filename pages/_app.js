@@ -3,12 +3,14 @@ import 'styles/globals.css'
 
 import { useEffect } from 'react'
 import Head from 'next/head'
+import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { CacheProvider } from '@emotion/react'
 import { CssBaseline, Typography } from '@material-ui/core'
 import createCache from '@emotion/cache'
 import { MDXProvider } from '@mdx-js/react'
 
+import SEO from '../next-seo.config'
 import { AuthProvider } from 'utils/auth/firebaseClient'
 import { LangProvider, useLang } from 'utils/hooks/useLang'
 import { defaultTheme, koreanTheme } from 'styles/theme'
@@ -50,6 +52,7 @@ export default function MyApp(props) {
   return (
     <LangProvider>
       <CacheProvider value={cache}>
+        <DefaultSeo {...SEO} />
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>

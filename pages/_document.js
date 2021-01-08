@@ -20,7 +20,7 @@ const fontString = JSON.stringify(fontFamily)
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="kr">
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={defaultTheme.palette.primary.main} />

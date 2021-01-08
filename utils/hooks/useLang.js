@@ -6,7 +6,7 @@ export function LangProvider({ children }) {
   if (typeof window !== 'undefined') {
     storedValue = localStorage.getItem('lang')
   }
-  const defaultValue = storedValue || 'en'
+  const defaultValue = storedValue || 'kr'
 
   const [lang, setLang] = useState(defaultValue)
 
