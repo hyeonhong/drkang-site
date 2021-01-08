@@ -24,10 +24,8 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={defaultTheme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href={`https://fonts.googleapis.com/css2?family=${fontString}&display=swap`}
-          />
+          <link rel="stylesheet" href="/fonts/notosanskr.css" />
+          <link rel="stylesheet" href="/fonts/roboto.css" />
         </Head>
         <body>
           <Main />
