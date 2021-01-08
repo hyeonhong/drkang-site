@@ -7,15 +7,15 @@ import { cache } from './_app.js'
 
 const { extractCritical } = createEmotionServer(cache)
 
-const { fontFamily } = require('../config')
+// const { fontFamily } = require('../config')
 
-const fontString = JSON.stringify(fontFamily)
-  .replace(/[{}"]/g, '') // Remove {}"
-  .replace(/\],/g, '&family=')
-  .replace(/\[/g, 'wght@')
-  .replace(/\]/g, '') // Remove ]
-  .replace(/,/g, ';') // replace , with ;
-  .replace(/ /g, '+') // replace ' ' with +
+// const fontString = JSON.stringify(fontFamily)
+//   .replace(/[{}"]/g, '') // Remove {}"
+//   .replace(/\],/g, '&family=')
+//   .replace(/\[/g, 'wght@')
+//   .replace(/\]/g, '') // Remove ]
+//   .replace(/,/g, ';') // replace , with ;
+//   .replace(/ /g, '+') // replace ' ' with +
 
 export default class MyDocument extends Document {
   render() {
