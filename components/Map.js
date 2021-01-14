@@ -21,9 +21,7 @@ export default function Map({ options }) {
     if (!window.google) {
       const script = document.createElement('script')
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
-      console.log(
-        `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
-      )
+
       document.head.append(script)
       script.addEventListener('load', onLoad)
       return () => script.removeEventListener('load', onLoad)

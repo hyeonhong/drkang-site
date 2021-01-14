@@ -16,8 +16,11 @@ const kr = {
     terms: '이용약관',
     privacy: '개인정보 처리방침'
   },
-  Services: {
-    tabLabels: ['원장 소개', '진료 과목', '진료 시간', '비급여 진료비 안내']
+  IntroPage: {
+    tabLabels: ['원장 소개', '의료시설']
+  },
+  ServicesPage: {
+    tabLabels: ['진료 과목', '진료 시간', '비급여 진료비 안내']
   }
 }
 

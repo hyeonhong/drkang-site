@@ -17,8 +17,11 @@ const en = {
     terms: 'Terms of Service',
     privacy: 'Privacy Policy'
   },
-  Services: {
-    tabLabels: ['Meet Dr. Kang', 'What We Offer', 'Office Hours', 'Non-Reimbursement Expenses']
+  IntroPage: {
+    tabLabels: ['Meet Dr. Kang', 'Facilities']
+  },
+  ServicesPage: {
+    tabLabels: ['What We Offer', 'Office Hours', 'Non-Reimbursement Expenses']
   }
 }
 

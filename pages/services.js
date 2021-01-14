@@ -3,7 +3,7 @@ import { Box } from '@material-ui/core'
 
 import withTexts from 'utils/hoc/withTexts'
 import MdxContainer from 'components/MdxContainer'
-import DrKang from 'mdx/DrKang.mdx'
+import Services from 'mdx/Services.mdx'
 
 const useStyles = makeStyles((theme) => ({
   spacing: {
@@ -11,19 +11,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Services = ({ texts }) => {
+const ServicesPage = ({ texts }) => {
   const classes = useStyles()
 
-  const components = [DrKang]
+  const components = [Services]
 
   return (
     <>
       <Box className={classes.spacing} />
-      <MdxContainer tabs={texts.tabLabels} components={components} />
+      <MdxContainer tabLabels={texts.tabLabels} components={components} />
     </>
   )
 }
 
-Services.displayName = 'Services'
+ServicesPage.displayName = 'ServicesPage'
 
-export default withTexts(Services)
+export default withTexts(ServicesPage)

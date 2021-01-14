@@ -5,7 +5,7 @@ import Map from 'components/Map'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 
-export default function Home() {
+const HomePage = () => {
   const { user, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()
   const router = useRouter()
 
@@ -55,3 +55,7 @@ export default function Home() {
     </Container>
   )
 }
+
+HomePage.displayName = 'HomePage'
+
+export default HomePage

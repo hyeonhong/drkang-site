@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function MdxContainer({ tabs, components }) {
+export default function MdxContainer({ tabLabels, components }) {
   const classes = useStyles()
   const [tabValue, setTabValue] = useState(0)
 
@@ -51,10 +51,10 @@ export default function MdxContainer({ tabs, components }) {
         //   }
         // }}
       >
-        {tabs.map((tab, index) => (
+        {components.map((Mdx, index) => (
           <Tab
             key={index}
-            label={<Typography variant="body1">{tab}</Typography>}
+            label={<Typography variant="body1">{tabLabels[index]}</Typography>}
             className={classes.tab}
           />
         ))}
