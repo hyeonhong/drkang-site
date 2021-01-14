@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import {
-  useMediaQuery,
+  // useMediaQuery,
   AppBar,
   Container,
   Toolbar,
