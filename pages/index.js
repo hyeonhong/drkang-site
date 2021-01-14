@@ -1,7 +1,7 @@
 /* eslint-disable multiline-ternary */
 import { useRouter } from 'next/router'
 import { Link, Container, Button, Typography, Box } from '@material-ui/core'
-import Map from 'components/map'
+import Map from 'components/Map'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 
