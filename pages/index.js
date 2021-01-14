@@ -1,6 +1,7 @@
 /* eslint-disable multiline-ternary */
 import { useRouter } from 'next/router'
 import { Link, Container, Button, Typography, Box } from '@material-ui/core'
+import Map from 'components/map'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 
@@ -50,6 +51,7 @@ export default function Home() {
           </Button>
         </div>
       )}
+      <Map />
     </Container>
   )
 }

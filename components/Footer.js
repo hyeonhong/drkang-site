@@ -1,8 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { useMediaQuery, Typography, Container, Box, Divider } from '@material-ui/core'
-
-import { useLang } from 'utils/hooks/useLang'
-import footerText from 'contents/footerText'
+import { useMediaQuery, Typography, Container, Box } from '@material-ui/core'
+import withTexts from 'utils/hoc/withTexts'
 
 const useStyles = makeStyles((theme) => ({
   // link: {
@@ -25,19 +23,14 @@ const useStyles = makeStyles((theme) => ({
   navListItem: {
     textAlign: 'center'
   },
-  dividerColor: {
-    backgroundColor: '#696969'
-  },
   footerText: {
-    whiteSpace: 'pre-line',
+    whiteSpace: 'pre-wrap',
     color: '#f8f9fa'
   }
 }))
 
-export default function Footer() {
+const Footer = ({ texts }) => {
   const classes = useStyles()
-  const { lang } = useLang()
-  const text = footerText[lang]
 
   const mobileLineBreak = useMediaQuery('(max-width:600px)') ? '\n' : '/'
 
@@ -45,20 +38,27 @@ export default function Footer() {
     <footer className={classes.footer}>
       <Container maxWidth="lg">
         <Box sx={{ marginBottom: 1 }} />
-        <Divider classes={{ root: classes.dividerColor }} />
         <Box sx={{ marginBottom: 6 }} />
         {/* <img src={logo} alt="company logo" height="80" padding="0" /> // logo image */}
         <Box sx={{ marginBottom: 3 }} />
         <Typography variant="subtitle1" gutterBottom className={classes.footerText}>
-          {`${text.name} / ${text.CEO} ${mobileLineBreak} ${text.bizNo}
-          ${text.address}
-          ${text.email} ${mobileLineBreak} ${text.phoneNo} ${mobileLineBreak} `}
+          {`${texts.name} / ${texts.bizNo}`}
+          <br />
+          {texts.address}
+          <br />
+          {`${texts.email} ${mobileLineBreak} ${texts.phoneNo}`}
         </Typography>
         <Box sx={{ marginBottom: 2 }} />
         <Typography variant="body1" className={classes.footerText}>
           {`Copyright ${new Date().getFullYear()} Dr. Kang Clinic. All rights reserved`}
+          <br />
+          {`${texts.terms}    |    ${texts.privacy}`}
         </Typography>
       </Container>
     </footer>
   )
 }
+
+Footer.displayName = 'Footer'
+
+export default withTexts(Footer)

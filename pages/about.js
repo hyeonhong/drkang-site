@@ -1,3 +1,9 @@
-export default function About() {
-  return <div>About page</div>
+import withTexts from 'utils/hoc/withTexts'
+
+const About = ({ texts }) => {
+  return <div>{texts}</div>
 }
+
+About.displayName = 'About'
+
+export default withTexts(About)

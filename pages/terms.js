@@ -1,20 +1,9 @@
-/* eslint-disable react/display-name */
-
-import dynamic from 'next/dynamic'
 import { useLang } from 'utils/hooks/useLang'
+import TermsKr from 'mdx/TermsKr.mdx'
+import TermsEn from 'mdx/TermsEn.mdx'
 
 export default function Privacy() {
   const { lang } = useLang()
 
-  const PrivacyPolicyKr = dynamic(() => import('mdx/termsKr.mdx'), {
-    loading: () => <p>Loading ...</p>,
-    ssr: false
-  })
-
-  const PrivacyPolicyEn = dynamic(() => import('mdx/termsEn.mdx'), {
-    loading: () => <p>Loading ...</p>,
-    ssr: false
-  })
-
-  return <>{lang === 'kr' ? <PrivacyPolicyKr /> : <PrivacyPolicyEn />}</>
+  return lang === 'kr' ? <TermsKr /> : <TermsEn />
 }

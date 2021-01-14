@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-
 import { makeStyles } from '@material-ui/core/styles'
 import {
   useMediaQuery,
@@ -22,9 +21,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
-import { useLang } from 'utils/hooks/useLang'
+import withTexts from 'utils/hoc/withTexts'
 import LangButton from 'components/LangButton'
-import navbarTabs from 'contents/navbarTabs'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -75,15 +73,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function Header() {
+const Header = ({ texts }) => {
   const classes = useStyles()
   const router = useRouter()
-  const { lang } = useLang()
-  const tabs = navbarTabs[lang]
 
   const [anchorEl, setAnchorEl] = useState(null)
 
-  const isTablet = useMediaQuery('(max-width:768px)')
+  const paths = ['/intro', '/services', '/directions']
+
+  // const isTablet = useMediaQuery('(max-width:768px)')
 
   return (
     <AppBar position="sticky" className={classes.appBar}>
@@ -94,16 +92,14 @@ export default function Header() {
           </Button>
           <Box className={classes.filler} />
           <MenuList className={classes.menuList}>
-            {tabs.map((tab) => (
+            {paths.map((path) => (
               <MenuItem
-                key={tab.label}
+                key={path}
                 button
-                onClick={() => router.push(tab.path)}
+                onClick={() => router.push(path)}
                 className={classes.menuItem}
               >
-                <Typography variant="body1">
-                  {isTablet ? tab.label.slice(0, 4) : tab.label}
-                </Typography>
+                <Typography variant="body1">{texts.tabLabels[path.slice(1)]}</Typography>
               </MenuItem>
             ))}
           </MenuList>
@@ -177,3 +173,7 @@ export default function Header() {
     </AppBar>
   )
 }
+
+Header.displayName = 'Header'
+
+export default withTexts(Header)
