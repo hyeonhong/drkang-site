@@ -4,6 +4,8 @@ import { Box } from '@material-ui/core'
 import withTexts from 'utils/hoc/withTexts'
 import MdxContainer from 'components/MdxContainer'
 import Services from 'mdx/Services.mdx'
+import OfficeHours from 'mdx/OfficeHours.mdx'
+import NonReimbursement from 'mdx/NonReimbursement.mdx'
 
 const useStyles = makeStyles((theme) => ({
   spacing: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 const ServicesPage = ({ texts }) => {
   const classes = useStyles()
 
-  const components = [Services]
+  const components = [Services, OfficeHours, NonReimbursement]
 
   return (
     <>
