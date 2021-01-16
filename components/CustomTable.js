@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme) => ({
   },
   dataColumn: {
     width: '80%'
+  },
+  cell: {
+    paddingLeft: theme.spacing(14)
+  },
+  lastCell: {
+    paddingRight: theme.spacing(8)
   }
 }))
 
@@ -33,7 +39,7 @@ const StyledTableCell = withStyles((theme) => ({
   }
 }))(TableCell)
 
-export default function CustomTable3({ table }) {
+export default function CustomTable({ table }) {
   const classes = useStyles()
 
   const { header, rows } = tableData[table]
@@ -48,7 +54,11 @@ export default function CustomTable3({ table }) {
         <TableHead>
           <TableRow>
             {header.map((column, index) => (
-              <StyledTableCell key={index} align="center">
+              <StyledTableCell
+                key={index}
+                align={index === header.length - 1 ? 'right' : 'left'}
+                className={index === header.length - 1 ? classes.lastCell : classes.cell}
+              >
                 {column}
               </StyledTableCell>
             ))}
@@ -59,11 +69,15 @@ export default function CustomTable3({ table }) {
             <TableRow key={index}>
               {row.map((cell, i) =>
                 Array.isArray(cell) ? (
-                  <TableCell key={i} rowSpan={cell[0]} align="center">
+                  <TableCell key={i} rowSpan={cell[0]} className={classes.cell}>
                     {cell[1]}
                   </TableCell>
                 ) : (
-                  <TableCell key={i} align="center">
+                  <TableCell
+                    key={i}
+                    align={i === row.length - 1 ? 'right' : 'left'}
+                    className={i === row.length - 1 ? classes.lastCell : classes.cell}
+                  >
                     {cell}
                   </TableCell>
                 )
