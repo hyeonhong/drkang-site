@@ -31,14 +31,7 @@ const useStyles = makeStyles((theme) => ({
     // boxShadow: 'none'
   },
   logo: {
-    justifyContent: 'start',
-    textTransform: 'none',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '1rem'
-    },
-    padding: 0,
-    display: 'inline-block'
-    // objectFit: 'contain'
+    padding: 0
   },
   filler: {
     flexGrow: 1
@@ -88,7 +81,7 @@ const Header = ({ texts }) => {
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Button onClick={() => router.push('/')} color="inherit" className={classes.logo}>
-            <Image src="/assets/logo.svg" alt="company logo" width={97.98} height={40} />
+            <Image src="/assets/logo.png" alt="company logo" width={130} height={42.8} />
           </Button>
           <Box className={classes.filler} />
           <MenuList className={classes.menuList}>

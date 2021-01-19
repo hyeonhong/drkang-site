@@ -22,6 +22,20 @@ const en = {
   },
   ServicesPage: {
     tabLabels: ['What We Offer', 'Office Hours', 'Non-Reimbursement Expenses']
+  },
+  BioPaper: {
+    bio: `- Graduate of Yonsei University, College of Medicine M.D.
+    - OPD Professor of Severance Hospital
+    - Trainee of Tokyo Women's College of Medicine
+    - Former Chief Director of Sowha Children's Hospital, Ahnsei Hospital, Incheon Sekwang Hospital
+    - Member of Korean Pediatric Association
+    - Member of the Korean Medical Academy of Auxology
+    - Member of Korean Academy of Pediatric Allergy and Respiratoy Disease
+    - Member of Korean Society of Functional Medicine
+    - Member of Korean Aesthetic Surgery and Laser Society
+    -.Member of International Association of Aesthetic and Anti-aging medicine
+    -. Member of Aesthetic and the Well-being
+    -. Member of Korean Academy of Obesity and Aesthetic treatment`
   }
 }
 
