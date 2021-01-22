@@ -8,6 +8,7 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  Link,
   Button,
   Typography
 } from '@material-ui/core'
@@ -17,6 +18,7 @@ import * as yup from 'yup'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 import withTexts from 'utils/hoc/withTexts'
+import CustomDialog from 'components/CustomDialog'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,14 +39,15 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = ({ texts }) => {
   const { user, signUp } = useAuth()
   const router = useRouter()
+  const classes = useStyles()
   const [states, setStates] = useState({
     termsChecked: false,
     privacyChecked: false,
     showPassword: false,
-    showConfirmPassword: false
+    showConfirmPassword: false,
+    dialogOpen: false,
+    dialogContent: null
   })
-
-  const classes = useStyles()
 
   const MyTextField = (props) => {
     const [field, meta] = useField(props)
@@ -67,10 +70,12 @@ const SignUp = ({ texts }) => {
     password: yup
       .string()
       .required('This field is required')
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
-        'Password must contain at least 8 characters, one letter and one number'
-      ),
+      .min(8, 'Password must be at least 8 characters')
+      .max(20, 'Password must be at most 20 characters'),
+    // .matches(
+    //   /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
+    //   'Password must contain at least 8 characters, one letter and one number'
+    // ),
     confirmPassword: yup
       .string()
       .required('This field is required')
@@ -91,28 +96,47 @@ const SignUp = ({ texts }) => {
         </Typography>
 
         <Box sx={{ marginTop: 4 }}>
-          <Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Checkbox
               checked={states.termsChecked}
               color="primary"
               onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
             />
-            <Typography variant="body1" display="inline">
+            <Typography variant="body1" gutterBottom>
               {'(필수) 서비스 이용약관 동의'}
             </Typography>
-            <Typography variant="body1" display="inline" align="right">
+            <Box sx={{ flexGrow: 1 }} />
+            <Link
+              href="javascript:void(0)"
+              onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })}
+              color="inherit"
+              underline="always"
+              variant="body2"
+              gutterBottom
+            >
               {'보기'}
-            </Typography>
+            </Link>
           </Box>
-          <Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Checkbox
               checked={states.privacyChecked}
               color="primary"
               onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
             />
-            <Typography variant="body1" display="inline">
+            <Typography variant="body1" gutterBottom>
               {'(필수) 개인정보 수집 및 이용 동의'}
             </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+            <Link
+              href="javascript:void(0)"
+              onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'privacy' })}
+              color="inherit"
+              underline="always"
+              variant="body2"
+              gutterBottom
+            >
+              {'보기'}
+            </Link>
           </Box>
         </Box>
 
@@ -179,6 +203,12 @@ const SignUp = ({ texts }) => {
             </Form>
           )}
         </Formik>
+
+        <CustomDialog
+          open={states.dialogOpen}
+          handleClose={() => setStates({ ...states, dialogOpen: false })}
+          content={states.dialogContent}
+        />
       </div>
     </div>
   )

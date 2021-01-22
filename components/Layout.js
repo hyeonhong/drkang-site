@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container } from '@material-ui/core'
+import { Container, Box } from '@material-ui/core'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -14,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh'
-  },
-  filler: {
-    flex: 1
   }
 }))
 
@@ -51,7 +48,7 @@ const Layout = ({ children }) => {
       <Header />
       {/* <ContactPopUp /> */}
       {isLoading ? <Spinner /> : <Container maxWidth="lg">{children}</Container>}
-      <div className={classes.filler} />
+      <Box sx={{ flexGrow: 1 }} />
       <Footer />
     </div>
   )

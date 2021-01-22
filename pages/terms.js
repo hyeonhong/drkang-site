@@ -1,9 +1,3 @@
-import { useLang } from 'utils/hooks/useLang'
-import TermsKr from 'mdx/TermsKr.mdx'
-import TermsEn from 'mdx/TermsEn.mdx'
+import Terms from 'components/Terms'
 
-export default function Privacy() {
-  const { lang } = useLang()
-
-  return lang === 'kr' ? <TermsKr /> : <TermsEn />
-}
+export default Terms
