@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
+import { Container } from '@material-ui/core'
 
 import Header from './Header'
 import Footer from './Footer'
@@ -49,7 +50,7 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <Header />
       {/* <ContactPopUp /> */}
-      {isLoading ? <Spinner /> : children}
+      {isLoading ? <Spinner /> : <Container maxWidth="lg">{children}</Container>}
       <div className={classes.filler} />
       <Footer />
     </div>

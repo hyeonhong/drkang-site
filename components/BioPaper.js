@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(4)
   },
   text: {
-    whiteSpace: 'pre-line',
+    whiteSpace: 'pre',
     lineHeight: 2.5
   }
 }))

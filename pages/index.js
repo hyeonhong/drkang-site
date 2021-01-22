@@ -1,6 +1,6 @@
 /* eslint-disable multiline-ternary */
 import { useRouter } from 'next/router'
-import { Link, Container, Button, Typography, Box } from '@material-ui/core'
+import { Link, Button, Typography, Box } from '@material-ui/core'
 import Map from 'components/Map'
 
 import { useAuth } from 'utils/auth/firebaseClient'
@@ -10,11 +10,11 @@ const HomePage = () => {
   const router = useRouter()
 
   return (
-    <Container maxWidth="sm">
+    <main>
       <Typography variant="h6">This is home page</Typography>
       <Box />
       {user ? (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', wordBreak: 'break-all' }}>
           <Typography variant="h6">{"User's Info"}</Typography>
           <Typography variant="h6">{`email: ${user.email}`}</Typography>
           <Typography variant="h6">{`emailVerified: ${user.emailVerified}`}</Typography>
@@ -52,7 +52,7 @@ const HomePage = () => {
         </div>
       )}
       <Map />
-    </Container>
+    </main>
   )
 }
 

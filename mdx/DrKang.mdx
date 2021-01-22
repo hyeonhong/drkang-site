@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import BioPaper from 'components/BioPaper'
+import { useLang } from 'utils/hooks/useLang'
 
 #### 원장 소개
 
@@ -9,7 +10,9 @@ import BioPaper from 'components/BioPaper'
 
 <br />
 2ac1bc
-<div style={{ display: 'flex' }}>
-  <Image src="/assets/images/drkang-portrait-v2.jpg" alt="drkang" width="400" height="600" />
+<div style={{ display: 'flex', flexDirection: useLang().lang === 'kr' ? 'row' : 'column' }}>
+  <div>
+    <Image src="/assets/images/drkang-portrait-v2.jpg" alt="drkang" width="400" height="600" />
+  </div>
   <BioPaper />
 </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Tabs, Tab, Typography } from '@material-ui/core'
+import { Tabs, Tab, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -38,7 +38,7 @@ export default function MdxContainer({ tabLabels, components }) {
   const [tabValue, setTabValue] = useState(0)
 
   return (
-    <Container maxWidth="lg" className={classes.main}>
+    <div className={classes.main}>
       <Tabs
         orientation="vertical"
         variant="fullWidth"
@@ -68,6 +68,6 @@ export default function MdxContainer({ tabLabels, components }) {
           <Mdx />
         </div>
       ))}
-    </Container>
+    </div>
   )
 }

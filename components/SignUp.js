@@ -1,37 +1,48 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Formik, Form, useField } from 'formik'
-import { TextField, Button, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import {
+  Box,
+  Checkbox,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Button,
+  Typography
+} from '@material-ui/core'
+import Visibility from '@material-ui/icons/Visibility'
+import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import * as yup from 'yup'
 
 import { useAuth } from 'utils/auth/firebaseClient'
+import withTexts from 'utils/hoc/withTexts'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
-
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1)
-    }
+    alignItems: 'center'
   },
   form: {
-    textAlign: 'left',
-    display: 'inline-block',
     width: '460px',
-    padding: theme.spacing(4.5, 5)
+    marginTop: theme.spacing(8)
   },
   textField: {
     width: '100%'
   }
 }))
 
-export default function SignUp() {
+const SignUp = ({ texts }) => {
   const { user, signUp } = useAuth()
   const router = useRouter()
+  const [states, setStates] = useState({
+    termsChecked: false,
+    privacyChecked: false,
+    showPassword: false,
+    showConfirmPassword: false
+  })
 
   const classes = useStyles()
 
@@ -53,8 +64,17 @@ export default function SignUp() {
 
   const validationSchema = yup.object({
     email: yup.string().required('Required').email('Invalid email format'),
-    password: yup.string().required('This field is required'),
-    confirmPassword: yup.string().required('This field is required')
+    password: yup
+      .string()
+      .required('This field is required')
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
+        'Password must contain at least 8 characters, one letter and one number'
+      ),
+    confirmPassword: yup
+      .string()
+      .required('This field is required')
+      .oneOf([yup.ref('password'), null], 'Passwords do not match')
   })
 
   useEffect(() => {
@@ -65,32 +85,105 @@ export default function SignUp() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4">Create a new account</Typography>
-      <Formik
-        initialValues={{ email: '', password: '', confirmPassword: '' }}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          signUp(values.email, values.password)
-            .then(() => {
-              router.push('/')
-            })
-            .catch((error) => {
-              setSubmitting(false)
-              console.log('error signing up:', error)
-            })
-        }}
-      >
-        {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <Form className={classes.form}>
-            <MyTextField required name="email" type="email" label="Email" />
-            <MyTextField required name="password" type="password" label="Password" />
-            <MyTextField required name="confirmPassword" type="password" label="Confirm Password" />
-            <Button disabled={isSubmitting} type="submit">
-              Submit
-            </Button>
-          </Form>
-        )}
-      </Formik>
+      <div>
+        <Typography variant="h4" align="center">
+          {texts.signUp}
+        </Typography>
+
+        <Box sx={{ marginTop: 4 }}>
+          <Box>
+            <Checkbox
+              checked={states.termsChecked}
+              color="primary"
+              onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
+            />
+            <Typography variant="body1" display="inline">
+              {'(필수) 서비스 이용약관 동의'}
+            </Typography>
+            <Typography variant="body1" display="inline" align="right">
+              {'보기'}
+            </Typography>
+          </Box>
+          <Box>
+            <Checkbox
+              checked={states.privacyChecked}
+              color="primary"
+              onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
+            />
+            <Typography variant="body1" display="inline">
+              {'(필수) 개인정보 수집 및 이용 동의'}
+            </Typography>
+          </Box>
+        </Box>
+
+        <Formik
+          initialValues={{ email: '', password: '', confirmPassword: '' }}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            signUp(values.email, values.password)
+              .then(() => {
+                router.push('/')
+              })
+              .catch((error) => {
+                setSubmitting(false)
+                console.log('error signing up:', error)
+              })
+          }}
+        >
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+            <Form className={classes.form}>
+              <MyTextField required name="email" type="email" label={texts.email} />
+              <MyTextField
+                required
+                name="password"
+                autoComplete="off"
+                type={states.showPassword ? 'text' : 'password'}
+                label={texts.password}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setStates({ ...states, showPassword: !states.showPassword })}
+                        edge="end"
+                      >
+                        {states.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <MyTextField
+                required
+                name="confirmPassword"
+                autoComplete="off"
+                type={states.showConfirmPassword ? 'text' : 'password'}
+                label={texts.confirmPassword}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() =>
+                          setStates({ ...states, showConfirmPassword: !states.showConfirmPassword })
+                        }
+                        edge="end"
+                      >
+                        {states.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <Button disabled={isSubmitting} type="submit">
+                Submit
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   )
 }
+
+SignUp.displayName = 'SignUp'
+
+export default withTexts(SignUp)
