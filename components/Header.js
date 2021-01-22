@@ -1,3 +1,5 @@
+/* eslint-disable multiline-ternary */
+
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -21,6 +23,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
+import { useAuth } from 'utils/auth/firebaseClient'
 import withTexts from 'utils/hoc/withTexts'
 import LangButton from 'components/LangButton'
 
@@ -69,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ texts }) => {
   const classes = useStyles()
   const router = useRouter()
+  const { user } = useAuth()
 
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -103,64 +107,71 @@ const Header = ({ texts }) => {
           <Typography variant="h6" style={{ color: 'black' }}>
             {'-----'}
           </Typography>
-          <Button
-            disableElevation
-            disableRipple
-            disableFocusRipple
-            disableTouchRipple
-            onClick={() => router.push('/signin')}
-            className={classes.button}
-          >
-            Sign In
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            disableElevation
-            disableRipple
-            disableFocusRipple
-            disableTouchRipple
-            onClick={() => router.push('/signup')}
-            className={classes.button}
-          >
-            Sign Up
-          </Button>
-          <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
-            <FontAwesomeIcon icon={faUserCircle} />
-          </IconButton>
-          <Popper
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-            placement={'bottom-end'}
-            transition
-            disablePortal
-            modifiers={[
-              {
-                name: 'offset',
-                options: {
-                  offset: [0, 30]
-                }
-              }
-            ]}
-          >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={50}>
-                <Paper className={classes.paper}>
-                  <Button
-                    variant="contained"
-                    disableElevation
-                    disableRipple
-                    disableFocusRipple
-                    disableTouchRipple
-                    onClick={() => router.push('/profile')}
-                    className={classes.button}
-                  >
-                    My Profile
-                  </Button>
-                </Paper>
-              </Fade>
-            )}
-          </Popper>
+          {user ? (
+            <>
+              <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
+                <FontAwesomeIcon icon={faUserCircle} />
+              </IconButton>
+              <Popper
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
+                placement={'bottom-end'}
+                transition
+                disablePortal
+                modifiers={[
+                  {
+                    name: 'offset',
+                    options: {
+                      offset: [0, 30]
+                    }
+                  }
+                ]}
+              >
+                {({ TransitionProps }) => (
+                  <Fade {...TransitionProps} timeout={50}>
+                    <Paper className={classes.paper}>
+                      <Button
+                        variant="contained"
+                        disableElevation
+                        disableRipple
+                        disableFocusRipple
+                        disableTouchRipple
+                        onClick={() => router.push('/profile')}
+                        className={classes.button}
+                      >
+                        My Profile
+                      </Button>
+                    </Paper>
+                  </Fade>
+                )}
+              </Popper>
+            </>
+          ) : (
+            <>
+              <Button
+                disableElevation
+                disableRipple
+                disableFocusRipple
+                disableTouchRipple
+                onClick={() => router.push('/signin')}
+                className={classes.button}
+              >
+                Sign In
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                disableElevation
+                disableRipple
+                disableFocusRipple
+                disableTouchRipple
+                onClick={() => router.push('/signup')}
+                className={classes.button}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
