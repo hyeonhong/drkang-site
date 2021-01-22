@@ -1,4 +1,4 @@
-import { useLang } from 'utils/hooks/useLang'
+import { useLang } from 'utils/hook/useLang'
 import TermsKr from 'mdx/TermsKr.mdx'
 import TermsEn from 'mdx/TermsEn.mdx'
 

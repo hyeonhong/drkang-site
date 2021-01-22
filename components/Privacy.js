@@ -1,4 +1,4 @@
-import { useLang } from 'utils/hooks/useLang'
+import { useLang } from 'utils/hook/useLang'
 import PrivacyKr from 'mdx/PrivacyKr.mdx'
 import PrivacyEn from 'mdx/PrivacyEn.mdx'
 

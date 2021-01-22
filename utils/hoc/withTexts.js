@@ -1,4 +1,4 @@
-import { useLang } from 'utils/hooks/useLang'
+import { useLang } from 'utils/hook/useLang'
 import en from 'locales/en'
 import kr from 'locales/kr'
 

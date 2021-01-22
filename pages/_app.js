@@ -12,7 +12,7 @@ import { MDXProvider } from '@mdx-js/react'
 
 import SEO from '../next-seo.config'
 import { AuthProvider } from 'utils/auth/firebaseClient'
-import { LangProvider, useLang } from 'utils/hooks/useLang'
+import { LangProvider, useLang } from 'utils/hook/useLang'
 import { defaultTheme, koreanTheme } from 'styles/theme'
 import Layout from 'components/Layout'
 
