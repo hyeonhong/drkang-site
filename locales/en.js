@@ -35,7 +35,8 @@ const en = {
   },
   CustomDialog: {
     termsTitle: 'Terms of Service',
-    privacyTitle: 'Privacy Policy'
+    privacyTitle: 'Privacy Policy',
+    closeWindow: 'Close'
   }
 }
 

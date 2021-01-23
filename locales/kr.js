@@ -34,7 +34,8 @@ const kr = {
   },
   CustomDialog: {
     termsTitle: '서비스 이용약관',
-    privacyTitle: '개인정보 처리방침'
+    privacyTitle: '개인정보 처리방침',
+    closeWindow: '닫기'
   }
 }
 
