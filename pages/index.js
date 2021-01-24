@@ -6,7 +6,7 @@ import Map from 'components/Map'
 import { useAuth } from 'utils/auth/firebaseClient'
 
 const HomePage = () => {
-  const { user, signInWithGoogle, signInWithFacebook, signInWithNaver, signOut } = useAuth()
+  const { user, signInWithGoogle, signInWithFacebook, signInWithNaver } = useAuth()
   const router = useRouter()
 
   return (
@@ -29,7 +29,6 @@ const HomePage = () => {
           <Link onClick={() => router.push('/testapi')} variant="h6">
             Go to TestAPI Page
           </Link>
-          <Button onClick={() => signOut()}>Sign out</Button>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column' }}>

@@ -21,7 +21,9 @@ const en = {
     signUp: 'Create a new account',
     email: 'Email',
     password: 'Password',
-    confirmPassword: 'Confirm Password'
+    confirmPassword: 'Confirm Password',
+    join: 'Create account',
+    snackbarError: 'You must agree to the Terms of service and the Privacy Policy.'
   },
   IntroPage: {
     tabLabels: ['Meet Dr. Kang', 'Facilities']

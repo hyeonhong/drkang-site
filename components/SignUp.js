@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import { Formik, Form, useField } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import {
+  Snackbar,
+  Alert,
   Box,
   Checkbox,
   TextField,
@@ -33,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: '100%'
+  },
+  button: {
+    textTransform: 'none'
   }
 }))
 
@@ -46,8 +51,17 @@ const SignUp = ({ texts }) => {
     showPassword: false,
     showConfirmPassword: false,
     dialogOpen: false,
-    dialogContent: null
+    dialogContent: null,
+    snackbarOpen: false
   })
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setStates({ ...states, snackbarOpen: false })
+  }
 
   const MyTextField = (props) => {
     const [field, meta] = useField(props)
@@ -91,6 +105,20 @@ const SignUp = ({ texts }) => {
   return (
     <div className={classes.root}>
       <div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center'
+          }}
+          open={states.snackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert onClose={handleSnackbarClose} severity="error">
+            {texts.snackbarError}
+          </Alert>
+        </Snackbar>
+
         <Typography variant="h4" align="center">
           {texts.signUp}
         </Typography>
@@ -144,6 +172,12 @@ const SignUp = ({ texts }) => {
           initialValues={{ email: '', password: '', confirmPassword: '' }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
+            if (!states.termsChecked || !states.privacyChecked) {
+              setStates({ ...states, snackbarOpen: true })
+              setSubmitting(false)
+              return
+            }
+
             signUp(values.email, values.password)
               .then(() => {
                 router.push('/')
@@ -197,9 +231,20 @@ const SignUp = ({ texts }) => {
                   )
                 }}
               />
-              <Button disabled={isSubmitting} type="submit">
-                Submit
-              </Button>
+              <Box sx={{ textAlign: 'center' }}>
+                <Button
+                  disabled={isSubmitting}
+                  type="submit"
+                  variant="contained"
+                  disableElevation
+                  disableRipple
+                  disableFocusRipple
+                  disableTouchRipple
+                  className={classes.button}
+                >
+                  {texts.join}
+                </Button>
+              </Box>
             </Form>
           )}
         </Formik>

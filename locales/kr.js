@@ -20,7 +20,9 @@ const kr = {
     signUp: '회원가입',
     email: '이메일',
     password: '비밀번호 (8~20자리)',
-    confirmPassword: '비밀번호 확인'
+    confirmPassword: '비밀번호 확인',
+    join: '가입하기',
+    snackbarError: '이용약관, 개인정보처리방침에 동의하셔야 합니다.'
   },
   IntroPage: {
     tabLabels: ['원장 소개', '의료시설']

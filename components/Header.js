@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({ texts }) => {
   const classes = useStyles()
   const router = useRouter()
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
 
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -109,6 +109,19 @@ const Header = ({ texts }) => {
           </Typography>
           {user ? (
             <>
+              <Button
+                disableElevation
+                disableRipple
+                disableFocusRipple
+                disableTouchRipple
+                onClick={() => {
+                  signOut()
+                  router.push('/')
+                }}
+                className={classes.button}
+              >
+                Sign Out
+              </Button>
               <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
                 <FontAwesomeIcon icon={faUserCircle} />
               </IconButton>
