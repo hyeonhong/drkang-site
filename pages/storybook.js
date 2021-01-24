@@ -23,7 +23,7 @@ export default function Storybook() {
 
   return (
     <Box className={classes.spacing}>
-      {/* <Collapse in={open}>
+      <Collapse in={open}>
         <Alert
           action={
             <IconButton
@@ -40,7 +40,7 @@ export default function Storybook() {
         >
           Close me!
         </Alert>
-      </Collapse> */}
+      </Collapse>
       <Alert severity="error">This is an error alert — check it out!</Alert>
       <Button
         disabled={open}
