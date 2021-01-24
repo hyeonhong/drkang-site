@@ -39,6 +39,12 @@ const en = {
     termsTitle: 'Terms of Service',
     privacyTitle: 'Privacy Policy',
     closeWindow: 'Close'
+  },
+  TermsPage: {
+    title: 'Terms of Service'
+  },
+  PrivacyPage: {
+    title: 'Privacy Policy'
   }
 }
 

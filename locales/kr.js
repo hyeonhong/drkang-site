@@ -38,6 +38,12 @@ const kr = {
     termsTitle: '서비스 이용약관',
     privacyTitle: '개인정보 처리방침',
     closeWindow: '닫기'
+  },
+  TermsPage: {
+    title: '서비스 이용약관'
+  },
+  PrivacyPage: {
+    title: '개인정보 처리방침'
   }
 }
 
