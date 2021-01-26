@@ -45,6 +45,11 @@ const en = {
   },
   PrivacyPage: {
     title: 'Privacy Policy'
+  },
+  SignInButtons: {
+    facebook: 'Sign in with Facebook',
+    google: 'Sign in with Google',
+    naver: 'Sign in with Naver'
   }
 }
 

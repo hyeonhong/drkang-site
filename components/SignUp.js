@@ -21,6 +21,7 @@ import * as yup from 'yup'
 import { useAuth } from 'utils/auth/firebaseClient'
 import withTexts from 'utils/hoc/withTexts'
 import CustomDialog from 'components/CustomDialog'
+import SignInButtons from 'components/SignInButtons'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -248,6 +249,8 @@ const SignUp = ({ texts }) => {
             </Form>
           )}
         </Formik>
+
+        <SignInButtons />
 
         <CustomDialog
           open={states.dialogOpen}

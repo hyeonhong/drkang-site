@@ -44,6 +44,11 @@ const kr = {
   },
   PrivacyPage: {
     title: '개인정보 처리방침'
+  },
+  SignInButtons: {
+    facebook: 'Facebook으로 가입하기',
+    google: 'Google로 가입하기',
+    naver: '네이버로 가입하기'
   }
 }
 
