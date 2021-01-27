@@ -8,6 +8,8 @@ const SignInButtons = ({ texts }) => {
     width: 100%;
     box-sizing: border-box;
     background-color: #1877f2;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border: none;
     display: inline-block;
     text-align: center;
@@ -16,13 +18,13 @@ const SignInButtons = ({ texts }) => {
     text-decoration: none;
     white-space: nowrap;
     &:hover {
-      filter: brightness(115%);
+      background-color: #3b5998;
     }
   `
   const GoogleStyledBtn = styled.button`
     width: 100%;
     box-sizing: border-box;
-    background-color: #efefef;
+    background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
       0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border: none;
@@ -33,7 +35,7 @@ const SignInButtons = ({ texts }) => {
     text-decoration: none;
     white-space: nowrap;
     &:hover {
-      filter: brightness(115%);
+      background-color: #efefef;
     }
   `
 
@@ -41,6 +43,8 @@ const SignInButtons = ({ texts }) => {
     width: 100%;
     box-sizing: border-box;
     background-color: #1ec800;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border: none;
     display: inline-block;
     text-align: center;
@@ -49,7 +53,7 @@ const SignInButtons = ({ texts }) => {
     text-decoration: none;
     white-space: nowrap;
     &:hover {
-      filter: brightness(115%);
+      background-color: #2db400;
     }
   `
 

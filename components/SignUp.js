@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { Formik, Form, useField } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
 import {
+  Paper,
   Snackbar,
   Alert,
   Box,
@@ -24,12 +25,6 @@ import CustomDialog from 'components/CustomDialog'
 import SignInButtons from 'components/SignInButtons'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   form: {
     width: '460px',
     marginTop: theme.spacing(8)
@@ -104,161 +99,161 @@ const SignUp = ({ texts }) => {
   }, [user])
 
   return (
-    <div className={classes.root}>
-      <div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'center'
-          }}
-          open={states.snackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert onClose={handleSnackbarClose} severity="error">
-            {texts.snackbarError}
-          </Alert>
-        </Snackbar>
+    <Paper elevation={3} sx={{ padding: 4 }}>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center'
+        }}
+        open={states.snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert onClose={handleSnackbarClose} severity="error">
+          {texts.snackbarError}
+        </Alert>
+      </Snackbar>
 
-        <Typography variant="h4" align="center">
-          {texts.signUp}
-        </Typography>
+      <Typography variant="h4" align="center">
+        {texts.signUp}
+      </Typography>
 
-        <Box sx={{ marginTop: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Checkbox
-              checked={states.termsChecked}
-              color="primary"
-              onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
-            />
-            <Typography variant="body1" gutterBottom>
-              {'(필수) 서비스 이용약관 동의'}
-            </Typography>
-            <Box sx={{ flexGrow: 1 }} />
-            <Link
-              href="javascript:void(0)"
-              onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })}
-              color="inherit"
-              underline="always"
-              variant="body2"
-              gutterBottom
-            >
-              {'보기'}
-            </Link>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Checkbox
-              checked={states.privacyChecked}
-              color="primary"
-              onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
-            />
-            <Typography variant="body1" gutterBottom>
-              {'(필수) 개인정보 수집 및 이용 동의'}
-            </Typography>
-            <Box sx={{ flexGrow: 1 }} />
-            <Link
-              href="javascript:void(0)"
-              onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'privacy' })}
-              color="inherit"
-              underline="always"
-              variant="body2"
-              gutterBottom
-            >
-              {'보기'}
-            </Link>
-          </Box>
+      <Box sx={{ marginTop: 4 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Checkbox
+            checked={states.termsChecked}
+            color="primary"
+            onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
+          />
+          <Typography variant="body1" gutterBottom>
+            {'(필수) 서비스 이용약관 동의'}
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Link
+            href="#"
+            onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })}
+            color="inherit"
+            underline="always"
+            variant="body2"
+            gutterBottom
+          >
+            {'보기'}
+          </Link>
         </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Checkbox
+            checked={states.privacyChecked}
+            color="primary"
+            onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
+          />
+          <Typography variant="body1" gutterBottom>
+            {'(필수) 개인정보 수집 및 이용 동의'}
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Link
+            href="#"
+            onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'privacy' })}
+            color="inherit"
+            underline="always"
+            variant="body2"
+            gutterBottom
+          >
+            {'보기'}
+          </Link>
+        </Box>
+      </Box>
 
-        <Formik
-          initialValues={{ email: '', password: '', confirmPassword: '' }}
-          validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            if (!states.termsChecked || !states.privacyChecked) {
-              setStates({ ...states, snackbarOpen: true })
+      <Formik
+        initialValues={{ email: '', password: '', confirmPassword: '' }}
+        validationSchema={validationSchema}
+        onSubmit={(values, { setSubmitting }) => {
+          if (!states.termsChecked || !states.privacyChecked) {
+            setStates({ ...states, snackbarOpen: true })
+            setSubmitting(false)
+            return
+          }
+
+          signUp(values.email, values.password)
+            .then(() => {
+              router.push('/')
+            })
+            .catch((error) => {
               setSubmitting(false)
-              return
-            }
+              console.log('error signing up:', error)
+            })
+        }}
+      >
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+          <Form className={classes.form}>
+            <MyTextField required name="email" type="email" label={texts.email} />
+            <MyTextField
+              required
+              name="password"
+              autoComplete="off"
+              type={states.showPassword ? 'text' : 'password'}
+              label={texts.password}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setStates({ ...states, showPassword: !states.showPassword })}
+                      edge="end"
+                    >
+                      {states.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
+            <MyTextField
+              required
+              name="confirmPassword"
+              autoComplete="off"
+              type={states.showConfirmPassword ? 'text' : 'password'}
+              label={texts.confirmPassword}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() =>
+                        setStates({ ...states, showConfirmPassword: !states.showConfirmPassword })
+                      }
+                      edge="end"
+                    >
+                      {states.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
+            <Box sx={{ textAlign: 'center' }}>
+              <Button
+                disabled={isSubmitting}
+                type="submit"
+                variant="contained"
+                disableElevation
+                disableRipple
+                disableFocusRipple
+                disableTouchRipple
+                className={classes.button}
+              >
+                {texts.join}
+              </Button>
+            </Box>
+          </Form>
+        )}
+      </Formik>
 
-            signUp(values.email, values.password)
-              .then(() => {
-                router.push('/')
-              })
-              .catch((error) => {
-                setSubmitting(false)
-                console.log('error signing up:', error)
-              })
-          }}
-        >
-          {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-            <Form className={classes.form}>
-              <MyTextField required name="email" type="email" label={texts.email} />
-              <MyTextField
-                required
-                name="password"
-                autoComplete="off"
-                type={states.showPassword ? 'text' : 'password'}
-                label={texts.password}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setStates({ ...states, showPassword: !states.showPassword })}
-                        edge="end"
-                      >
-                        {states.showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <MyTextField
-                required
-                name="confirmPassword"
-                autoComplete="off"
-                type={states.showConfirmPassword ? 'text' : 'password'}
-                label={texts.confirmPassword}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() =>
-                          setStates({ ...states, showConfirmPassword: !states.showConfirmPassword })
-                        }
-                        edge="end"
-                      >
-                        {states.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <Box sx={{ textAlign: 'center' }}>
-                <Button
-                  disabled={isSubmitting}
-                  type="submit"
-                  variant="contained"
-                  disableElevation
-                  disableRipple
-                  disableFocusRipple
-                  disableTouchRipple
-                  className={classes.button}
-                >
-                  {texts.join}
-                </Button>
-              </Box>
-            </Form>
-          )}
-        </Formik>
-
+      <Box sx={{ marginTop: 4, marginBottom: 4 }}>
         <SignInButtons />
+      </Box>
 
-        <CustomDialog
-          open={states.dialogOpen}
-          handleClose={() => setStates({ ...states, dialogOpen: false })}
-          content={states.dialogContent}
-        />
-      </div>
-    </div>
+      <CustomDialog
+        open={states.dialogOpen}
+        handleClose={() => setStates({ ...states, dialogOpen: false })}
+        content={states.dialogContent}
+      />
+    </Paper>
   )
 }
 

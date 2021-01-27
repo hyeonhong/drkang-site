@@ -1,5 +1,3 @@
-/* eslint-disable multiline-ternary */
-
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -80,6 +78,91 @@ const Header = ({ texts }) => {
 
   // const isTablet = useMediaQuery('(max-width:768px)')
 
+  const AuthButtons = () => {
+    if (user) {
+      return (
+        <>
+          <Button
+            disableElevation
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            onClick={() => {
+              signOut()
+              router.push('/')
+            }}
+            className={classes.button}
+          >
+            Sign Out
+          </Button>
+          <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
+            <FontAwesomeIcon icon={faUserCircle} />
+          </IconButton>
+          <Popper
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            placement={'bottom-end'}
+            transition
+            disablePortal
+            modifiers={[
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 30]
+                }
+              }
+            ]}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={50}>
+                <Paper className={classes.paper}>
+                  <Button
+                    variant="contained"
+                    disableElevation
+                    disableRipple
+                    disableFocusRipple
+                    disableTouchRipple
+                    onClick={() => router.push('/profile')}
+                    className={classes.button}
+                  >
+                    My Profile
+                  </Button>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Button
+            disableElevation
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            onClick={() => router.push('/signin')}
+            className={classes.button}
+          >
+            Sign In
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            disableRipple
+            disableFocusRipple
+            disableTouchRipple
+            onClick={() => router.push('/signup')}
+            className={classes.button}
+          >
+            Sign Up
+          </Button>
+        </>
+      )
+    }
+  }
+
   return (
     <AppBar position="sticky" className={classes.appBar}>
       <Container maxWidth="lg">
@@ -107,84 +190,7 @@ const Header = ({ texts }) => {
           <Typography variant="h6" style={{ color: 'black' }}>
             {'-----'}
           </Typography>
-          {user ? (
-            <>
-              <Button
-                disableElevation
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                onClick={() => {
-                  signOut()
-                  router.push('/')
-                }}
-                className={classes.button}
-              >
-                Sign Out
-              </Button>
-              <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
-                <FontAwesomeIcon icon={faUserCircle} />
-              </IconButton>
-              <Popper
-                open={Boolean(anchorEl)}
-                anchorEl={anchorEl}
-                placement={'bottom-end'}
-                transition
-                disablePortal
-                modifiers={[
-                  {
-                    name: 'offset',
-                    options: {
-                      offset: [0, 30]
-                    }
-                  }
-                ]}
-              >
-                {({ TransitionProps }) => (
-                  <Fade {...TransitionProps} timeout={50}>
-                    <Paper className={classes.paper}>
-                      <Button
-                        variant="contained"
-                        disableElevation
-                        disableRipple
-                        disableFocusRipple
-                        disableTouchRipple
-                        onClick={() => router.push('/profile')}
-                        className={classes.button}
-                      >
-                        My Profile
-                      </Button>
-                    </Paper>
-                  </Fade>
-                )}
-              </Popper>
-            </>
-          ) : (
-            <>
-              <Button
-                disableElevation
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                onClick={() => router.push('/signin')}
-                className={classes.button}
-              >
-                Sign In
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                disableElevation
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                onClick={() => router.push('/signup')}
-                className={classes.button}
-              >
-                Sign Up
-              </Button>
-            </>
-          )}
+          <AuthButtons />
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { Container, Box } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 
+import { LayoutProvider } from 'utils/hook/useLayout'
 import Header from './Header'
 import Footer from './Footer'
 import Spinner from './Spinner'
@@ -47,7 +48,7 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <Header />
       {/* <ContactPopUp /> */}
-      {isLoading ? <Spinner /> : <Container maxWidth="lg">{children}</Container>}
+      {isLoading ? <Spinner /> : <LayoutProvider>{children}</LayoutProvider>}
       <Box sx={{ flexGrow: 1 }} />
       <Footer />
     </div>
