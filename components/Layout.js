@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box } from '@material-ui/core'
 
-import { LayoutProvider } from 'utils/hook/useLayout'
+import { ContainerProvider } from 'utils/hook/useContainer'
 import Header from './Header'
 import Footer from './Footer'
 import Spinner from './Spinner'
@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
     <div className={classes.root}>
       <Header />
       {/* <ContactPopUp /> */}
-      {isLoading ? <Spinner /> : <LayoutProvider>{children}</LayoutProvider>}
+      {isLoading ? <Spinner /> : <ContainerProvider>{children}</ContainerProvider>}
       <Box sx={{ flexGrow: 1 }} />
       <Footer />
     </div>

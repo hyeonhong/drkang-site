@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box } from '@material-ui/core'
 import SignUp from 'components/SignUp'
-import { useLayout } from 'utils/hook/useLayout'
+import { useContainer } from 'utils/hook/useContainer'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpPage() {
   const classes = useStyles()
-  const { setLayoutConfigs } = useLayout()
+  const { setContainerSettings } = useContainer()
 
   useLayoutEffect(() => {
-    setLayoutConfigs({ maxWidth: 'false', disableGutters: true })
+    setContainerSettings({ maxWidth: 'false', disableGutters: true })
   }, [])
 
   return (
