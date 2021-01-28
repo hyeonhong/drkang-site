@@ -19,7 +19,7 @@ export default function SignUpPage() {
   const { setContainerSettings } = useContainer()
 
   useLayoutEffect(() => {
-    setContainerSettings({ maxWidth: 'false', disableGutters: true })
+    setContainerSettings({ maxWidth: false, disableGutters: true })
   }, [])
 
   return (

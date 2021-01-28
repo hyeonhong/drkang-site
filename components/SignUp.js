@@ -64,11 +64,12 @@ const SignUp = ({ texts }) => {
     return (
       <>
         <TextField
+          margin="dense"
           className={classes.textField}
           {...field}
           {...props}
           error={Boolean(meta.touched && meta.error)}
-          helperText={meta.touched && meta.error ? meta.error : ' '} // one-length whitespace was used to retain height
+          helperText={meta.touched && meta.error ? meta.error : ''}
           variant="outlined"
         />
       </>
@@ -117,51 +118,6 @@ const SignUp = ({ texts }) => {
       <Typography variant="h4" align="center">
         {texts.signUp}
       </Typography>
-
-      <Box sx={{ marginTop: 4 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Checkbox
-            checked={states.termsChecked}
-            color="primary"
-            onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
-          />
-          <Typography variant="body1" gutterBottom>
-            {'(필수) 서비스 이용약관 동의'}
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Link
-            href="#"
-            onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })}
-            color="inherit"
-            underline="always"
-            variant="body2"
-            gutterBottom
-          >
-            {'보기'}
-          </Link>
-        </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Checkbox
-            checked={states.privacyChecked}
-            color="primary"
-            onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
-          />
-          <Typography variant="body1" gutterBottom>
-            {'(필수) 개인정보 수집 및 이용 동의'}
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Link
-            href="#"
-            onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'privacy' })}
-            color="inherit"
-            underline="always"
-            variant="body2"
-            gutterBottom
-          >
-            {'보기'}
-          </Link>
-        </Box>
-      </Box>
 
       <Formik
         initialValues={{ email: '', password: '', confirmPassword: '' }}
@@ -226,20 +182,70 @@ const SignUp = ({ texts }) => {
                 )
               }}
             />
-            <Box sx={{ textAlign: 'center' }}>
-              <Button
-                disabled={isSubmitting}
-                type="submit"
-                variant="contained"
-                disableElevation
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                className={classes.button}
-              >
-                {texts.join}
-              </Button>
+
+            <Box sx={{ marginTop: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Checkbox
+                  checked={states.termsChecked}
+                  color="primary"
+                  onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
+                />
+                <Typography variant="body1" gutterBottom>
+                  {'(필수) 서비스 이용약관 동의'}
+                </Typography>
+                <Box sx={{ flexGrow: 1 }} />
+                <Link
+                  href="#"
+                  onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })}
+                  color="inherit"
+                  underline="always"
+                  variant="body2"
+                  gutterBottom
+                >
+                  {'보기'}
+                </Link>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Checkbox
+                  checked={states.privacyChecked}
+                  color="primary"
+                  onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
+                />
+                <Typography variant="body1" gutterBottom>
+                  {'(필수) 개인정보 수집 및 이용 동의'}
+                </Typography>
+                <Box sx={{ flexGrow: 1 }} />
+                <Link
+                  href="#"
+                  onClick={() =>
+                    setStates({ ...states, dialogOpen: true, dialogContent: 'privacy' })
+                  }
+                  color="inherit"
+                  underline="always"
+                  variant="body2"
+                  gutterBottom
+                >
+                  {'보기'}
+                </Link>
+              </Box>
             </Box>
+
+            <Button
+              disabled={isSubmitting}
+              type="submit"
+              variant="contained"
+              disableElevation
+              disableRipple
+              disableFocusRipple
+              disableTouchRipple
+              className={classes.button}
+              fullWidth
+              sx={{ marginTop: 4 }}
+            >
+              <Typography variant="body1" sx={{ padding: '3px', fontWeight: 'bold' }}>
+                {texts.join}
+              </Typography>
+            </Button>
           </Form>
         )}
       </Formik>
