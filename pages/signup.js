@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  signUp: {
+    margin: theme.spacing(8, 0)
   }
 }))
 
@@ -24,7 +27,9 @@ export default function SignUpPage() {
 
   return (
     <Box className={classes.root}>
-      <SignUp />
+      <Box className={classes.signUp}>
+        <SignUp />
+      </Box>
     </Box>
   )
 }

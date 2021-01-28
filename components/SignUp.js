@@ -77,20 +77,20 @@ const SignUp = ({ texts }) => {
   }
 
   const validationSchema = yup.object({
-    email: yup.string().required('Required').email('Invalid email format'),
+    email: yup.string().required(texts.emailRequired).email(texts.emailInvalid),
     password: yup
       .string()
-      .required('This field is required')
-      .min(8, 'Password must be at least 8 characters')
-      .max(20, 'Password must be at most 20 characters'),
+      .required(texts.passwordRequired)
+      .min(8, texts.passwordMinLength)
+      .max(20, texts.passwordMaxLength),
     // .matches(
     //   /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
     //   'Password must contain at least 8 characters, one letter and one number'
     // ),
     confirmPassword: yup
       .string()
-      .required('This field is required')
-      .oneOf([yup.ref('password'), null], 'Passwords do not match')
+      .required(texts.confirmPasswordRequired)
+      .oneOf([yup.ref('password'), null], texts.confirmPasswordNotMatched)
   })
 
   useEffect(() => {
@@ -191,7 +191,7 @@ const SignUp = ({ texts }) => {
                   onChange={(e) => setStates({ ...states, termsChecked: e.target.checked })}
                 />
                 <Typography variant="body1" gutterBottom>
-                  {'(필수) 서비스 이용약관 동의'}
+                  {texts.termsAgreement}
                 </Typography>
                 <Box sx={{ flexGrow: 1 }} />
                 <Link
@@ -202,7 +202,7 @@ const SignUp = ({ texts }) => {
                   variant="body2"
                   gutterBottom
                 >
-                  {'보기'}
+                  {texts.viewDetails}
                 </Link>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -212,7 +212,7 @@ const SignUp = ({ texts }) => {
                   onChange={(e) => setStates({ ...states, privacyChecked: e.target.checked })}
                 />
                 <Typography variant="body1" gutterBottom>
-                  {'(필수) 개인정보 수집 및 이용 동의'}
+                  {texts.privacyAgreement}
                 </Typography>
                 <Box sx={{ flexGrow: 1 }} />
                 <Link
@@ -225,7 +225,7 @@ const SignUp = ({ texts }) => {
                   variant="body2"
                   gutterBottom
                 >
-                  {'보기'}
+                  {texts.viewDetails}
                 </Link>
               </Box>
             </Box>

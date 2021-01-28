@@ -22,6 +22,16 @@ const kr = {
     password: '비밀번호 (8~20자리)',
     confirmPassword: '비밀번호 확인',
     join: '가입하기',
+    termsAgreement: '(필수) 서비스 이용약관 동의',
+    privacyAgreement: '(필수) 개인정보 수집 및 이용 동의',
+    viewDetails: '보기',
+    emailRequired: '이메일을 입력해주세요.',
+    emailInvalid: '잘못된 이메일 형식입니다.',
+    passwordRequired: '비밀번호를 입력해주세요.',
+    passwordMinLength: '비밀번호는 최소 8자 이상입니다.',
+    passwordMaxLength: '비밀번호는 최대 20자 이하입니다.',
+    confirmPasswordRequired: '비밀번호를 다시 입력해주세요.',
+    confirmPasswordNotMatched: '비밀번호가 일치하지 않습니다.',
     snackbarError: '이용약관, 개인정보처리방침에 동의하셔야 합니다.'
   },
   IntroPage: {
@@ -48,7 +58,9 @@ const kr = {
   SignInButtons: {
     facebook: 'Facebook으로 가입하기',
     google: 'Google로 가입하기',
-    naver: '네이버로 가입하기'
+    naver: '네이버로 가입하기',
+    socialSignInAgreement:
+      'SNS 로도 가입하실 수 있습니다.\n 위의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주합니다.'
   }
 }
 

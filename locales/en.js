@@ -23,6 +23,16 @@ const en = {
     password: 'Password',
     confirmPassword: 'Confirm Password',
     join: 'Create account',
+    termsAgreement: 'I have read and agree to the Terms of Service.',
+    privacyAgreement: 'I have read and agree to the Privacy Policy.',
+    viewDetails: 'View',
+    emailRequired: 'This field is required.',
+    emailInvalid: 'Invalid email format',
+    passwordRequired: 'This field is required.',
+    passwordMinLength: 'Password must be at least 8 characters',
+    passwordMaxLength: 'Password must be at most 20 characters',
+    confirmPasswordRequired: 'This field is required.',
+    confirmPasswordNotMatched: 'Passwords do not match',
     snackbarError: 'You must agree to the Terms of service and the Privacy Policy.'
   },
   IntroPage: {
@@ -49,7 +59,9 @@ const en = {
   SignInButtons: {
     facebook: 'Sign in with Facebook',
     google: 'Sign in with Google',
-    naver: 'Sign in with Naver'
+    naver: 'Sign in with Naver',
+    socialSignInAgreement:
+      'By continuing, you agree to the Terms of Service and the Privacy Policy.'
   }
 }
 

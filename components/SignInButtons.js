@@ -128,6 +128,9 @@ const SignInButtons = ({ texts }) => {
       }}
     >
       <OrDivider />
+      <Typography variant="body2" sx={{ marginTop: 4, marginBottom: 4, whiteSpace: 'pre-line' }}>
+        {texts.socialSignInAgreement}
+      </Typography>
       <NaverButton />
       <FacebookButton />
       <GoogleButton />
