@@ -14,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
     // }
   },
   main: {},
-  button: {
-    textTransform: 'none'
-  },
   buttonWrapper: {
     textAlign: 'right'
   }
@@ -36,7 +33,6 @@ export default function ProfilePage() {
             disableFocusRipple
             disableTouchRipple
             // onClick={() =>{}}
-            className={classes.button}
           >
             Edit
           </Button>

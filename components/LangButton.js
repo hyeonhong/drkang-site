@@ -6,7 +6,6 @@ import { useLang } from 'utils/hook/useLang'
 
 const useStyles = makeStyles((theme) => ({
   langButton: {
-    textTransform: 'none'
     // minWidth: 0 // override the default minWidth
     // marginRight: theme.spacing(4)
   },

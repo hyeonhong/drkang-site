@@ -35,6 +35,9 @@ const en = {
     confirmPasswordNotMatched: 'Passwords do not match',
     snackbarError: 'You must agree to the Terms of service and the Privacy Policy.'
   },
+  SignIn: {
+    signIn: 'Sign in to your account'
+  },
   IntroPage: {
     tabLabels: ['Meet Dr. Kang', 'Facilities']
   },

@@ -83,7 +83,7 @@ const SignInButtons = ({ texts }) => {
 
   const NaverButton = () => (
     <NaverStyledBtn style={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ flex: 1, textAlign: 'left' }}>
+      <Box sx={{ flex: 1, display: 'flex', alignItems: 'center' }}>
         <Image src="/assets/naver.png" alt="naver-logo" width={36} height={36} />
       </Box>
       <Typography variant="body1" sx={{ padding: 1, fontWeight: 'bold', whiteSpace: 'pre' }}>
@@ -128,7 +128,7 @@ const SignInButtons = ({ texts }) => {
       }}
     >
       <OrDivider />
-      <Typography variant="body2" sx={{ marginTop: 4, marginBottom: 4, whiteSpace: 'pre-line' }}>
+      <Typography variant="body2" sx={{ marginTop: 8, marginBottom: 4, whiteSpace: 'pre-line' }}>
         {texts.socialSignInAgreement}
       </Typography>
       <NaverButton />

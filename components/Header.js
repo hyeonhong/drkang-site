@@ -57,9 +57,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     color: 'black'
   },
-  button: {
-    textTransform: 'none'
-  },
   paper: {
     border: '1px solid',
     padding: theme.spacing(1),
@@ -91,7 +88,6 @@ const Header = ({ texts }) => {
               signOut()
               router.push('/')
             }}
-            className={classes.button}
           >
             Sign Out
           </Button>
@@ -123,7 +119,6 @@ const Header = ({ texts }) => {
                     disableFocusRipple
                     disableTouchRipple
                     onClick={() => router.push('/profile')}
-                    className={classes.button}
                   >
                     My Profile
                   </Button>
@@ -142,7 +137,6 @@ const Header = ({ texts }) => {
             disableFocusRipple
             disableTouchRipple
             onClick={() => router.push('/signin')}
-            className={classes.button}
           >
             Sign In
           </Button>
@@ -154,7 +148,6 @@ const Header = ({ texts }) => {
             disableFocusRipple
             disableTouchRipple
             onClick={() => router.push('/signup')}
-            className={classes.button}
           >
             Sign Up
           </Button>

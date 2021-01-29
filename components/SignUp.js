@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: '100%'
-  },
-  button: {
-    textTransform: 'none'
   }
 }))
 
@@ -115,7 +112,7 @@ const SignUp = ({ texts }) => {
         </Alert>
       </Snackbar>
 
-      <Typography variant="h4" align="center">
+      <Typography variant="h5" align="center">
         {texts.signUp}
       </Typography>
 
@@ -238,7 +235,6 @@ const SignUp = ({ texts }) => {
               disableRipple
               disableFocusRipple
               disableTouchRipple
-              className={classes.button}
               fullWidth
               sx={{ marginTop: 4 }}
             >
@@ -250,7 +246,7 @@ const SignUp = ({ texts }) => {
         )}
       </Formik>
 
-      <Box sx={{ marginTop: 4, marginBottom: 4 }}>
+      <Box sx={{ marginTop: 8, marginBottom: 4 }}>
         <SignInButtons />
       </Box>
 

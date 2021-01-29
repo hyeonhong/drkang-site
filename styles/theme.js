@@ -35,6 +35,9 @@ export const koreanTheme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: ['Noto Sans KR', 'sans-serif'].join(',')
+    fontFamily: ['Noto Sans KR', 'sans-serif'].join(','),
+    button: {
+      textTransform: 'none'
+    }
   }
 })
