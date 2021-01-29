@@ -32,10 +32,17 @@ const kr = {
     passwordMaxLength: '비밀번호는 최대 20자 이하입니다.',
     confirmPasswordRequired: '비밀번호를 다시 입력해주세요.',
     confirmPasswordNotMatched: '비밀번호가 일치하지 않습니다.',
-    snackbarError: '이용약관, 개인정보처리방침에 동의하셔야 합니다.'
+    snackbarError: '이용약관, 개인정보처리방침에 동의하셔야 합니다.',
+    facebook: 'Facebook으로 가입하기',
+    google: 'Google로 가입하기',
+    naver: '네이버로 가입하기',
+    socialSignInAgreement: '위의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주합니다.'
   },
   SignIn: {
-    signIn: '로그인'
+    signIn: '로그인',
+    facebook: 'Facebook 로그인',
+    google: 'Google 로그인',
+    naver: '네이버 로그인'
   },
   IntroPage: {
     tabLabels: ['원장 소개', '의료시설']
@@ -57,12 +64,6 @@ const kr = {
   },
   PrivacyPage: {
     title: '개인정보 처리방침'
-  },
-  SignInButtons: {
-    facebook: 'Facebook으로 가입하기',
-    google: 'Google로 가입하기',
-    naver: '네이버로 가입하기',
-    socialSignInAgreement: '위의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주합니다.'
   }
 }
 

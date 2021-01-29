@@ -7,7 +7,7 @@ import * as yup from 'yup'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 import withTexts from 'utils/hoc/withTexts'
-import SignInButtons from 'components/SignInButtons'
+import { FacebookButton, GoogleButton, NaverButton, OrDivider } from 'components/SocialButtons'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SignIn = ({ texts }) => {
-  const { user, signIn } = useAuth()
+  const { user, signIn, signInWithGoogle, signInWithFacebook, signInWithNaver } = useAuth()
   const router = useRouter()
 
   const classes = useStyles()
@@ -95,8 +95,20 @@ const SignIn = ({ texts }) => {
         )}
       </Formik>
 
-      <Box sx={{ marginTop: 8, marginBottom: 4 }}>
-        <SignInButtons />
+      <Box
+        sx={{
+          flex: 'display',
+          flexDirection: 'column',
+          '& > * + *': { marginTop: 2, marginBottom: 2 },
+          marginTop: 8,
+          marginBottom: 4
+        }}
+      >
+        <OrDivider />
+        <Box sx={{ marginBottom: 12 }} />
+        <NaverButton label={texts.naver} handleClick={() => signInWithNaver()} />
+        <FacebookButton label={texts.facebook} handleClick={() => signInWithFacebook()} />
+        <GoogleButton label={texts.google} handleClick={() => signInWithGoogle()} />
       </Box>
     </Paper>
   )

@@ -33,10 +33,18 @@ const en = {
     passwordMaxLength: 'Password must be at most 20 characters',
     confirmPasswordRequired: 'This field is required.',
     confirmPasswordNotMatched: 'Passwords do not match',
-    snackbarError: 'You must agree to the Terms of service and the Privacy Policy.'
+    snackbarError: 'You must agree to the Terms of service and the Privacy Policy.',
+    facebook: 'Sign in with Facebook',
+    google: 'Sign in with Google',
+    naver: 'Sign in with Naver',
+    socialSignInAgreement:
+      'By continuing, you agree to the Terms of Service and the Privacy Policy.'
   },
   SignIn: {
-    signIn: 'Sign in to your account'
+    signIn: 'Sign in to your account',
+    facebook: 'Sign in with Facebook',
+    google: 'Sign in with Google',
+    naver: 'Sign in with Naver'
   },
   IntroPage: {
     tabLabels: ['Meet Dr. Kang', 'Facilities']
@@ -58,13 +66,6 @@ const en = {
   },
   PrivacyPage: {
     title: 'Privacy Policy'
-  },
-  SignInButtons: {
-    facebook: 'Sign in with Facebook',
-    google: 'Sign in with Google',
-    naver: 'Sign in with Naver',
-    socialSignInAgreement:
-      'By continuing, you agree to the Terms of Service and the Privacy Policy.'
   }
 }
 

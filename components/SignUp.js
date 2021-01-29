@@ -22,7 +22,7 @@ import * as yup from 'yup'
 import { useAuth } from 'utils/auth/firebaseClient'
 import withTexts from 'utils/hoc/withTexts'
 import CustomDialog from 'components/CustomDialog'
-import SignInButtons from 'components/SignInButtons'
+import { FacebookButton, GoogleButton, NaverButton, OrDivider } from 'components/SocialButtons'
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -246,8 +246,22 @@ const SignUp = ({ texts }) => {
         )}
       </Formik>
 
-      <Box sx={{ marginTop: 8, marginBottom: 4 }}>
-        <SignInButtons />
+      <Box
+        sx={{
+          flex: 'display',
+          flexDirection: 'column',
+          '& > * + *': { marginTop: 2, marginBottom: 2 },
+          marginTop: 8,
+          marginBottom: 4
+        }}
+      >
+        <OrDivider />
+        <Typography variant="body2" sx={{ marginTop: 8, marginBottom: 4, whiteSpace: 'pre-line' }}>
+          {texts.socialSignInAgreement}
+        </Typography>
+        <NaverButton label={texts.naver} />
+        <FacebookButton label={texts.facebook} />
+        <GoogleButton label={texts.google} />
       </Box>
 
       <CustomDialog

@@ -1,12 +1,12 @@
 /* eslint-disable multiline-ternary */
 import { useRouter } from 'next/router'
-import { Link, Button, Typography, Box } from '@material-ui/core'
+import { Link, Typography, Box } from '@material-ui/core'
 import Map from 'components/Map'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 
 const HomePage = () => {
-  const { user, signInWithGoogle, signInWithFacebook, signInWithNaver } = useAuth()
+  const { user } = useAuth()
   const router = useRouter()
 
   return (
@@ -33,21 +33,6 @@ const HomePage = () => {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <Typography variant="h6">Currently NOT signed in</Typography>
-          <Link onClick={() => router.push('/signup')} variant="h6">
-            Sign up with Email
-          </Link>
-          <Link onClick={() => router.push('/signin')} variant="h6">
-            Sign in with Email
-          </Link>
-          <Button onClick={() => signInWithGoogle()}>
-            <Typography variant="h6">Sign in with Google</Typography>
-          </Button>
-          <Button onClick={() => signInWithFacebook()}>
-            <Typography variant="h6">Sign in with Facebook</Typography>
-          </Button>
-          <Button onClick={() => signInWithNaver()}>
-            <Typography variant="h6"> Sign in with Naver</Typography>
-          </Button>
         </div>
       )}
       <Map />
