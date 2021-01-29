@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SignUp = ({ texts }) => {
-  const { user, signUp } = useAuth()
+  const { user, signUp, signInWithGoogle, signInWithFacebook, signInWithNaver } = useAuth()
   const router = useRouter()
   const classes = useStyles()
   const [states, setStates] = useState({
@@ -259,9 +259,9 @@ const SignUp = ({ texts }) => {
         <Typography variant="body2" sx={{ marginTop: 8, marginBottom: 4, whiteSpace: 'pre-line' }}>
           {texts.socialSignInAgreement}
         </Typography>
-        <NaverButton label={texts.naver} />
-        <FacebookButton label={texts.facebook} />
-        <GoogleButton label={texts.google} />
+        <NaverButton label={texts.naver} handleClick={() => signInWithNaver()} />
+        <FacebookButton label={texts.facebook} handleClick={() => signInWithFacebook()} />
+        <GoogleButton label={texts.google} handleClick={() => signInWithGoogle()} />
       </Box>
 
       <CustomDialog

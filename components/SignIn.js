@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Formik, Form, useField } from 'formik'
-import { Paper, TextField, Button, Typography, Box } from '@material-ui/core'
+import { Paper, TextField, Button, Typography, Box, Link } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import * as yup from 'yup'
 
@@ -76,6 +76,18 @@ const SignIn = ({ texts }) => {
           <Form className={classes.form}>
             <MyTextField required name="email" type="email" label="Email" />
             <MyTextField required name="password" type="password" label="Password" />
+
+            <Typography
+              variant="body2"
+              display="inline"
+              sx={{ color: '#828282', whiteSpace: 'pre' }}
+            >
+              {texts.forgotPassword}
+            </Typography>
+            <Link variant="body2" display="inline">
+              {texts.resetPassword}
+            </Link>
+
             <Button
               disabled={isSubmitting}
               type="submit"

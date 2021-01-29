@@ -43,6 +43,8 @@ const kr = {
     emailRequired: '이메일을 입력해주세요.',
     emailInvalid: '잘못된 이메일 형식입니다.',
     passwordRequired: '비밀번호를 입력해주세요.',
+    forgotPassword: '비밀번호를 잊어버리셨나요?    ',
+    resetPassword: '비밀번호 변경',
     signInLabel: '로그인',
     facebook: 'Facebook 계정으로 로그인',
     google: 'Google 계정으로 로그인',

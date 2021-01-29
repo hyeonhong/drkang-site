@@ -91,7 +91,7 @@ const NaverButton = ({ label, handleClick }) => (
   </NaverStyledBtn>
 )
 
-const dividerColor = '#757575'
+const dividerColor = '#c4c4c4'
 
 const OrDivider = () => (
   <Box sx={{ display: 'flex' }}>
