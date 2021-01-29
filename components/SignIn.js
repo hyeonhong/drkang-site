@@ -43,8 +43,8 @@ const SignIn = ({ texts }) => {
   }
 
   const validationSchema = yup.object({
-    email: yup.string().required('Required').email('Invalid email format'),
-    password: yup.string().required('This field is required')
+    email: yup.string().required(texts.emailRequired).email(texts.emailInvalid),
+    password: yup.string().required(texts.passwordRequired)
   })
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const SignIn = ({ texts }) => {
               sx={{ marginTop: 4 }}
             >
               <Typography variant="body1" sx={{ padding: '3px', fontWeight: 'bold' }}>
-                {'Submit'}
+                {texts.signInLabel}
               </Typography>
             </Button>
           </Form>

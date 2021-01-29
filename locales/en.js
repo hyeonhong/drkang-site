@@ -42,6 +42,10 @@ const en = {
   },
   SignIn: {
     signIn: 'Sign in to your account',
+    emailRequired: 'This field is required.',
+    emailInvalid: 'Invalid email format',
+    passwordRequired: 'This field is required.',
+    signInLabel: 'Sign In',
     facebook: 'Sign in with Facebook',
     google: 'Sign in with Google',
     naver: 'Sign in with Naver'

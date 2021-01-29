@@ -33,16 +33,20 @@ const kr = {
     confirmPasswordRequired: '비밀번호를 다시 입력해주세요.',
     confirmPasswordNotMatched: '비밀번호가 일치하지 않습니다.',
     snackbarError: '이용약관, 개인정보처리방침에 동의하셔야 합니다.',
-    facebook: 'Facebook으로 가입하기',
-    google: 'Google로 가입하기',
-    naver: '네이버로 가입하기',
+    facebook: 'Facebook 계정으로 가입하기',
+    google: 'Google 계정으로 가입하기',
+    naver: '네이버 계정으로 가입하기',
     socialSignInAgreement: '위의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주합니다.'
   },
   SignIn: {
-    signIn: '로그인',
-    facebook: 'Facebook 로그인',
-    google: 'Google 로그인',
-    naver: '네이버 로그인'
+    signIn: '회원 로그인',
+    emailRequired: '이메일을 입력해주세요.',
+    emailInvalid: '잘못된 이메일 형식입니다.',
+    passwordRequired: '비밀번호를 입력해주세요.',
+    signInLabel: '로그인',
+    facebook: 'Facebook 계정으로 로그인',
+    google: 'Google 계정으로 로그인',
+    naver: '네이버 계정으로 로그인'
   },
   IntroPage: {
     tabLabels: ['원장 소개', '의료시설']

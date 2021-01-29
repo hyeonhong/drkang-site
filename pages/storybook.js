@@ -2,7 +2,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Box, Alert } from '@material-ui/core'
 // import CloseIcon from '@material-ui/icons/Close'
-import SignInButtons from 'components/SignInButtons'
 
 const useStyles = makeStyles((theme) => ({
   spacing: {
@@ -24,8 +23,6 @@ export default function Storybook() {
         </Typography>
         <Box sx={{ flex: 1 }} />
       </Box>
-
-      <SignInButtons />
 
       <Alert severity="error">This is an error alert — check it out!</Alert>
     </Box>
