@@ -13,7 +13,7 @@ import { FacebookButton, GoogleButton, NaverButton, OrDivider } from 'components
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '460px',
-    padding: theme.spacing(4.5, 5)
+    marginTop: theme.spacing(8)
   },
   textField: {
     width: '100%'
@@ -117,20 +117,33 @@ const SignIn = ({ texts }) => {
         )}
       </Formik>
 
-      <Box
-        sx={{
-          flex: 'display',
-          flexDirection: 'column',
-          '& > * + *': { marginTop: 2, marginBottom: 2 },
-          marginTop: 4,
-          marginBottom: 4
-        }}
-      >
+      <Box sx={{ marginTop: 3 }}>
+        <Typography variant="body2" display="inline" sx={{ whiteSpace: 'pre' }}>
+          {texts.noAccount}
+        </Typography>
+        <Link
+          href="#"
+          variant="body2"
+          display="inline"
+          onClick={(e) => {
+            e.preventDefault()
+            router.push('/signup')
+          }}
+        >
+          {texts.createAccount}
+        </Link>
+      </Box>
+
+      <Box sx={{ flex: 'display', flexDirection: 'column' }}>
+        <Box sx={{ marginBottom: 4 }} />
         <OrDivider />
-        <Box sx={{ marginBottom: 8 }} />
+        <Box sx={{ marginBottom: 4 }} />
         <NaverButton label={texts.naver} handleClick={() => signInWithNaver()} />
+        <Box sx={{ marginBottom: 2 }} />
         <FacebookButton label={texts.facebook} handleClick={() => signInWithFacebook()} />
+        <Box sx={{ marginBottom: 2 }} />
         <GoogleButton label={texts.google} handleClick={() => signInWithGoogle()} />
+        <Box sx={{ marginBottom: 4 }} />
       </Box>
 
       <CustomDialog2 open={dialogOpen} handleClose={() => setDialogOpen(false)} />

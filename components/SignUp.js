@@ -250,22 +250,20 @@ const SignUp = ({ texts }) => {
         )}
       </Formik>
 
-      <Box
-        sx={{
-          flex: 'display',
-          flexDirection: 'column',
-          '& > * + *': { marginTop: 2, marginBottom: 2 },
-          marginTop: 8,
-          marginBottom: 4
-        }}
-      >
+      <Box sx={{ flex: 'display', flexDirection: 'column' }}>
+        <Box sx={{ marginBottom: 6 }} />
         <OrDivider />
-        <Typography variant="body2" sx={{ marginTop: 8, marginBottom: 4, whiteSpace: 'pre-line' }}>
+        <Box sx={{ marginBottom: 6 }} />
+        <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
           {texts.socialSignInAgreement}
         </Typography>
+        <Box sx={{ marginBottom: 4 }} />
         <NaverButton label={texts.naver} handleClick={() => signInWithNaver()} />
+        <Box sx={{ marginBottom: 2 }} />
         <FacebookButton label={texts.facebook} handleClick={() => signInWithFacebook()} />
+        <Box sx={{ marginBottom: 2 }} />
         <GoogleButton label={texts.google} handleClick={() => signInWithGoogle()} />
+        <Box sx={{ marginBottom: 4 }} />
       </Box>
 
       <CustomDialog

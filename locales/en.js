@@ -50,6 +50,8 @@ const en = {
     forgotPassword: 'Forgot your password?  ',
     resetPassword: 'Reset password',
     signInLabel: 'Sign In',
+    noAccount: 'No account?  ',
+    createAccount: 'Create account',
     facebook: 'Sign in with Facebook',
     google: 'Sign in with Google',
     naver: 'Sign in with Naver'

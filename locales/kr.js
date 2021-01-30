@@ -17,7 +17,7 @@ const kr = {
     privacy: '개인정보 처리방침'
   },
   SignUp: {
-    signUp: '회원가입',
+    signUp: '회원 가입',
     email: '이메일',
     password: '비밀번호 (8~20자리)',
     confirmPassword: '비밀번호 확인',
@@ -36,7 +36,8 @@ const kr = {
     facebook: 'Facebook 계정으로 가입하기',
     google: 'Google 계정으로 가입하기',
     naver: '네이버 계정으로 가입하기',
-    socialSignInAgreement: '위의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주합니다.'
+    socialSignInAgreement:
+      'SNS로도 회원 가입할 수 있습니다.\n위의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주합니다.'
   },
   SignIn: {
     signIn: '회원 로그인',
@@ -48,6 +49,8 @@ const kr = {
     forgotPassword: '비밀번호를 잊어버리셨나요?    ',
     resetPassword: '비밀번호 변경/찾기',
     signInLabel: '로그인',
+    noAccount: '아직 회원이 아니신가요?    ',
+    createAccount: '회원가입하기',
     facebook: 'Facebook 계정으로 로그인',
     google: 'Google 계정으로 로그인',
     naver: '네이버 계정으로 로그인'
