@@ -40,6 +40,8 @@ const kr = {
   },
   SignIn: {
     signIn: '회원 로그인',
+    email: '이메일',
+    password: '비밀번호',
     emailRequired: '이메일을 입력해주세요.',
     emailInvalid: '잘못된 이메일 형식입니다.',
     passwordRequired: '비밀번호를 입력해주세요.',

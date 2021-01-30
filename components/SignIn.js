@@ -76,8 +76,8 @@ const SignIn = ({ texts }) => {
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
           <Form className={classes.form}>
-            <MyTextField required name="email" type="email" label="Email" />
-            <MyTextField required name="password" type="password" label="Password" />
+            <MyTextField required name="email" type="email" placeholder={texts.email} />
+            <MyTextField required name="password" type="password" placeholder={texts.password} />
 
             <Typography
               variant="body2"

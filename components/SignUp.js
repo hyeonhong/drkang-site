@@ -138,13 +138,13 @@ const SignUp = ({ texts }) => {
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
           <Form className={classes.form}>
-            <MyTextField required name="email" type="email" label={texts.email} />
+            <MyTextField required name="email" type="email" placeholder={texts.email} />
             <MyTextField
               required
               name="password"
               autoComplete="off"
               type={states.showPassword ? 'text' : 'password'}
-              label={texts.password}
+              placeholder={texts.password}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -163,7 +163,7 @@ const SignUp = ({ texts }) => {
               name="confirmPassword"
               autoComplete="off"
               type={states.showConfirmPassword ? 'text' : 'password'}
-              label={texts.confirmPassword}
+              placeholder={texts.confirmPassword}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">

@@ -42,6 +42,8 @@ const en = {
   },
   SignIn: {
     signIn: 'Sign in to your account',
+    email: 'Email',
+    password: 'Password',
     emailRequired: 'This field is required.',
     emailInvalid: 'Invalid email format',
     passwordRequired: 'This field is required.',
