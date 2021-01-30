@@ -67,6 +67,16 @@ const en = {
     privacyTitle: 'Privacy Policy',
     closeWindow: 'Close'
   },
+  CustomDialog2: {
+    title: 'Password Reset',
+    content: "Enter your email address and we'll send you a link to reset your password.",
+    fieldLabel: 'Email',
+    confirmReset: 'Reset Password',
+    cancelReset: 'Cancel',
+    snackbarSuccess: 'Email was sent to reset password',
+    snackbarError:
+      'Failed to send the email. The email address is either invalid or nonexistent in our system.'
+  },
   TermsPage: {
     title: 'Terms of Service'
   },

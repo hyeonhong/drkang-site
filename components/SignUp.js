@@ -193,7 +193,10 @@ const SignUp = ({ texts }) => {
                 <Box sx={{ flexGrow: 1 }} />
                 <Link
                   href="#"
-                  onClick={() => setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setStates({ ...states, dialogOpen: true, dialogContent: 'terms' })
+                  }}
                   color="inherit"
                   underline="always"
                   variant="body2"
@@ -214,9 +217,10 @@ const SignUp = ({ texts }) => {
                 <Box sx={{ flexGrow: 1 }} />
                 <Link
                   href="#"
-                  onClick={() =>
+                  onClick={(e) => {
+                    e.preventDefault()
                     setStates({ ...states, dialogOpen: true, dialogContent: 'privacy' })
-                  }
+                  }}
                   color="inherit"
                   underline="always"
                   variant="body2"

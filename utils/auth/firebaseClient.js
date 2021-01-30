@@ -96,9 +96,13 @@ function useProvideAuth() {
     return false
   }
 
-  // function resetPassword(email) {
-  //   return firebase.auth().sendPasswordResetEmail(email)
-  // }
+  function resetPassword(email) {
+    return firebase.auth().sendPasswordResetEmail(email)
+  }
+
+  function getAuthInstance() {
+    return firebase.auth()
+  }
 
   // function updateEmail(email) {
   //   return user.updateEmail(email)
@@ -158,6 +162,8 @@ function useProvideAuth() {
     signInWithNaver,
     signOut,
     sendEmailVerification,
-    isEmailVerified
+    isEmailVerified,
+    resetPassword,
+    getAuthInstance
   }
 }

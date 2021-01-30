@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Formik, Form, useField } from 'formik'
 import { Paper, TextField, Button, Typography, Box, Link } from '@material-ui/core'
@@ -7,6 +7,7 @@ import * as yup from 'yup'
 
 import { useAuth } from 'utils/auth/firebaseClient'
 import withTexts from 'utils/hoc/withTexts'
+import CustomDialog2 from 'components/CustomDialog2'
 import { FacebookButton, GoogleButton, NaverButton, OrDivider } from 'components/SocialButtons'
 
 const useStyles = makeStyles((theme) => ({
@@ -22,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = ({ texts }) => {
   const { user, signIn, signInWithGoogle, signInWithFacebook, signInWithNaver } = useAuth()
   const router = useRouter()
-
   const classes = useStyles()
+
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   const MyTextField = (props) => {
     const [field, meta] = useField(props)
@@ -84,7 +86,15 @@ const SignIn = ({ texts }) => {
             >
               {texts.forgotPassword}
             </Typography>
-            <Link variant="body2" display="inline">
+            <Link
+              href="#"
+              variant="body2"
+              display="inline"
+              onClick={(e) => {
+                e.preventDefault()
+                setDialogOpen(true)
+              }}
+            >
               {texts.resetPassword}
             </Link>
 
@@ -97,7 +107,7 @@ const SignIn = ({ texts }) => {
               disableFocusRipple
               disableTouchRipple
               fullWidth
-              sx={{ marginTop: 4 }}
+              sx={{ marginTop: 6 }}
             >
               <Typography variant="body1" sx={{ padding: '3px', fontWeight: 'bold' }}>
                 {texts.signInLabel}
@@ -112,16 +122,18 @@ const SignIn = ({ texts }) => {
           flex: 'display',
           flexDirection: 'column',
           '& > * + *': { marginTop: 2, marginBottom: 2 },
-          marginTop: 8,
+          marginTop: 4,
           marginBottom: 4
         }}
       >
         <OrDivider />
-        <Box sx={{ marginBottom: 12 }} />
+        <Box sx={{ marginBottom: 8 }} />
         <NaverButton label={texts.naver} handleClick={() => signInWithNaver()} />
         <FacebookButton label={texts.facebook} handleClick={() => signInWithFacebook()} />
         <GoogleButton label={texts.google} handleClick={() => signInWithGoogle()} />
       </Box>
+
+      <CustomDialog2 open={dialogOpen} handleClose={() => setDialogOpen(false)} />
     </Paper>
   )
 }

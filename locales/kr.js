@@ -44,7 +44,7 @@ const kr = {
     emailInvalid: '잘못된 이메일 형식입니다.',
     passwordRequired: '비밀번호를 입력해주세요.',
     forgotPassword: '비밀번호를 잊어버리셨나요?    ',
-    resetPassword: '비밀번호 변경',
+    resetPassword: '비밀번호 변경/찾기',
     signInLabel: '로그인',
     facebook: 'Facebook 계정으로 로그인',
     google: 'Google 계정으로 로그인',
@@ -64,6 +64,15 @@ const kr = {
     termsTitle: '서비스 이용약관',
     privacyTitle: '개인정보 처리방침',
     closeWindow: '닫기'
+  },
+  CustomDialog2: {
+    title: '비밀번호 변경/찾기',
+    content: '가입하신 이메일 주소를 입력해주세요. 비밀번호 변경을 위한 링크가 전송됩니다.',
+    fieldLabel: '이메일 주소',
+    confirmReset: '전송',
+    cancelReset: '취소',
+    snackbarSuccess: '비밀번호 변경을 위한 링크가 이메일로 전송되었습니다.',
+    snackbarError: '이메일 전송에 실패했습니다. 잘못된 이메일 주소 또는 존재하지 않는 회원입니다.'
   },
   TermsPage: {
     title: '서비스 이용약관'
