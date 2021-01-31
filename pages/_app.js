@@ -12,21 +12,11 @@ import { MDXProvider } from '@mdx-js/react'
 
 import SEO from '../next-seo.config'
 import { AuthProvider } from 'utils/auth/firebaseClient'
-import { LangProvider, useLang } from 'utils/hook/useLang'
-import { defaultTheme, koreanTheme } from 'styles/theme'
+import { LangProvider } from 'utils/hook/useLang'
+import { koreanTheme } from 'styles/theme'
 import Layout from 'components/Layout'
 
 export const cache = createCache({ key: 'css', prepend: true })
-
-function CustomThemeProvider({ children }) {
-  const { lang } = useLang()
-  let theme = defaultTheme
-  if (lang === 'kr') {
-    theme = koreanTheme
-  }
-
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
-}
 
 export default function MyApp(props) {
   const { Component, pageProps } = props
@@ -50,23 +40,23 @@ export default function MyApp(props) {
   }, [])
 
   return (
-    <LangProvider>
-      <CacheProvider value={cache}>
-        <DefaultSeo {...SEO} />
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
-        <CustomThemeProvider>
-          <CssBaseline />
-          <AuthProvider>
+    <CacheProvider value={cache}>
+      <DefaultSeo {...SEO} />
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+      <ThemeProvider theme={koreanTheme}>
+        <CssBaseline />
+        <AuthProvider>
+          <LangProvider>
             <MDXProvider components={mdxComponents}>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
             </MDXProvider>
-          </AuthProvider>
-        </CustomThemeProvider>
-      </CacheProvider>
-    </LangProvider>
+          </LangProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </CacheProvider>
   )
 }

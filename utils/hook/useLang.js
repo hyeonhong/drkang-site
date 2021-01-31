@@ -2,16 +2,9 @@ import { useContext, useState } from 'react'
 import LangContext from 'utils/context/LangContext'
 
 export function LangProvider({ children }) {
-  let storedValue
-  if (typeof window !== 'undefined') {
-    storedValue = localStorage.getItem('lang')
-  }
-  const defaultValue = storedValue || 'kr'
-
-  const [lang, setLang] = useState(defaultValue)
+  const [lang, setLang] = useState('kr')
 
   function switchLang(selected) {
-    localStorage.setItem('lang', selected)
     setLang(selected)
   }
 
