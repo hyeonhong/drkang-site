@@ -71,7 +71,7 @@ const Header = ({ texts }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
 
-  const paths = ['/intro', '/services', '/directions']
+  const paths = ['/about', '/services', '/directions']
 
   // const isTablet = useMediaQuery('(max-width:768px)')
 

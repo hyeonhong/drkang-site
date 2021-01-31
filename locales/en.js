@@ -1,7 +1,7 @@
 const en = {
   Header: {
     tabLabels: {
-      intro: 'Who We Are',
+      about: 'Who We Are',
       services: 'Services',
       directions: 'Directions'
     }
@@ -56,7 +56,7 @@ const en = {
     google: 'Sign in with Google',
     naver: 'Sign in with Naver'
   },
-  IntroPage: {
+  About: {
     tabLabels: ['Meet Dr. Kang', 'Facilities']
   },
   ServicesPage: {

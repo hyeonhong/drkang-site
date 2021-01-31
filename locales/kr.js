@@ -1,7 +1,7 @@
 const kr = {
   Header: {
     tabLabels: {
-      intro: '병원소개',
+      about: '병원소개',
       services: '진료안내',
       directions: '오시는 길'
     }
@@ -55,7 +55,7 @@ const kr = {
     google: 'Google 계정으로 로그인',
     naver: '네이버 계정으로 로그인'
   },
-  IntroPage: {
+  About: {
     tabLabels: ['원장 소개', '의료시설']
   },
   ServicesPage: {
