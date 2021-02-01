@@ -10,7 +10,7 @@ export default function Map({ options }) {
 
       const infowindow = new window.google.maps.InfoWindow({
         content: `<style> .gm-style-iw > button { display: none !important; } </style>
-        <strong>강의원</strong>`
+        <strong>우림로데오스위트 209호</strong>`
       })
       //  marker.addListener('click', function() {
       //    infowindow.open(map, marker);

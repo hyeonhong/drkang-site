@@ -28,7 +28,7 @@ export default function LangButton() {
         disableTouchRipple
         onClick={(e) => setLangAnchor(e.currentTarget)}
       >
-        {koreaFlag}
+        {lang === 'kr' ? koreaFlag : usFlag}
         <Box sx={{ marginRight: 1 }} />
         <div
           style={{

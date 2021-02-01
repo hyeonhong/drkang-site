@@ -21,10 +21,10 @@ const DrKang = ({ texts }) => {
   return (
     <>
       <Typography variant="h5" sx={{ marginBottom: 4 }}>
-        {'원장 소개'}
+        {texts.meetDrKang}
       </Typography>
       <Typography variant="h6" sx={{ marginBottom: 4 }}>
-        {'강영록 원장'}
+        {texts.drKang}
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: useLang().lang === 'kr' ? 'row' : 'column' }}>
         <div>
