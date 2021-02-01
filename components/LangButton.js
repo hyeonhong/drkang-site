@@ -1,31 +1,15 @@
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, Menu, MenuItem, Typography } from '@material-ui/core'
+import Image from 'next/image'
+import { Button, Menu, MenuItem, Box } from '@material-ui/core'
 
 import { useLang } from 'utils/hook/useLang'
 
-const useStyles = makeStyles((theme) => ({
-  langButton: {
-    // minWidth: 0 // override the default minWidth
-    // marginRight: theme.spacing(4)
-  },
-  langText: {
-    '&::after': {
-      display: 'inline-block',
-      content: '""', // NB: Use quotes twice
-      marginLeft: '.3rem',
-      verticalAlign: '.255rem',
-      borderLeft: '.3rem solid transparent',
-      borderRight: '.3rem solid transparent',
-      borderTop: '.3rem solid'
-    }
-  }
-}))
-
 export default function LangButton() {
-  const classes = useStyles()
   const { lang, switchLang } = useLang()
   const [langAnchor, setLangAnchor] = useState(null)
+
+  const koreaFlag = <Image src="/assets/kr.svg" alt="korea-flag" width={26.6} height={20} />
+  const usFlag = <Image src="/assets/us.svg" alt="us-flag" width={26.6} height={20} />
 
   return (
     <>
@@ -34,13 +18,20 @@ export default function LangButton() {
         disableRipple
         disableFocusRipple
         disableTouchRipple
-        variant="outlined"
         onClick={(e) => setLangAnchor(e.currentTarget)}
-        className={classes.langButton}
       >
-        <Typography variant="body1" align="center" color="textPrimary" className={classes.langText}>
-          Language
-        </Typography>
+        {koreaFlag}
+        <Box sx={{ marginRight: 1 }} />
+        <div
+          style={{
+            display: 'inline-block',
+            content: '""', // NB: Use quotes twice
+            verticalAlign: '.255rem',
+            borderLeft: '.3rem solid transparent',
+            borderRight: '.3rem solid transparent',
+            borderTop: '.3rem solid rgba(0, 0, 0, 0.87)'
+          }}
+        />
       </Button>
       <Menu
         id="lang-dropdown-menu"
@@ -64,7 +55,9 @@ export default function LangButton() {
           }}
           style={{ width: 120 }}
         >
-          한국어
+          {koreaFlag}
+          <Box sx={{ marginRight: 1 }} />
+          {'한국어'}
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -73,7 +66,9 @@ export default function LangButton() {
           }}
           style={{ width: 120 }}
         >
-          English
+          {usFlag}
+          <Box sx={{ marginRight: 1 }} />
+          {'English'}
         </MenuItem>
       </Menu>
     </>

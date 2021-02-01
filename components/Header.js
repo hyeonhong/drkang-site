@@ -1,3 +1,5 @@
+/* eslint-disable multiline-ternary */
+
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -12,11 +14,8 @@ import {
   MenuList,
   MenuItem,
   Typography,
-  Hidden,
   IconButton,
-  Popper,
-  Fade,
-  Paper
+  Menu
 } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
@@ -61,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     padding: theme.spacing(1),
     backgroundColor: theme.palette.background.paper
+  },
+  avatarItem: {
+    minWidth: 200
   }
 }))
 
@@ -74,87 +76,6 @@ const Header = ({ texts }) => {
   const paths = ['/about', '/services', '/directions']
 
   // const isTablet = useMediaQuery('(max-width:768px)')
-
-  const AuthButtons = () => {
-    if (user) {
-      return (
-        <>
-          <Button
-            disableElevation
-            disableRipple
-            disableFocusRipple
-            disableTouchRipple
-            onClick={() => {
-              signOut()
-              router.push('/')
-            }}
-          >
-            Sign Out
-          </Button>
-          <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
-            <FontAwesomeIcon icon={faUserCircle} />
-          </IconButton>
-          <Popper
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-            placement={'bottom-end'}
-            transition
-            disablePortal
-            modifiers={[
-              {
-                name: 'offset',
-                options: {
-                  offset: [0, 30]
-                }
-              }
-            ]}
-          >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={50}>
-                <Paper className={classes.paper}>
-                  <Button
-                    variant="contained"
-                    disableElevation
-                    disableRipple
-                    disableFocusRipple
-                    disableTouchRipple
-                    onClick={() => router.push('/profile')}
-                  >
-                    My Profile
-                  </Button>
-                </Paper>
-              </Fade>
-            )}
-          </Popper>
-        </>
-      )
-    } else {
-      return (
-        <>
-          <Button
-            disableElevation
-            disableRipple
-            disableFocusRipple
-            disableTouchRipple
-            onClick={() => router.push('/signin')}
-          >
-            Sign In
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            disableElevation
-            disableRipple
-            disableFocusRipple
-            disableTouchRipple
-            onClick={() => router.push('/signup')}
-          >
-            Sign Up
-          </Button>
-        </>
-      )
-    }
-  }
 
   return (
     <AppBar position="sticky" className={classes.appBar}>
@@ -176,14 +97,72 @@ const Header = ({ texts }) => {
               </MenuItem>
             ))}
           </MenuList>
-
-          <Hidden mdDown>
-            <LangButton />
-          </Hidden>
-          <Typography variant="h6" style={{ color: 'black' }}>
-            {'-----'}
-          </Typography>
-          <AuthButtons />
+          <LangButton />
+          {user ? (
+            <>
+              <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
+                <FontAwesomeIcon icon={faUserCircle} />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left'
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left'
+                }}
+              >
+                <MenuItem
+                  onClick={() => {
+                    setAnchorEl(null)
+                    router.push('/profile')
+                  }}
+                  className={classes.avatarItem}
+                >
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    setAnchorEl(null)
+                    signOut()
+                    router.push('/')
+                  }}
+                  className={classes.avatarItem}
+                >
+                  Sign Out
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <>
+              <Button
+                disableElevation
+                disableRipple
+                disableFocusRipple
+                disableTouchRipple
+                onClick={() => router.push('/signin')}
+              >
+                Sign In
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                disableElevation
+                disableRipple
+                disableFocusRipple
+                disableTouchRipple
+                onClick={() => router.push('/signup')}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
