@@ -3,7 +3,7 @@ import { Box } from '@material-ui/core'
 
 import withTexts from 'utils/hoc/withTexts'
 import MdxContainer from 'components/MdxContainer'
-import DrKang from 'mdx/DrKang.mdx'
+import DrKang from 'components/DrKang'
 import Facilities from 'mdx/Facilities.mdx'
 
 const useStyles = makeStyles((theme) => ({

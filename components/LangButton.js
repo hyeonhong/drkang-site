@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import Image from 'next/image'
 import { Button, Menu, MenuItem, Box } from '@material-ui/core'
 
 import { useLang } from 'utils/hook/useLang'
 
+const useStyles = makeStyles((theme) => ({
+  langItem: {
+    width: 200
+  }
+}))
+
 export default function LangButton() {
+  const classes = useStyles()
   const { lang, switchLang } = useLang()
   const [langAnchor, setLangAnchor] = useState(null)
 
@@ -53,10 +61,10 @@ export default function LangButton() {
             lang !== 'kr' && switchLang('kr')
             setLangAnchor(null)
           }}
-          style={{ width: 120 }}
+          className={classes.langItem}
         >
           {koreaFlag}
-          <Box sx={{ marginRight: 1 }} />
+          <Box sx={{ marginRight: 2 }} />
           {'한국어'}
         </MenuItem>
         <MenuItem
@@ -64,10 +72,10 @@ export default function LangButton() {
             lang !== 'en' && switchLang('en')
             setLangAnchor(null)
           }}
-          style={{ width: 120 }}
+          className={classes.langItem}
         >
           {usFlag}
-          <Box sx={{ marginRight: 1 }} />
+          <Box sx={{ marginRight: 2 }} />
           {'English'}
         </MenuItem>
       </Menu>
