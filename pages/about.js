@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { Box } from '@material-ui/core'
+import { Container, Box } from '@material-ui/core'
 
 import withTexts from 'utils/hoc/withTexts'
 import MdxContainer from 'components/MdxContainer'
@@ -18,10 +18,10 @@ const About = ({ texts }) => {
   const components = [DrKang, Facilities]
 
   return (
-    <>
+    <Container>
       <Box className={classes.spacing} />
       <MdxContainer tabLabels={texts.tabLabels} components={components} />
-    </>
+    </Container>
   )
 }
 

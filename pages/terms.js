@@ -1,18 +1,18 @@
-import { Box, Typography } from '@material-ui/core'
+import { Container, Box, Typography } from '@material-ui/core'
 
 import withTexts from 'utils/hoc/withTexts'
 import Terms from 'components/Terms'
 
-const TermsPage = ({ texts }) => {
-  return (
-    <Box sx={{ marginTop: 8, marginBottom: 16 }}>
-      <Typography variant="h4" sx={{ marginBottom: 8 }}>
-        {texts.title}
-      </Typography>
-      <Terms />
-    </Box>
-  )
-}
+const TermsPage = ({ texts }) => (
+  <Container>
+    <Box sx={{ marginBottom: 8 }} />
+    <Typography variant="h4" sx={{ marginBottom: 8 }}>
+      {texts.title}
+    </Typography>
+    <Terms />
+    <Box sx={{ marginBottom: 16 }} />
+  </Container>
+)
 
 TermsPage.displayName = 'TermsPage'
 

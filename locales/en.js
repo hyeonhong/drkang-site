@@ -1,9 +1,11 @@
 const en = {
   Header: {
     tabLabels: {
-      about: 'Who We Are',
-      services: 'Services',
-      directions: 'Directions'
+      '/': 'Home',
+      '/about': 'Who We Are',
+      '/services': 'Services',
+      '/video': 'Videos',
+      '/directions': 'Directions'
     }
   },
   Footer: {

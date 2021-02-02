@@ -73,7 +73,7 @@ const Header = ({ texts }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
 
-  const paths = ['/about', '/services', '/directions']
+  const paths = ['/', '/about', '/services', '/video', '/directions']
 
   // const isTablet = useMediaQuery('(max-width:768px)')
 
@@ -93,7 +93,7 @@ const Header = ({ texts }) => {
                 onClick={() => router.push(path)}
                 className={classes.menuItem}
               >
-                <Typography variant="body1">{texts.tabLabels[path.slice(1)]}</Typography>
+                <Typography variant="body1">{texts.tabLabels[path]}</Typography>
               </MenuItem>
             ))}
           </MenuList>

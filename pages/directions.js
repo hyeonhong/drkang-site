@@ -1,11 +1,11 @@
-import { Box, Typography } from '@material-ui/core'
+import { Container, Box, Typography } from '@material-ui/core'
 
 import withTexts from 'utils/hoc/withTexts'
 import Map from 'components/Map'
 
 const Directions = ({ texts }) => {
   return (
-    <Box>
+    <Container>
       <Box sx={{ marginBottom: 10 }} />
       <Typography variant="h4" sx={{ marginBottom: 8 }}>
         {'찾아오시는 길'}
@@ -28,7 +28,7 @@ const Directions = ({ texts }) => {
       <hr />
       <Typography variant="body1">{'지하철: 3호선 정발산역 2번출구 앞 도보 3분'}</Typography>
       <Box sx={{ marginBottom: 10 }} />
-    </Box>
+    </Container>
   )
 }
 

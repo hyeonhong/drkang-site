@@ -1,9 +1,11 @@
 const kr = {
   Header: {
     tabLabels: {
-      about: '병원소개',
-      services: '진료안내',
-      directions: '오시는 길'
+      '/': 'Home',
+      '/about': '병원소개',
+      '/services': '진료안내',
+      '/video': '방송/영상',
+      '/directions': '오시는 길'
     }
   },
   Footer: {
