@@ -26,9 +26,9 @@ import LangButton from 'components/LangButton'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    backgroundColor: '#fff'
     // backgroundColor: (props) => `rgba(231,170,148,${props.opacity})`,
-    // boxShadow: 'none'
+    backgroundColor: '#fff',
+    boxShadow: 'none'
   },
   logo: {
     padding: 0
@@ -73,7 +73,7 @@ const Header = ({ texts }) => {
 
   const [anchorEl, setAnchorEl] = useState(null)
 
-  const paths = ['/', '/about', '/services', '/video', '/directions']
+  const paths = Object.keys(texts.tabLabels)
 
   // const isTablet = useMediaQuery('(max-width:768px)')
 

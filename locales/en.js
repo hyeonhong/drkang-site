@@ -1,10 +1,15 @@
 const en = {
+  HomePage: {
+    heroText: 'Looking into the minds of the children',
+    announcement: 'News'
+  },
   Header: {
     tabLabels: {
       '/': 'Home',
       '/about': 'Who We Are',
       '/services': 'Services',
       '/video': 'Videos',
+      '/post': 'Blog',
       '/directions': 'Directions'
     }
   },
@@ -84,6 +89,12 @@ const en = {
     snackbarSuccess: 'Email was sent to reset password',
     snackbarError:
       'Failed to send the email. The email address is either invalid or nonexistent in our system.'
+  },
+  Posts: {
+    tabLabels: ['All Posts', 'Atopi', 'Allergy']
+  },
+  SinglePost: {
+    backToBlog: 'Back to Blog'
   },
   TermsPage: {
     title: 'Terms of Service'

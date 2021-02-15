@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Tabs, Tab, Typography } from '@material-ui/core'
+import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -9,13 +10,13 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
-    minWidth: 260
+    minWidth: 200
   },
   tab: {
     textTransform: 'none',
 
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(8),
+      // paddingLeft: theme.spacing(8),
       '& span': {
         alignItems: 'flex-start' // left align
       }
@@ -30,10 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
   displayNone: {
     display: 'none'
+  },
+  activeTab: {
+    backgroundColor: '#f1f1f1'
   }
 }))
 
-export default function MdxContainer({ tabLabels, components }) {
+export default function ContentWrapper({ tabLabels, components }) {
   const classes = useStyles()
   const [tabValue, setTabValue] = useState(0)
 
@@ -45,6 +49,7 @@ export default function MdxContainer({ tabLabels, components }) {
         value={tabValue}
         onChange={(event, newValue) => setTabValue(newValue)}
         className={classes.tabs}
+        textColor="secondary"
         // TabIndicatorProps={{
         //   style: {
         //     backgroundColor: '#19857b'
@@ -55,7 +60,7 @@ export default function MdxContainer({ tabLabels, components }) {
           <Tab
             key={index}
             label={<Typography variant="body1">{tabLabels[index]}</Typography>}
-            className={classes.tab}
+            className={clsx(classes.tab, tabValue === index ? classes.activeTab : '')}
           />
         ))}
       </Tabs>

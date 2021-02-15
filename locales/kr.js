@@ -1,10 +1,15 @@
 const kr = {
+  HomePage: {
+    heroText: '아이들의 마음까지도 들여 봅니다.',
+    announcement: '공지사항'
+  },
   Header: {
     tabLabels: {
       '/': 'Home',
       '/about': '병원소개',
       '/services': '진료안내',
       '/video': '방송/영상',
+      '/post': '블로그',
       '/directions': '오시는 길'
     }
   },
@@ -82,6 +87,12 @@ const kr = {
     cancelReset: '취소',
     snackbarSuccess: '비밀번호 변경을 위한 링크가 이메일로 전송되었습니다.',
     snackbarError: '이메일 전송에 실패했습니다. 잘못된 이메일 주소 또는 존재하지 않는 회원입니다.'
+  },
+  Posts: {
+    tabLabels: ['전체보기', '아토피', '알레르기']
+  },
+  SinglePost: {
+    backToBlog: '이전 화면'
   },
   TermsPage: {
     title: '서비스 이용약관'
