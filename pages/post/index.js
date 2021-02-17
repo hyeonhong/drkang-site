@@ -34,6 +34,7 @@ const Posts = ({ texts, posts, categories }) => {
     <Container>
       <Box sx={{ marginBottom: 8 }} />
       <ContentWrapper tabLabels={texts.tabLabels} components={components} />
+      <Box sx={{ marginBottom: 8 }} />
     </Container>
   )
 }

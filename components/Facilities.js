@@ -1,16 +1,13 @@
-// import { useState } from 'react'
 import Image from 'next/image'
 // import { makeStyles } from '@material-ui/core/styles'
-import { Container, Box } from '@material-ui/core'
+import { Container, Typography, Box } from '@material-ui/core'
+
+import withTexts from 'utils/hoc/withTexts'
 import Carousel from 'components/Carousel'
 
-// const useStyles = makeStyles((theme) => ({
-//   spacing: {
-//     marginBottom: theme.spacing(4)
-//   }
-// }))
+// const useStyles = makeStyles((theme) => ({}))
 
-export default function Storybook() {
+const Facilities = ({ texts }) => {
   // const classes = useStyles()
 
   const items = [
@@ -30,17 +27,8 @@ export default function Storybook() {
 
   return (
     <Container>
-      {/* <Box sx={{ display: 'flex' }}>
-        <Typography variant="body1" display="inline" sx={{ flex: 1 }}>
-          Left
-        </Typography>
-        <Typography variant="body1" display="inline">
-          Center
-        </Typography>
-        <Box sx={{ flex: 1 }} />
-      </Box> */}
-
-      <Box sx={{ marginBottom: 4 }} />
+      <Typography variant="h5">의료시설</Typography>
+      <Box sx={{ marginBottom: 8 }} />
 
       <Carousel stopAutoPlayOnHover={false}>
         {items.map((item, i) => {
@@ -48,11 +36,16 @@ export default function Storybook() {
 
           return (
             <Box key={i} sx={{ textAlign: 'center' }}>
-              <Image src={item.src} alt={filename} width={800} height={533.33} />
+              <Image src={item.src} alt={filename} width={600} height={400} />
             </Box>
           )
         })}
       </Carousel>
+      <Box sx={{ marginBottom: 8 }} />
     </Container>
   )
 }
+
+Facilities.displayName = 'Facilities'
+
+export default withTexts(Facilities)
