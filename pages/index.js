@@ -3,7 +3,6 @@ import { Typography, Box, Container, Paper } from '@material-ui/core'
 import { fetchStrapiAPI } from 'lib/strapi'
 import withTexts from 'utils/hoc/withTexts'
 import MarkdownContent from 'components/MarkdownContent'
-import Map from 'components/Map'
 
 const HomePage = ({ texts, announcement }) => {
   return (
@@ -33,15 +32,13 @@ const HomePage = ({ texts, announcement }) => {
           {texts.announcement}
         </Typography>
         <Box sx={{ marginBottom: 4 }} />
-        <Paper elevation={3} sx={{ padding: 4 }}>
+        <Paper elevation={3} sx={{ padding: 6, display: 'inline-block' }}>
           <Typography variant="h6">{announcement.title}</Typography>
           <Box sx={{ marginBottom: 4 }} />
           <MarkdownContent source={announcement.content} />
         </Paper>
       </Container>
-      <Box sx={{ marginBottom: 8 }} />
-      <Map />
-      <Box sx={{ marginBottom: 2 }} />
+      <Box sx={{ marginBottom: 16 }} />
     </main>
   )
 }

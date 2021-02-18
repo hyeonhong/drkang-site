@@ -15,11 +15,20 @@ const kr = {
   },
   Footer: {
     name: '강의원',
-    companyCEO: '강영록',
+    address: '경기 고양시 일산동구 중앙로1275번길 38-10\n우림로데오스위트 209호',
+    phoneNo: 'Tel: 031-919-2568',
+    email: 'Email: contact@drkangclinic.com',
+    businessHoursTitle: '진료 시간',
+    businessHoursContent: `평일 : 9AM - 6:30PM
+    목요일 : 2PM - 9PM
+    토요일 : 9AM - 3PM
+    일/공휴일 : 휴무
+    
+    (점심시간 : 1PM - 2PM)`,
+    CEO: '대표자 강영록',
     bizNo: '사업자등록번호 128-36-56612',
-    email: '이메일: contact@drkangclinic.com',
-    address: '주소: 경기 고양시 일산동구 중앙로1275번길 38-10 우림로데오스위트 209호',
-    phoneNo: '전화: 031-919-2568',
+    directions: '찾아오시는 길',
+    learnMore: '자세히보기',
     terms: '이용약관',
     privacy: '개인정보 처리방침'
   },

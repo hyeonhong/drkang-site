@@ -1,8 +1,7 @@
 // import { useState } from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 // import { makeStyles } from '@material-ui/core/styles'
-import { Container, Box } from '@material-ui/core'
-import Carousel from 'components/Carousel'
+import { Container, Box, Typography } from '@material-ui/core'
 
 // const useStyles = makeStyles((theme) => ({
 //   spacing: {
@@ -12,21 +11,6 @@ import Carousel from 'components/Carousel'
 
 export default function Storybook() {
   // const classes = useStyles()
-
-  const items = [
-    {
-      src: '/assets/images/street-view.jpg'
-    },
-    {
-      src: '/assets/images/entrance.jpg'
-    },
-    {
-      src: '/assets/images/lobby.jpg'
-    },
-    {
-      src: '/assets/images/skin-treatments.jpg'
-    }
-  ]
 
   return (
     <Container>
@@ -42,17 +26,12 @@ export default function Storybook() {
 
       <Box sx={{ marginBottom: 4 }} />
 
-      <Carousel stopAutoPlayOnHover={false}>
-        {items.map((item, i) => {
-          const filename = item.src.split('/').pop().split('.')[0]
-
-          return (
-            <Box key={i} sx={{ textAlign: 'center' }}>
-              <Image src={item.src} alt={filename} width={800} height={533.33} />
-            </Box>
-          )
-        })}
-      </Carousel>
+      <Typography variant="h6" display="inline">
+        one
+      </Typography>
+      <Typography variant="h6" display="inline">
+        two
+      </Typography>
     </Container>
   )
 }

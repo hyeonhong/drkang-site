@@ -1,5 +1,11 @@
-import { makeStyles } from '@material-ui/core/styles'
-import { useMediaQuery, Typography, Container, Box } from '@material-ui/core'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { makeStyles, experimentalStyled } from '@material-ui/core/styles'
+import { Typography, Container, Box, Paper, Button } from '@material-ui/core'
+// import { useMediaQuery } from '@material-ui/core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
+
 import withTexts from 'utils/hoc/withTexts'
 
 const useStyles = makeStyles((theme) => ({
@@ -9,9 +15,16 @@ const useStyles = makeStyles((theme) => ({
   //   textDecoration: 'inherit'
   // },
   footer: {
-    padding: theme.spacing(3, 0, 3),
     color: '#f8f9fa',
     backgroundColor: '#242626'
+  },
+  verticalBar: {
+    display: 'inline-block',
+    borderWidth: '0 0 0 4px',
+    borderStyle: 'solid',
+    borderColor: '#13aff0',
+    height: theme.typography.body1.fontSize,
+    marginRight: theme.spacing(1)
   },
   navList: {
     display: 'flex',
@@ -24,36 +37,87 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center'
   },
   footerText: {
-    whiteSpace: 'pre-wrap',
     color: '#f8f9fa'
   }
 }))
 
+const StyledPaper = experimentalStyled(Paper)(({ theme }) => ({
+  width: 360,
+  padding: theme.spacing(4)
+}))
+
 const Footer = ({ texts }) => {
+  const router = useRouter()
   const classes = useStyles()
 
-  const mobileLineBreak = useMediaQuery('(max-width:600px)') ? '\n' : '/'
+  const Title = ({ name }) => (
+    <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+      <div className={classes.verticalBar} />
+      <Typography variant="body1" display="inline">
+        {name}
+      </Typography>
+    </Box>
+  )
+
+  const InlineLink = ({ text, to }) => (
+    <Link href={to}>
+      <a>
+        <Typography variant="body1" display="inline" className={classes.footerText}>
+          {text}
+        </Typography>
+      </a>
+    </Link>
+  )
+
+  // const mobileLineBreak = useMediaQuery('(max-width:600px)') ? '\n' : '/'
 
   return (
     <footer className={classes.footer}>
-      <Container maxWidth="lg">
-        <Box sx={{ marginBottom: 1 }} />
-        <Box sx={{ marginBottom: 6 }} />
-        {/* <img src={logo} alt="company logo" height="80" padding="0" /> // logo image */}
-        <Box sx={{ marginBottom: 3 }} />
-        <Typography variant="subtitle1" gutterBottom className={classes.footerText}>
-          {`${texts.name} / ${texts.bizNo}`}
-          <br />
-          {texts.address}
-          <br />
-          {`${texts.email} ${mobileLineBreak} ${texts.phoneNo}`}
-        </Typography>
+      <Container>
+        <Box sx={{ marginBottom: 8 }} />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <StyledPaper>
+            <Title name={texts.name} />
+            <Typography variant="body2" sx={{ whiteSpace: 'pre' }}>
+              {texts.address}
+            </Typography>
+            <Box sx={{ marginBottom: 4 }} />
+            <Typography variant="body2">{texts.phoneNo}</Typography>
+            <Typography variant="body2">{texts.email}</Typography>
+          </StyledPaper>
+          <StyledPaper>
+            <Title name={texts.businessHoursTitle} />
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+              {texts.businessHoursContent}
+            </Typography>
+          </StyledPaper>
+          <StyledPaper>
+            <Title name={texts.directions} />
+            <Box sx={{ marginBottom: 4 }} />
+            <Button
+              onClick={() => router.push('/directions')}
+              startIcon={<FontAwesomeIcon icon={faArrowCircleRight} />}
+            >
+              {texts.learnMore}
+            </Button>
+          </StyledPaper>
+        </Box>
+        <Box sx={{ marginBottom: 10 }} />
+        <Box>
+          <InlineLink text={texts.terms} to="/terms" />
+          <Typography variant="body1" display="inline" sx={{ whiteSpace: 'pre' }}>
+            {'    |    '}
+          </Typography>
+          <InlineLink text={texts.privacy} to="/privacy" />
+          <Typography variant="body1" display="inline" sx={{ whiteSpace: 'pre' }}>
+            {`${'    |    '}${texts.CEO}${'    |    '}${texts.bizNo}`}
+          </Typography>
+        </Box>
         <Box sx={{ marginBottom: 2 }} />
-        <Typography variant="body1" className={classes.footerText}>
-          {`Copyright ${new Date().getFullYear()} Dr. Kang Clinic. All rights reserved`}
-          <br />
-          {`${texts.terms}    |    ${texts.privacy}`}
+        <Typography variant="body1">
+          {`Copyright © ${new Date().getFullYear()} DrKangClinic. All Rights Reserved`}
         </Typography>
+        <Box sx={{ marginBottom: 8 }} />
       </Container>
     </footer>
   )

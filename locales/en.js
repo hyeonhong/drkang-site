@@ -15,12 +15,20 @@ const en = {
   },
   Footer: {
     name: 'Dr. Kang Clinic',
-    CEO: 'Kang, Young Rock',
-    bizNo: 'Business Registration No. 128-36-56612',
-    email: 'Email: contact@drkangclinic.com',
     address:
-      'Address: Unit 209, Jungang-ro 1275beon-gil 38-10, Ilsandong-gu, Goyang-si, Gyeonggi-do, Republic of Korea',
+      'Ilsandong-gu Jungang-ro 1275beon-gil 38-10, Unit 209\nGoyang-si, Gyeonggi-do, Republic of Korea',
     phoneNo: 'Phone: 031-919-2568',
+    email: 'Email: contact@drkangclinic.com',
+    businessHoursTitle: 'Business Hours',
+    businessHoursContent: `WeekDay : 9AM - 6:30PM
+    Thursday : 2PM - 9PM
+    Saturday : 9AM - 3PM
+    Sunday/Holiday : CLOSED
+    Lunch Hours : 1PM - 2PM`,
+    CEO: 'CEO: Kang, Young Rock',
+    bizNo: 'Business Registration No. 128-36-56612',
+    directions: 'Directions',
+    learnMore: 'Learn More',
     terms: 'Terms of Service',
     privacy: 'Privacy Policy'
   },
