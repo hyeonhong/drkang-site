@@ -60,7 +60,7 @@ export default function ContentWrapper({ tabLabels, components }) {
           <Tab
             key={index}
             label={<Typography variant="body1">{tabLabels[index]}</Typography>}
-            className={clsx(classes.tab, tabValue === index ? classes.activeTab : '')}
+            className={clsx(classes.tab, tabValue === index && classes.activeTab)}
           />
         ))}
       </Tabs>

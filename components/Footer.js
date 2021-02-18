@@ -20,9 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
   verticalBar: {
     display: 'inline-block',
-    borderWidth: '0 0 0 4px',
+    borderWidth: '0 0 0 3px',
     borderStyle: 'solid',
-    borderColor: '#13aff0',
+    borderColor: theme.palette.primary.main,
     height: theme.typography.body1.fontSize,
     marginRight: theme.spacing(1)
   },
@@ -117,7 +117,7 @@ const Footer = ({ texts }) => {
         <Typography variant="body1">
           {`Copyright © ${new Date().getFullYear()} DrKangClinic. All Rights Reserved`}
         </Typography>
-        <Box sx={{ marginBottom: 8 }} />
+        <Box sx={{ marginBottom: 4 }} />
       </Container>
     </footer>
   )

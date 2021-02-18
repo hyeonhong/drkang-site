@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   // useMediaQuery,
@@ -56,6 +57,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     color: 'black'
   },
+  menuItemText: {
+    paddingBottom: theme.spacing(0.5)
+  },
+  activeMenuItem: {
+    borderBottom: `3px solid ${theme.palette.primary.main}`
+  },
   paper: {
     border: '1px solid',
     padding: theme.spacing(1),
@@ -93,7 +100,15 @@ const Header = ({ texts }) => {
                 onClick={() => router.push(path)}
                 className={classes.menuItem}
               >
-                <Typography variant="body1">{texts.tabLabels[path]}</Typography>
+                <Typography
+                  variant="body1"
+                  className={clsx(
+                    classes.menuItemText,
+                    router.pathname === path && classes.activeMenuItem
+                  )}
+                >
+                  {texts.tabLabels[path]}
+                </Typography>
               </MenuItem>
             ))}
           </MenuList>
