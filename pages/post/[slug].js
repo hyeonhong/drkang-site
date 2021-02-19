@@ -1,7 +1,6 @@
-// import Layout from "../../components/layout";
-// import Seo from "../../components/seo";
 import { useRouter } from 'next/router'
 import { Container, Paper, Box, Typography, Button, Divider } from '@material-ui/core'
+import { NextSeo, BlogJsonLd } from 'next-seo'
 
 import withTexts from 'utils/hoc/withTexts'
 import { fetchStrapiAPI } from 'lib/strapi'
@@ -11,19 +10,33 @@ import Date from 'components/Date'
 const SinglePost = ({ texts, post, categories }) => {
   const router = useRouter()
 
-  // const seo = {
-  //   metaTitle: post.title,
-  //   metaDescription: post.description,
-  //   shareImage: post.image,
-  //   post: true
-  // }
-
   // const imageUrl = getStrapiMedia(post.image)
 
   return (
-    // <Layout categories={categories}>
-    //   <Seo seo={seo} />
     <Container>
+      <NextSeo
+        description={post.description}
+        openGraph={{
+          title: post.title,
+          description: post.description,
+          url: `https://drkangclinic.com/post/${post.slug}`,
+          type: 'article',
+          article: {
+            publishedTime: post.published_at,
+            modifiedTime: post.updated_at,
+            authors: ['강의원']
+            // tags: ['Tag A', 'Tag B', 'Tag C']
+          }
+        }}
+      />
+      <BlogJsonLd
+        url={`https://drkangclinic.com/post/${post.slug}`}
+        title={post.title}
+        datePublished={post.published_at}
+        dateModified={post.updated_at}
+        authorName="강의원"
+        description={post.description}
+      />
       <Box sx={{ marginBottom: 8 }} />
       <Paper sx={{ padding: 4, display: 'inline-block' }}>
         <Typography variant="h5">{post.title}</Typography>

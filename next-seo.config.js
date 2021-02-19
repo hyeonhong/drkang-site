@@ -5,7 +5,7 @@ export default {
   canonical: 'https://drkangclinic.com',
   openGraph: {
     type: 'website',
-    locale: 'kr',
+    locale: 'ko_KR',
     url: 'https://drkangclinic.com',
     title: '일산 강의원',
     description:
@@ -25,10 +25,5 @@ export default {
     //   }
     // ],
     site_name: '일산 강의원'
-  },
-  twitter: {
-    handle: '@handle',
-    site: '@site',
-    cardType: 'summary_large_image'
   }
 }
