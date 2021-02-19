@@ -9,11 +9,11 @@ import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 import withTexts from 'utils/hoc/withTexts'
 
 const useStyles = makeStyles((theme) => ({
-  // link: {
-  //   // Remove all styling of 'a' tag
-  //   color: 'inherit',
-  //   textDecoration: 'inherit'
-  // },
+  link: {
+    // Remove all styling of 'a' tag
+    color: 'inherit',
+    textDecoration: 'inherit'
+  },
   footer: {
     color: '#f8f9fa',
     backgroundColor: '#242626'
@@ -61,7 +61,7 @@ const Footer = ({ texts }) => {
 
   const InlineLink = ({ text, to }) => (
     <Link href={to}>
-      <a>
+      <a className={classes.link}>
         <Typography variant="body1" display="inline" className={classes.footerText}>
           {text}
         </Typography>

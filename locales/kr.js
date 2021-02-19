@@ -11,7 +11,11 @@ const kr = {
       '/video': '방송/영상',
       '/post': '블로그',
       '/directions': '오시는 길'
-    }
+    },
+    signIn: '로그인',
+    signUp: '회원가입',
+    signOut: '로그아웃',
+    profile: 'Profile'
   },
   Footer: {
     name: '강의원',

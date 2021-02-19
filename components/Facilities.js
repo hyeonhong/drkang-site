@@ -23,13 +23,13 @@ const Facilities = ({ texts }) => {
       <Typography variant="h5">의료시설</Typography>
       <Box sx={{ marginBottom: 8 }} />
 
-      <Carousel autoPlay infiniteLoop showThumbs={false}>
+      <Carousel autoPlay stopOnHover={false} infiniteLoop showThumbs={false}>
         {imageSrcs.map((src, i) => (
           <Image key={i} src={src} alt={'a'} width={1024} height={682.66} />
         ))}
       </Carousel>
 
-      <Box sx={{ marginBottom: 8 }} />
+      <Box sx={{ marginBottom: 16 }} />
     </Container>
   )
 }

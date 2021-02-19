@@ -6,8 +6,8 @@ import Map from 'components/Map'
 const Directions = ({ texts }) => {
   return (
     <Container>
-      <Box sx={{ marginBottom: 10 }} />
-      <Typography variant="h4" sx={{ marginBottom: 8 }}>
+      <Box sx={{ marginBottom: 4 }} />
+      <Typography variant="h5" sx={{ marginBottom: 8 }}>
         {'찾아오시는 길'}
       </Typography>
       <Map />
@@ -26,8 +26,8 @@ const Directions = ({ texts }) => {
       <Box sx={{ marginBottom: 6 }} />
       <Typography variant="h6">{'대중교통'}</Typography>
       <hr />
-      <Typography variant="body1">{'지하철: 3호선 정발산역 2번출구 앞 도보 3분'}</Typography>
-      <Box sx={{ marginBottom: 10 }} />
+      <Typography variant="body1">{'지하철 3호선 정발산역 2번출구 앞 도보 3분'}</Typography>
+      <Box sx={{ marginBottom: 16 }} />
     </Container>
   )
 }

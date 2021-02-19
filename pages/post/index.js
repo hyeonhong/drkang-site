@@ -12,7 +12,7 @@ const Posts = ({ texts, posts, categories }) => {
       <Link href={`/post/${post.slug}`}>
         <a style={{ textDecoration: 'none' }}>
           <Paper elevation={3} sx={{ padding: 2 }}>
-            <Typography variant="h5">{post.title}</Typography>
+            <Typography variant="h6">{post.title}</Typography>
             <Box sx={{ marginBottom: 2 }} />
             <Typography variant="body2" color="textSecondary">
               <Date dateString={post.published_at} />

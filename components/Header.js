@@ -140,7 +140,7 @@ const Header = ({ texts }) => {
                   }}
                   className={classes.avatarItem}
                 >
-                  Profile
+                  {texts.profile}
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
@@ -150,7 +150,7 @@ const Header = ({ texts }) => {
                   }}
                   className={classes.avatarItem}
                 >
-                  Sign Out
+                  {texts.signOut}
                 </MenuItem>
               </Menu>
             </>
@@ -163,7 +163,7 @@ const Header = ({ texts }) => {
                 disableTouchRipple
                 onClick={() => router.push('/signin')}
               >
-                Sign In
+                {texts.signIn}
               </Button>
               <Button
                 variant="contained"
@@ -174,7 +174,7 @@ const Header = ({ texts }) => {
                 disableTouchRipple
                 onClick={() => router.push('/signup')}
               >
-                Sign Up
+                {texts.signUp}
               </Button>
             </>
           )}

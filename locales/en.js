@@ -11,7 +11,11 @@ const en = {
       '/video': 'Videos',
       '/post': 'Blog',
       '/directions': 'Directions'
-    }
+    },
+    signIn: 'Sign In',
+    signUp: 'Sign Up',
+    signOut: 'Sign Out',
+    profile: 'Profile'
   },
   Footer: {
     name: 'Dr. Kang Clinic',
