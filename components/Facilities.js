@@ -1,28 +1,21 @@
 import Image from 'next/image'
 // import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography, Box } from '@material-ui/core'
+import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
+import { Carousel } from 'react-responsive-carousel'
 
 import withTexts from 'utils/hoc/withTexts'
-import Carousel from 'components/Carousel'
 
 // const useStyles = makeStyles((theme) => ({}))
 
 const Facilities = ({ texts }) => {
   // const classes = useStyles()
 
-  const items = [
-    {
-      src: '/assets/images/street-view.jpg'
-    },
-    {
-      src: '/assets/images/entrance.jpg'
-    },
-    {
-      src: '/assets/images/lobby.jpg'
-    },
-    {
-      src: '/assets/images/skin-treatments.jpg'
-    }
+  const imageSrcs = [
+    '/assets/images/street-view.jpg',
+    '/assets/images/entrance.jpg',
+    '/assets/images/lobby.jpg',
+    '/assets/images/skin-treatments.jpg'
   ]
 
   return (
@@ -30,17 +23,12 @@ const Facilities = ({ texts }) => {
       <Typography variant="h5">의료시설</Typography>
       <Box sx={{ marginBottom: 8 }} />
 
-      <Carousel stopAutoPlayOnHover={false}>
-        {items.map((item, i) => {
-          const filename = item.src.split('/').pop().split('.')[0]
-
-          return (
-            <Box key={i} sx={{ textAlign: 'center' }}>
-              <Image src={item.src} alt={filename} width={600} height={400} />
-            </Box>
-          )
-        })}
+      <Carousel autoPlay infiniteLoop showThumbs={false}>
+        {imageSrcs.map((src, i) => (
+          <Image key={i} src={src} alt={'a'} width={1024} height={682.66} />
+        ))}
       </Carousel>
+
       <Box sx={{ marginBottom: 8 }} />
     </Container>
   )
