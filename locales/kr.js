@@ -79,7 +79,7 @@ const kr = {
     tabLabels: ['원장 소개', '의료시설']
   },
   ServicesPage: {
-    tabLabels: ['진료 과목', '진료 시간', '비급여 진료비 안내']
+    tabLabels: ['진료 안내', '진료 시간', '비급여 진료비 안내']
   },
   DrKang: {
     meetDrKang: '원장 소개',

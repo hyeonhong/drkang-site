@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { makeStyles, experimentalStyled } from '@material-ui/core/styles'
 import { Typography, Container, Box, Paper, Button } from '@material-ui/core'
@@ -69,6 +70,12 @@ const Footer = ({ texts }) => {
     </Link>
   )
 
+  const SocialMediaLink = ({ href, ...imageProps }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={classes.link}>
+      <Image {...imageProps} />
+    </a>
+  )
+
   // const mobileLineBreak = useMediaQuery('(max-width:600px)') ? '\n' : '/'
 
   return (
@@ -103,6 +110,46 @@ const Footer = ({ texts }) => {
           </StyledPaper>
         </Box>
         <Box sx={{ marginBottom: 10 }} />
+        <Box
+          sx={{
+            '& > *': {
+              marginRight: 2
+            },
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <SocialMediaLink
+            src="/assets/facebook-color.png"
+            alt="facebook"
+            width={38}
+            height={38}
+            href="https://www.facebook.com/drkang4u1/"
+          />
+          <SocialMediaLink
+            src="/assets/instagram.svg"
+            alt="instagram"
+            width={38}
+            height={38}
+            href="https://www.instagram.com/mybeauty2010/"
+          />
+          <SocialMediaLink
+            src="/assets/kakaotalk-channel.png"
+            alt="instagram"
+            width={38}
+            height={38}
+            href="https://pf.kakao.com/_BtrSj"
+          />
+          <SocialMediaLink
+            src="/assets/youtube.png"
+            alt="instagram"
+            width={38}
+            height={26.82}
+            href="https://www.youtube.com/channel/UCAdyfbbDu3SlLN4dR4fuZdQ"
+          />
+        </Box>
+
+        <Box sx={{ marginBottom: 2 }} />
         <Box>
           <InlineLink text={texts.terms} to="/terms" />
           <Typography variant="body1" display="inline" sx={{ whiteSpace: 'pre' }}>
