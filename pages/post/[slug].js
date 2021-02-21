@@ -38,19 +38,20 @@ const SinglePost = ({ texts, post, categories }) => {
         description={post.description}
       />
       <Box sx={{ marginBottom: 8 }} />
-      <Paper sx={{ padding: 4, display: 'inline-block' }}>
-        <Typography variant="h5">{post.title}</Typography>
-        <Box sx={{ marginBottom: 4 }} />
-        <Divider />
-        <Box sx={{ marginBottom: 2 }} />
-        <Typography variant="body2" color="textSecondary">
-          <Date dateString={post.published_at} />
-        </Typography>
-        <Box sx={{ marginBottom: 4 }} />
-        <MarkdownContent source={post.content} />
-      </Paper>
+      <Box sx={{ textAlign: 'center' }}>
+        <Paper sx={{ padding: 8, display: 'inline-block', textAlign: 'left' }} elevation={3}>
+          <Typography variant="h5">{post.title}</Typography>
+          <Box sx={{ marginBottom: 4 }} />
+          <Divider />
+          <Box sx={{ marginBottom: 2 }} />
+          <Typography variant="body2" color="textSecondary">
+            <Date dateString={post.published_at} />
+          </Typography>
+          <Box sx={{ marginBottom: 4 }} />
+          <MarkdownContent source={post.content} />
+        </Paper>
 
-      <Box sx={{ marginTop: 12, marginBottom: 16, textAlign: 'center' }}>
+        <Box sx={{ marginBottom: 12 }} />
         <Button
           variant="contained"
           disableElevation
@@ -61,6 +62,7 @@ const SinglePost = ({ texts, post, categories }) => {
         >
           {texts.backToBlog}
         </Button>
+        <Box sx={{ marginBottom: 16 }} />
       </Box>
     </Container>
   )
