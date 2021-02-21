@@ -102,8 +102,8 @@ const en = {
     snackbarError:
       'Failed to send the email. The email address is either invalid or nonexistent in our system.'
   },
-  Posts: {
-    tabLabels: ['All Posts', 'Atopi', 'Allergy']
+  PostWrapper: {
+    loadMore: 'Load More'
   },
   SinglePost: {
     backToBlog: 'Back to Blog'

@@ -133,7 +133,7 @@ const Header = ({ texts }) => {
                   horizontal: 'left'
                 }}
               >
-                <MenuItem
+                {/* <MenuItem
                   onClick={() => {
                     setAnchorEl(null)
                     router.push('/profile')
@@ -141,7 +141,7 @@ const Header = ({ texts }) => {
                   className={classes.avatarItem}
                 >
                   {texts.profile}
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem
                   onClick={() => {
                     setAnchorEl(null)

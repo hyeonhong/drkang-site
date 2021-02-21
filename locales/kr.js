@@ -101,8 +101,8 @@ const kr = {
     snackbarSuccess: '비밀번호 변경을 위한 링크가 이메일로 전송되었습니다.',
     snackbarError: '이메일 전송에 실패했습니다. 잘못된 이메일 주소 또는 존재하지 않는 회원입니다.'
   },
-  Posts: {
-    tabLabels: ['전체보기', '아토피', '알레르기']
+  PostWrapper: {
+    loadMore: '더 보기'
   },
   SinglePost: {
     backToBlog: '이전 화면'

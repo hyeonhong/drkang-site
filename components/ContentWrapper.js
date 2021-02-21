@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Tabs, Tab, Typography } from '@material-ui/core'
+import { Tabs, Tab, Typography, Box } from '@material-ui/core'
 import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,13 +24,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       minWidth: 50
     }
-  },
-  tabPanel: {
-    marginLeft: theme.spacing(10),
-    width: '100%'
-  },
-  displayNone: {
-    display: 'none'
   },
   activeTab: {
     backgroundColor: '#f1f1f1'
@@ -56,7 +49,7 @@ export default function ContentWrapper({ tabLabels, components }) {
         //   }
         // }}
       >
-        {components.map((Mdx, index) => (
+        {components.map((Component, index) => (
           <Tab
             key={index}
             label={<Typography variant="body1">{tabLabels[index]}</Typography>}
@@ -65,14 +58,13 @@ export default function ContentWrapper({ tabLabels, components }) {
         ))}
       </Tabs>
 
-      {components.map((Mdx, index) => (
-        <div
-          key={index}
-          className={`${classes.tabPanel} ${tabValue !== index ? classes.displayNone : ''}`}
-        >
-          <Mdx />
-        </div>
-      ))}
+      <Box sx={{ width: '100%', marginLeft: 10 }}>
+        {components.map((Component, index) => (
+          <Box key={index} sx={{ ...(tabValue !== index && { display: 'none' }) }}>
+            <Component />
+          </Box>
+        ))}
+      </Box>
     </div>
   )
 }
