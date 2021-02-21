@@ -1,6 +1,6 @@
 import Image from 'next/image'
 // import { makeStyles } from '@material-ui/core/styles'
-import { Container, Typography, Box } from '@material-ui/core'
+import { Typography, Box } from '@material-ui/core'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 import { Carousel } from 'react-responsive-carousel'
 
@@ -19,7 +19,7 @@ const Facilities = ({ texts }) => {
   ]
 
   return (
-    <Container>
+    <>
       <Typography variant="h5">의료시설</Typography>
       <Box sx={{ marginBottom: 8 }} />
 
@@ -30,7 +30,7 @@ const Facilities = ({ texts }) => {
       </Carousel>
 
       <Box sx={{ marginBottom: 16 }} />
-    </Container>
+    </>
   )
 }
 

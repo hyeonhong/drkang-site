@@ -1,11 +1,25 @@
 import Image from 'next/image'
 import { Box } from '@material-ui/core'
+import { CircleText, OvalText } from 'components/Shapes'
 
 ##### 진료과목
 
-- 소아과
-- 이비인후과
-- 피부과
+<br />
+<br />
+<br />
+
+<Box
+  sx={{
+    '& > *': {
+      marginRight: 4
+    },
+    display: 'flex'
+  }}
+>
+  <CircleText text="소아과" />
+  <CircleText text="이비인후과" />
+  <CircleText text="피부과" />
+</Box>
 
 <br />
 <br />
@@ -13,12 +27,26 @@ import { Box } from '@material-ui/core'
 
 ##### 특성화 클리닉
 
-- 아토피 클리닉
-- 비염 · 알러지 클리닉
-- 성장 클리닉
-- 설소대 수술
-- 만성피로 클리닉
-- 불면증 클리닉
-- 노화방지 · 노화치료 프로그램
+<br />
+<br />
+<br />
+
+<Box
+  sx={{
+    '& > *': {
+      marginBottom: 4
+    },
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  }}
+>
+  <OvalText text="아토피 클리닉" />
+  <OvalText text="비염 · 알러지 클리닉" />
+  <OvalText text="성장 클리닉" />
+  <OvalText text="설소대 수술" />
+  <OvalText text="만성피로 클리닉" />
+  <OvalText text="불면증 클리닉" />
+</Box>
 
 <Box sx={{ marginBottom: 16 }} />

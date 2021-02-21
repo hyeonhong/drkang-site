@@ -41,7 +41,7 @@ const DrKang = ({ texts }) => {
           </Typography>
         </Paper>
       </Box>
-      <Box sx={{ marginBottom: 8 }} />
+      <Box sx={{ marginBottom: 16 }} />
     </>
   )
 }
