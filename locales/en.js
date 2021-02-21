@@ -108,6 +108,16 @@ const en = {
   SinglePost: {
     backToBlog: 'Back to Blog'
   },
+  Directions: {
+    directions: 'Directions',
+    addressLabel: 'Address',
+    address:
+      'Ilsandong-gu Jungang-ro 1275beon-gil 38-10, Woorim Rodeo Suite Unit 209, Goyang-si, Gyeonggi-do',
+    parkingLabel: 'Parking',
+    parking: 'Woorim Rodeo Suite Underground Parking Lot (B1 - B4)',
+    publicTransitLabel: 'Public Transportation',
+    publicTransit: 'Subway: Line No. 3 Jeongbalsan Exit 2 (5 min walking distance to office)'
+  },
   TermsPage: {
     title: 'Terms of Service'
   },

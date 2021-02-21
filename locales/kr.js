@@ -107,6 +107,15 @@ const kr = {
   SinglePost: {
     backToBlog: '이전 화면'
   },
+  Directions: {
+    directions: '찾아오시는 길',
+    addressLabel: '주소',
+    address: '경기 고양시 일산동구 중앙로1275번길 38-10 우림로데오스위트 209호',
+    parkingLabel: '주차',
+    parking: '우림로데오스위트 지하 주차장(지하 1-4층) 주차 가능',
+    publicTransitLabel: '대중교통',
+    publicTransit: '지하철 3호선 정발산역 2번출구 앞 도보 3분'
+  },
   TermsPage: {
     title: '서비스 이용약관'
   },
