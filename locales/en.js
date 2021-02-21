@@ -20,7 +20,7 @@ const en = {
   Footer: {
     name: 'Dr. Kang Clinic',
     address:
-      'Ilsandong-gu Jungang-ro 1275beon-gil 38-10, Unit 209\nGoyang-si, Gyeonggi-do, Republic of Korea',
+      'Woorim Rodeo Suite, Unit 209\nIlsandong-gu Jungang-ro 1275beon-gil 38-10\nGoyang-si, Gyeonggi-do, Republic of Korea',
     phoneNo: 'Phone: 031-919-2568',
     email: 'Email: contact@drkangclinic.com',
     businessHoursTitle: 'Business Hours',
