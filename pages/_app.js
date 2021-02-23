@@ -13,7 +13,7 @@ import { MDXProvider } from '@mdx-js/react'
 import SEO from '../next-seo.config'
 import { AuthProvider } from 'utils/auth/firebaseClient'
 import { LangProvider } from 'utils/hook/useLang'
-import { koreanTheme } from 'styles/theme'
+import theme from 'styles/theme'
 import Layout from 'components/Layout'
 
 export const cache = createCache({ key: 'css', prepend: true })
@@ -45,7 +45,7 @@ export default function MyApp(props) {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={koreanTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <AuthProvider>
           <LangProvider>

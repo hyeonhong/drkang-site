@@ -2,7 +2,7 @@ import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
 import createEmotionServer from '@emotion/server/create-instance'
-import { koreanTheme } from 'styles/theme'
+import theme from 'styles/theme'
 import { cache } from './_app.js'
 
 const { extractCritical } = createEmotionServer(cache)
@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
       <Html lang="kr">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={koreanTheme.palette.primary.main} />
+          <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="preload" href="/fonts/notosanskr.css" as="style" />
           <link rel="stylesheet" href="/fonts/notosanskr.css" />
           <link rel="preload" href="/fonts/roboto.css" as="style" />

@@ -2,8 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { makeStyles, experimentalStyled } from '@material-ui/core/styles'
-import { Typography, Container, Box, Paper, Button } from '@material-ui/core'
-// import { useMediaQuery } from '@material-ui/core'
+import { useMediaQuery, Typography, Container, Box, Paper, Button } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -27,29 +26,27 @@ const useStyles = makeStyles((theme) => ({
     height: theme.typography.body1.fontSize,
     marginRight: theme.spacing(1)
   },
-  navList: {
-    display: 'flex',
-    // justifyContent: 'space-between',
-    [theme.breakpoints.down('xs')]: {
-      flexDirection: 'column'
-    }
-  },
-  navListItem: {
-    textAlign: 'center'
-  },
   footerText: {
     color: '#f8f9fa'
   }
 }))
 
 const StyledPaper = experimentalStyled(Paper)(({ theme }) => ({
-  width: 360,
+  '@media (max-width: 599px)': {
+    width: 280
+  },
+  '@media (min-width: 600px)': {
+    width: 360
+  },
+
   padding: theme.spacing(4)
 }))
 
 const Footer = ({ texts }) => {
   const router = useRouter()
   const classes = useStyles()
+
+  const isMobile = useMediaQuery('(max-width:600px)')
 
   const Title = ({ name }) => (
     <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
@@ -70,22 +67,44 @@ const Footer = ({ texts }) => {
     </Link>
   )
 
+  const divider = (
+    <Typography variant="body1" display="inline" sx={{ whiteSpace: 'pre' }}>
+      {isMobile ? '\n' : '    |    '}
+    </Typography>
+  )
+
   const SocialMediaLink = ({ href, ...imageProps }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" className={classes.link}>
       <Image {...imageProps} />
     </a>
   )
 
-  // const mobileLineBreak = useMediaQuery('(max-width:600px)') ? '\n' : '/'
-
   return (
     <footer className={classes.footer}>
       <Container>
         <Box sx={{ marginBottom: 8 }} />
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            ...(isMobile && {
+              marginTop: -1,
+              '& > *': {
+                marginTop: 1
+              }
+            })
+          }}
+        >
           <StyledPaper>
             <Title name={texts.name} />
-            <Typography variant="body2" sx={{ whiteSpace: 'pre' }}>
+            <Typography
+              variant="body2"
+              sx={{
+                whiteSpace: 'pre',
+                ...(isMobile && { whiteSpace: 'normal', wordBreak: 'break-all' })
+              }}
+            >
               {texts.address}
             </Typography>
             <Box sx={{ marginBottom: 4 }} />
@@ -149,15 +168,18 @@ const Footer = ({ texts }) => {
           />
         </Box>
 
-        <Box sx={{ marginBottom: 2 }} />
+        <Box sx={{ marginBottom: isMobile ? 6 : 2 }} />
         <Box>
           <InlineLink text={texts.terms} to="/terms" />
-          <Typography variant="body1" display="inline" sx={{ whiteSpace: 'pre' }}>
-            {'    |    '}
-          </Typography>
+          {divider}
           <InlineLink text={texts.privacy} to="/privacy" />
-          <Typography variant="body1" display="inline" sx={{ whiteSpace: 'pre' }}>
-            {`${'    |    '}${texts.CEO}${'    |    '}${texts.bizNo}`}
+          {divider}
+          <Typography variant="body1" display="inline">
+            {texts.CEO}
+          </Typography>
+          {divider}
+          <Typography variant="body1" display="inline">
+            {texts.bizNo}
           </Typography>
         </Box>
         <Box sx={{ marginBottom: 2 }} />

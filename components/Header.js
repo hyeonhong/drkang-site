@@ -16,8 +16,11 @@ import {
   MenuItem,
   Typography,
   IconButton,
-  Menu
+  Menu,
+  Hidden,
+  Drawer
 } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -40,20 +43,12 @@ const useStyles = makeStyles((theme) => ({
   menuList: {
     display: 'flex',
     flexDirection: 'row',
-    padding: 0,
-    [theme.breakpoints.down('xs')]: {
-      display: 'none'
-    }
+    padding: 0
   },
   menuItem: {
     // display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.up('md')]: {
-      minWidth: 100
-    },
-    '@media (max-width: 768px)': {
-      maxWidth: 65
-    },
+    minWidth: 100,
     borderRadius: 8,
     color: 'black'
   },
@@ -70,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
   },
   avatarItem: {
     minWidth: 200
+  },
+  drawerMenuItem: {
+    justifyContent: 'center'
   }
 }))
 
@@ -79,6 +77,7 @@ const Header = ({ texts }) => {
   const { user, signOut } = useAuth()
 
   const [anchorEl, setAnchorEl] = useState(null)
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const paths = Object.keys(texts.tabLabels)
 
@@ -92,48 +91,49 @@ const Header = ({ texts }) => {
             <Image src="/assets/logo.png" alt="company logo" width={130} height={42.8} />
           </Button>
           <Box className={classes.filler} />
-          <MenuList className={classes.menuList}>
-            {paths.map((path) => (
-              <MenuItem
-                key={path}
-                button
-                onClick={() => router.push(path)}
-                className={classes.menuItem}
-              >
-                <Typography
-                  variant="body1"
-                  className={clsx(
-                    classes.menuItemText,
-                    router.pathname === path && classes.activeMenuItem
-                  )}
+          <Hidden smDown>
+            <MenuList className={classes.menuList}>
+              {paths.map((path) => (
+                <MenuItem
+                  key={path}
+                  button
+                  onClick={() => router.push(path)}
+                  className={classes.menuItem}
                 >
-                  {texts.tabLabels[path]}
-                </Typography>
-              </MenuItem>
-            ))}
-          </MenuList>
-          <LangButton />
-          {user ? (
-            <>
-              <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
-                <FontAwesomeIcon icon={faUserCircle} />
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left'
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left'
-                }}
-              >
-                {/* <MenuItem
+                  <Typography
+                    variant="body1"
+                    className={clsx(
+                      classes.menuItemText,
+                      router.pathname === path && classes.activeMenuItem
+                    )}
+                  >
+                    {texts.tabLabels[path]}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </MenuList>
+            <LangButton />
+            {user ? (
+              <>
+                <IconButton onClick={(e) => setAnchorEl(anchorEl ? null : e.currentTarget)}>
+                  <FontAwesomeIcon icon={faUserCircle} />
+                </IconButton>
+                <Menu
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={() => setAnchorEl(null)}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left'
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left'
+                  }}
+                >
+                  {/* <MenuItem
                   onClick={() => {
                     setAnchorEl(null)
                     router.push('/profile')
@@ -142,44 +142,68 @@ const Header = ({ texts }) => {
                 >
                   {texts.profile}
                 </MenuItem> */}
-                <MenuItem
-                  onClick={() => {
-                    setAnchorEl(null)
-                    signOut()
-                    router.push('/')
-                  }}
-                  className={classes.avatarItem}
+                  <MenuItem
+                    onClick={() => {
+                      setAnchorEl(null)
+                      signOut()
+                      router.push('/')
+                    }}
+                    className={classes.avatarItem}
+                  >
+                    {texts.signOut}
+                  </MenuItem>
+                </Menu>
+              </>
+            ) : (
+              <>
+                <Button
+                  disableElevation
+                  disableRipple
+                  disableFocusRipple
+                  disableTouchRipple
+                  onClick={() => router.push('/signin')}
                 >
-                  {texts.signOut}
-                </MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <>
-              <Button
-                disableElevation
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                onClick={() => router.push('/signin')}
-              >
-                {texts.signIn}
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                disableElevation
-                disableRipple
-                disableFocusRipple
-                disableTouchRipple
-                onClick={() => router.push('/signup')}
-              >
-                {texts.signUp}
-              </Button>
-            </>
-          )}
+                  {texts.signIn}
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                  disableRipple
+                  disableFocusRipple
+                  disableTouchRipple
+                  onClick={() => router.push('/signup')}
+                >
+                  {texts.signUp}
+                </Button>
+              </>
+            )}
+          </Hidden>
+          <Hidden smUp>
+            <IconButton onClick={() => setDrawerOpen(true)}>
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
         </Toolbar>
       </Container>
+      <Hidden smUp>
+        <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+          <div onClick={() => setDrawerOpen(false)} className={classes.hamburgerMenu}>
+            <Box sx={{ marginBottom: 10 }} />
+            <MenuList>
+              {paths.map((path) => (
+                <MenuItem
+                  key={path}
+                  onClick={() => router.push(path)}
+                  classes={{ root: classes.drawerMenuItem }}
+                >
+                  {texts.tabLabels[path]}
+                </MenuItem>
+              ))}
+            </MenuList>
+          </div>
+        </Drawer>
+      </Hidden>
     </AppBar>
   )
 }
