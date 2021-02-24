@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
-import { Tabs, Tab, Typography, Paper, Box, Button } from '@material-ui/core'
+import { useMediaQuery, Tabs, Tab, Typography, Paper, Box, Button } from '@material-ui/core'
 import clsx from 'clsx'
 
 import withTexts from 'utils/hoc/withTexts'
@@ -11,7 +11,10 @@ const { postsPerPage } = require('config')
 const useStyles = makeStyles((theme) => ({
   main: {
     display: 'flex',
-    width: '100%'
+    width: '100%',
+    '@media (max-width: 599px)': {
+      flexDirection: 'column'
+    }
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -40,6 +43,8 @@ const PostWrapper = ({ texts, tabLabels, allCategory }) => {
   const [tabValue, setTabValue] = useState(0)
   const [visiblePosts, setVisiblePosts] = useState(postsPerPage)
 
+  const isMobile = useMediaQuery('(max-width:600px)')
+
   const SingleCard = ({ post }) => (
     <Box sx={{ marginBottom: 4 }}>
       <Link href={`/post/${post.slug}`}>
@@ -66,14 +71,14 @@ const PostWrapper = ({ texts, tabLabels, allCategory }) => {
   return (
     <div className={classes.main}>
       <Tabs
-        orientation="vertical"
+        orientation={isMobile ? 'horizontal' : 'vertical'}
         variant="fullWidth"
         value={tabValue}
         onChange={(event, newValue) => {
           setTabValue(newValue)
           setVisiblePosts(postsPerPage)
         }}
-        className={classes.tabs}
+        className={clsx(!isMobile && classes.tabs)}
         textColor="secondary"
         // TabIndicatorProps={{
         //   style: {
@@ -90,7 +95,9 @@ const PostWrapper = ({ texts, tabLabels, allCategory }) => {
         ))}
       </Tabs>
 
-      <Box sx={{ width: '100%', marginLeft: 10 }}>
+      {isMobile && <Box sx={{ marginBottom: 6 }} />}
+
+      <Box sx={{ width: '100%', ...(!isMobile && { marginLeft: 10 }) }}>
         {components.map((component, index) => (
           <Box key={index} sx={{ ...(tabValue !== index && { display: 'none' }) }}>
             {component}

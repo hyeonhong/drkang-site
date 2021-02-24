@@ -68,12 +68,7 @@ export default function ContentWrapper({ tabLabels, components }) {
 
       {isMobile && <Box sx={{ marginBottom: 6 }} />}
 
-      <Box
-        sx={{
-          width: '100%',
-          ...(!isMobile && { marginLeft: 10 })
-        }}
-      >
+      <Box sx={{ width: '100%', ...(!isMobile && { marginLeft: 10 }) }}>
         {components.map((Component, index) => (
           <Box key={index} sx={{ ...(tabValue !== index && { display: 'none' }) }}>
             <Component />
