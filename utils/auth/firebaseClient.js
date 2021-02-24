@@ -117,11 +117,7 @@ function useProvideAuth() {
       setLoading(false)
       if (currentUser) {
         // For users with email and password, verify email
-        if (
-          currentUser.providerData.length > 0 &&
-          currentUser.providerData[0].providerId === 'password' &&
-          !currentUser.emailVerified
-        ) {
+        if (currentUser.providerData?.[0].providerId === 'password' && !currentUser.emailVerified) {
           router.push('/verify-email')
         }
 
