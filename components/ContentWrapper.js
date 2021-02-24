@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
-import { Tabs, Tab, Typography, Box } from '@material-ui/core'
+import { useMediaQuery, Tabs, Tab, Typography, Box } from '@material-ui/core'
 import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
   main: {
     display: 'flex',
-    width: '100%'
+    width: '100%',
+    '@media (max-width: 599px)': {
+      flexDirection: 'column'
+    }
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -37,14 +40,16 @@ export default function ContentWrapper({ tabLabels, components }) {
   const defaultTabValue = parseInt(router.query.tab) || 0
   const [tabValue, setTabValue] = useState(defaultTabValue)
 
+  const isMobile = useMediaQuery('(max-width:600px)')
+
   return (
     <div className={classes.main}>
       <Tabs
-        orientation="vertical"
+        orientation={isMobile ? 'horizontal' : 'vertical'}
         variant="fullWidth"
         value={tabValue}
         onChange={(event, newValue) => setTabValue(newValue)}
-        className={classes.tabs}
+        className={clsx(!isMobile && classes.tabs)}
         textColor="secondary"
         // TabIndicatorProps={{
         //   style: {
@@ -61,7 +66,14 @@ export default function ContentWrapper({ tabLabels, components }) {
         ))}
       </Tabs>
 
-      <Box sx={{ width: '100%', marginLeft: 10 }}>
+      {isMobile && <Box sx={{ marginBottom: 6 }} />}
+
+      <Box
+        sx={{
+          width: '100%',
+          ...(!isMobile && { marginLeft: 10 })
+        }}
+      >
         {components.map((Component, index) => (
           <Box key={index} sx={{ ...(tabValue !== index && { display: 'none' }) }}>
             <Component />
