@@ -25,10 +25,14 @@ const useStyles = makeStyles((theme) => ({
     width: '80%'
   },
   cell: {
-    paddingLeft: theme.spacing(14)
+    '@media (min-width: 600px)': {
+      paddingLeft: theme.spacing(14)
+    }
   },
   lastCell: {
-    paddingRight: theme.spacing(8)
+    '@media (min-width: 600px)': {
+      paddingRight: theme.spacing(8)
+    }
   }
 }))
 

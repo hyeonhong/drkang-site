@@ -33,7 +33,7 @@ const DrKang = ({ texts }) => {
           flexDirection: isMobile || useLang().lang !== 'kr' ? 'column' : 'row'
         }}
       >
-        <div>
+        <div style={{ width: isMobile ? '100%' : '50%' }}>
           <Image
             layout="responsive"
             src="/assets/images/drkang-portrait-v2.jpg"
