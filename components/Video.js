@@ -1,4 +1,9 @@
-export default function Video({ src, width }) {
+import { useMediaQuery } from '@material-ui/core'
+
+export default function Video({ src }) {
+  const isMobile = useMediaQuery('(max-width:600px)')
+  const width = isMobile ? 300 : 800
+
   return (
     <div style={{ width }}>
       <div style={{ position: 'relative', paddingTop: '56.25%' }}>
