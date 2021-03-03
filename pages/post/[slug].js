@@ -1,5 +1,13 @@
 import { useRouter } from 'next/router'
-import { Container, Paper, Box, Typography, Button, Divider } from '@material-ui/core'
+import {
+  useMediaQuery,
+  Container,
+  Paper,
+  Box,
+  Typography,
+  Button,
+  Divider
+} from '@material-ui/core'
 import { NextSeo, BlogJsonLd } from 'next-seo'
 
 import withTexts from 'utils/hoc/withTexts'
@@ -11,6 +19,7 @@ const SinglePost = ({ texts, post, categories }) => {
   const router = useRouter()
 
   // const imageUrl = getStrapiMedia(post.image)
+  const isMobile = useMediaQuery('(max-width:600px)')
 
   return (
     <Container>
@@ -39,7 +48,10 @@ const SinglePost = ({ texts, post, categories }) => {
       />
       <Box sx={{ marginBottom: 8 }} />
       <Box sx={{ textAlign: 'center' }}>
-        <Paper sx={{ padding: 8, display: 'inline-block', textAlign: 'left' }} elevation={3}>
+        <Paper
+          sx={{ padding: isMobile ? 4 : 8, display: 'inline-block', textAlign: 'left' }}
+          elevation={3}
+        >
           <Typography variant="h5">{post.title}</Typography>
           <Box sx={{ marginBottom: 4 }} />
           <Divider />

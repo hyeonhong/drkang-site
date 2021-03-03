@@ -1,6 +1,5 @@
 /* eslint-disable react/display-name */
 
-import Image from 'next/image'
 import { useMediaQuery, Typography } from '@material-ui/core'
 import ReactMarkdown from 'react-markdown'
 
@@ -10,7 +9,7 @@ export default function MarkdownContent({ source }) {
   const renderers = {
     ...(isMobile && {
       image: ({ src, alt, ...rest }) => (
-        <Image src={src} alt={alt} width={300} height={300} layout="responsive" {...rest} />
+        <img src={src} alt={alt} {...rest} style={{ maxWidth: '100%', maxHeight: '100%' }} />
       )
     }),
     paragraph: (props) => <Typography component={'div'} variant={'body1'} {...props} />,
