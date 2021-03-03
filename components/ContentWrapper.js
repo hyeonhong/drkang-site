@@ -50,6 +50,7 @@ export default function ContentWrapper({ tabLabels, components }) {
         value={tabValue}
         onChange={(event, newValue) => setTabValue(newValue)}
         className={clsx(!isMobile && classes.tabs)}
+        indicatorColor="secondary"
         textColor="secondary"
         // TabIndicatorProps={{
         //   style: {

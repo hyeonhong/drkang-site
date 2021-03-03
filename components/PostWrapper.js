@@ -79,6 +79,7 @@ const PostWrapper = ({ texts, tabLabels, allCategory }) => {
           setVisiblePosts(postsPerPage)
         }}
         className={clsx(!isMobile && classes.tabs)}
+        indicatorColor="secondary"
         textColor="secondary"
         // TabIndicatorProps={{
         //   style: {
