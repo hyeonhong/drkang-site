@@ -1,6 +1,7 @@
 const kr = {
   HomePage: {
     heroText: '아이들의 마음까지도 들여 봅니다.',
+    drKang: '강영록 원장',
     announcement: '공지사항'
   },
   Header: {

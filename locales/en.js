@@ -1,6 +1,7 @@
 const en = {
   HomePage: {
     heroText: 'Looking into the minds of the children',
+    drKang: 'Dr. Kang Young Rock',
     announcement: 'News'
   },
   Header: {

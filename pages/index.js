@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Typography, Box, Container, Hidden, Paper } from '@material-ui/core'
 
 import { fetchStrapiAPI } from 'lib/strapi'
@@ -27,7 +28,13 @@ const HomePage = ({ texts, announcement }) => {
         </Typography>
       </Box>
       <Box sx={{ marginBottom: 8 }} />
-      <Container>
+      <Container sx={{ textAlign: 'center' }}>
+        <Typography variant="h5" sx={{ fontWeight: 'fontWeightBold' }}>
+          {texts.drKang}
+        </Typography>
+        <Box sx={{ marginBottom: 4 }} />
+        <Image src="/assets/images/drkang-landscape.jpg" width={800} height={533.33} />
+        <Box sx={{ marginBottom: 16 }} />
         <Hidden smDown>
           <Typography variant="h5" sx={{ fontWeight: 'fontWeightBold' }}>
             {texts.announcement}
