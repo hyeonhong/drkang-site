@@ -25,9 +25,9 @@ const en = {
     phoneNo: 'Phone: 031-919-2568',
     email: 'Email: contact@drkangclinic.com',
     businessHoursTitle: 'Business Hours',
-    businessHoursContent: `WeekDay : 9AM - 6:30PM
+    businessHoursContent: `WeekDay : 9AM - 6:00PM
     Thursday : 2PM - 9PM
-    Saturday : 9AM - 3PM
+    Saturday : 9AM - 1:30PM
     Sunday/Holiday : CLOSED
     Lunch Hours : 1PM - 2PM`,
     CEO: 'CEO: Kang, Young Rock',

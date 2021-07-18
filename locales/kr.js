@@ -24,9 +24,9 @@ const kr = {
     phoneNo: 'Tel: 031-919-2568',
     email: 'Email: contact@drkangclinic.com',
     businessHoursTitle: '진료 시간',
-    businessHoursContent: `평일 : 9AM - 6:30PM
+    businessHoursContent: `평일 : 9AM - 6:00PM
     목요일 : 2PM - 9PM
-    토요일 : 9AM - 3PM
+    토요일 : 9AM - 1:30PM
     일/공휴일 : 휴무
     
     (점심시간 : 1PM - 2PM)`,
